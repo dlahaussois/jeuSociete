@@ -1,5 +1,8 @@
 package fr.solutec;
 
+import java.sql.Date;
+import java.util.stream.Stream;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -51,14 +54,15 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		
 		Categorie c1= new Categorie(null, "Plateau");
 		Categorie c2 = new Categorie(null, "Cartes");
-		categorieRepo.save(c1);
-		categorieRepo.save(c2);
+		Stream.of(c1,c2).forEach(c -> categorieRepo.save(c));
 		
 		Marque m1 = new Marque(null, "REPOS Production");
 		Marque m2 = new Marque(null, "DUCALE");
-		marqueRepo.save(m1);
-		marqueRepo.save(m2);
+		Stream.of(m1,m2).forEach(m -> marqueRepo.save(m));
 		
+		Jeu j1 = new Jeu(null, "7 Wonders", 3, 7, 10, "Difficile", null, "Un jeu où l'objectif est d'accumuler des points par divers moyens en un nombre de tours restraint.", "Je sais plus du tout dsl", c1, m1);
+		Jeu j2 = new Jeu(null, "Tarot", 4, 5, 10, "Difficile", null, "2 camps s'affrontent pour remporter un maximum de points dans un jeu par manches.", "C'est compliqué ...", c2, m2);
+		Stream.of(j1,j2).forEach(j -> jeuRepo.save(j));
 	}
 
 }
