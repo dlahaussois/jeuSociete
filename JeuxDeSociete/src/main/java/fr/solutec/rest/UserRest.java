@@ -35,4 +35,8 @@ public class UserRest {
 		return userRepo.findById(id);
 	}
 	
+	@PostMapping("user")
+	public User addUser(@RequestBody User u){
+		return userRepo.save(u);
+	}
 }
