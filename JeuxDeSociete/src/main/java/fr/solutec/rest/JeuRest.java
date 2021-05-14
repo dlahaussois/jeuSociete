@@ -22,12 +22,12 @@ public class JeuRest {
 	@Autowired
 	JeuRepository jeuRepo;
 	
-	@GetMapping("jeu/list")
+	@GetMapping("/jeu/list")
 	public Iterable<Jeu> getAllJeu(){
 		return jeuRepo.findAll();
 	}
 	
-	@PostMapping("jeu/save")
+	@PostMapping("/jeu/save")
 	public Jeu saveJeu(@RequestBody Jeu jeu) {
 		return jeuRepo.save(jeu);
 	}
