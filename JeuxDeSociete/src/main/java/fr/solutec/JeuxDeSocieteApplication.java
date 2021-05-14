@@ -1,5 +1,9 @@
 package fr.solutec;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,6 +19,8 @@ import fr.solutec.repository.JeuRepository;
 import fr.solutec.repository.JoueurRepository;
 import fr.solutec.repository.MarqueRepository;
 import fr.solutec.repository.UserRepository;
+
+import java.util.stream.Stream;
 
 @SpringBootApplication
 public class JeuxDeSocieteApplication implements CommandLineRunner{
@@ -56,20 +62,26 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		
 		Categorie c1= new Categorie(null, "Plateau");
 		Categorie c2 = new Categorie(null, "Cartes");
-		categorieRepo.save(c1);
-		categorieRepo.save(c2);
+		Stream.of(c1,c2).forEach(c -> categorieRepo.save(c));
 		
 		Marque m1 = new Marque(null, "REPOS Production");
 		Marque m2 = new Marque(null, "DUCALE");
-		marqueRepo.save(m1);
-		marqueRepo.save(m2);
+		Stream.of(m1,m2).forEach(m -> marqueRepo.save(m));
 		
 		Joueur jo1 = new Joueur(null,asterix);
 		Joueur jo2 = new Joueur(null,obelix);
-		joueurRepo.save(jo1);
-		joueurRepo.save(jo2);
+		Stream.of(jo1,jo2).forEach(jo -> joueurRepo.save(jo));
+
 		
 		System.out.println(jo1);
+		
+		
+		
+		Jeu j1 = new Jeu(null, "7 Wonders", 3, 7, 10, "Difficile", 30, "Un jeu où l'objectif est d'accumuler des points par divers moyens en un nombre de tours restraint.", "Je sais plus du tout dsl");
+		Jeu j2 = new Jeu(null, "Tarot", 4, 5, 10, "Difficile", 15, "2 camps s'affrontent pour remporter un maximum de points dans un jeu par manches.", "C'est compliqué ...");
+		Stream.of(j1,j2).forEach(j -> jeuRepo.save(j));
+		
+		
 		
 	}
 
