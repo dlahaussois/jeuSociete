@@ -65,7 +65,9 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		marqueRepo.save(m2);
 		
 		Joueur jo1 = new Joueur(null,asterix);
+		Joueur jo2 = new Joueur(null,obelix);
 		joueurRepo.save(jo1);
+		joueurRepo.save(jo2);
 		
 		System.out.println(jo1);
 		
