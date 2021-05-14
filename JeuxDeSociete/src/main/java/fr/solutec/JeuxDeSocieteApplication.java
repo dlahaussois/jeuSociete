@@ -1,6 +1,9 @@
 package fr.solutec;
 
-import java.sql.Date;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,8 +63,10 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		Marque m2 = new Marque(null, "DUCALE");
 		Stream.of(m1,m2).forEach(m -> marqueRepo.save(m));
 		
-		Jeu j1 = new Jeu(null, "7 Wonders", 3, 7, 10, "Difficile", null, "Un jeu où l'objectif est d'accumuler des points par divers moyens en un nombre de tours restraint.", "Je sais plus du tout dsl", c1, m1);
-		Jeu j2 = new Jeu(null, "Tarot", 4, 5, 10, "Difficile", null, "2 camps s'affrontent pour remporter un maximum de points dans un jeu par manches.", "C'est compliqué ...", c2, m2);
+		
+		
+		Jeu j1 = new Jeu(null, "7 Wonders", 3, 7, 10, "Difficile", 30, "Un jeu où l'objectif est d'accumuler des points par divers moyens en un nombre de tours restraint.", "Je sais plus du tout dsl", c1, m1);
+		Jeu j2 = new Jeu(null, "Tarot", 4, 5, 10, "Difficile", 15, "2 camps s'affrontent pour remporter un maximum de points dans un jeu par manches.", "C'est compliqué ...", c2, m2);
 		Stream.of(j1,j2).forEach(j -> jeuRepo.save(j));
 	}
 

@@ -1,6 +1,8 @@
 package fr.solutec.entities;
 
-import java.sql.Date;
+
+
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +24,7 @@ public class Jeu {
 	private int NombreJoueursMax;
 	private int AgeMin;
 	private String NiveauDifficulte;
-	private Date TempsDeJeu;
+	private int TempsDeJeu;
 	private String Description;
 	private String RegleDuJeu;
 	
