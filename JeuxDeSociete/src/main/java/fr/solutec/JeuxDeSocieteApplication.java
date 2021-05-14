@@ -5,7 +5,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import fr.solutec.entities.Categorie;
+import fr.solutec.entities.Jeu;
+import fr.solutec.entities.Marque;
 import fr.solutec.entities.User;
+import fr.solutec.repository.CategorieRepository;
+import fr.solutec.repository.JeuRepository;
+import fr.solutec.repository.MarqueRepository;
 import fr.solutec.repository.UserRepository;
 
 @SpringBootApplication
@@ -13,6 +19,17 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 
 	@Autowired
 	UserRepository userRepo;
+	
+	@Autowired
+	CategorieRepository categorieRepo;
+	
+	@Autowired
+	MarqueRepository marqueRepo;
+	
+	@Autowired
+	JeuRepository jeuRepo;
+	
+	
 	
 	public static void main(String[] args) {
 		SpringApplication.run(JeuxDeSocieteApplication.class, args);
@@ -31,6 +48,17 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		userRepo.save(asterix);
 		userRepo.save(obelix);
 		userRepo.save(panoramix);
+		
+		Categorie c1= new Categorie(null, "Plateau");
+		Categorie c2 = new Categorie(null, "Cartes");
+		categorieRepo.save(c1);
+		categorieRepo.save(c2);
+		
+		Marque m1 = new Marque(null, "REPOS Production");
+		Marque m2 = new Marque(null, "DUCALE");
+		marqueRepo.save(m1);
+		marqueRepo.save(m2);
+		
 	}
 
 }

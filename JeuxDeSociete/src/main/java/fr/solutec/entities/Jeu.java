@@ -16,18 +16,16 @@ import lombok.NoArgsConstructor;
 public class Jeu {
 	@Id @GeneratedValue
 	private Long id;
+	
 	private String nom;
-	private int NombreJoueurs;
+	private int NombreJoueursMin;
+	private int NombreJoueursMax;
 	private int AgeMin;
 	private String NiveauDifficulte;
 	private Date TempsDeJeu;
 	private String Description;
 	private String RegleDuJeu;
 	
-	@ManyToOne
-	private Categorie categorie;
-	
-	@ManyToOne
-	private Marque marque;
+
 	
 }
