@@ -15,4 +15,5 @@ public class Marque {
 	private Long id;
 	
 	private String libelle;
+	
 }
