@@ -7,10 +7,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import fr.solutec.entities.Categorie;
 import fr.solutec.entities.Jeu;
+import fr.solutec.entities.Joueur;
 import fr.solutec.entities.Marque;
 import fr.solutec.entities.User;
 import fr.solutec.repository.CategorieRepository;
 import fr.solutec.repository.JeuRepository;
+import fr.solutec.repository.JoueurRepository;
 import fr.solutec.repository.MarqueRepository;
 import fr.solutec.repository.UserRepository;
 
@@ -29,6 +31,9 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 	@Autowired
 	JeuRepository jeuRepo;
 	
+	
+	@Autowired
+	JoueurRepository joueurRepo;
 	
 	
 	public static void main(String[] args) {
@@ -58,6 +63,11 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		Marque m2 = new Marque(null, "DUCALE");
 		marqueRepo.save(m1);
 		marqueRepo.save(m2);
+		
+		Joueur j1 = new Joueur(null,asterix);
+		joueurRepo.save(j1);
+		
+		System.out.println(j1);
 		
 	}
 
