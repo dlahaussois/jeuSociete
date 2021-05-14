@@ -1,5 +1,15 @@
 package fr.solutec.repository;
 
-public interface UserRepository {
+import java.util.Optional;
 
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+
+import fr.solutec.entities.User;
+
+public interface UserRepository extends CrudRepository<User, Long>{
+	
+	@Query(value="SELECT u FROM User u WHERE login=?1 AND password= ?2")
+	public Optional<User> connect(String login, String password);
+	
 }
