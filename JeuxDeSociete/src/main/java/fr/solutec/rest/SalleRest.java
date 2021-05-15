@@ -11,11 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.solutec.entities.Salle;
-import fr.solutec.entities.Vendeur;
-import fr.solutec.repository.JoueurRepository;
+
 import fr.solutec.repository.SalleRepository;
-import fr.solutec.repository.UserRepository;
-import fr.solutec.repository.VendeurRepository;
 
 @RestController @CrossOrigin("*") 
 public class SalleRest {

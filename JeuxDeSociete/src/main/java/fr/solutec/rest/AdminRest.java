@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.solutec.entities.Admin;
-import fr.solutec.entities.Joueur;
+
 import fr.solutec.entities.User;
-import fr.solutec.entities.Vendeur;
+
 import fr.solutec.repository.AdminRepository;
-import fr.solutec.repository.JoueurRepository;
+
 import fr.solutec.repository.UserRepository;
-import fr.solutec.repository.VendeurRepository;
+
 
 @RestController @CrossOrigin("*")
 public class AdminRest {
