@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Entity
 
 
-public class Joueur {
+public class Admin {
 	
 	@Id @GeneratedValue
 	Long id;

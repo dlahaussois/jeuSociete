@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.solutec.entities.User;
 import fr.solutec.repository.UserRepository;
 
-@RestController @CrossOrigin
+@RestController @CrossOrigin("*")
 public class UserRest {
 
 	@Autowired

@@ -10,57 +10,52 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import fr.solutec.entities.Admin;
 import fr.solutec.entities.Joueur;
 import fr.solutec.entities.User;
 import fr.solutec.entities.Vendeur;
+import fr.solutec.repository.AdminRepository;
 import fr.solutec.repository.JoueurRepository;
 import fr.solutec.repository.UserRepository;
 import fr.solutec.repository.VendeurRepository;
 
-@RestController @CrossOrigin("*") 
-public class VendeurRest {
+@RestController @CrossOrigin("*")
+public class AdminRest {
 
 	@Autowired
-	VendeurRepository vendeurRepo;
+	AdminRepository adminRepo;
 	
 	@Autowired
 	UserRepository userRepo;
 	
 	
-	//Creation Vendeur depuis infos user
-	@PostMapping("vendeur/save")
-	public Vendeur addVendeur(@RequestBody User u) {
+	//Creation admin depuis infos user
+	@PostMapping("admin/save")
+	public Admin addAdmin(@RequestBody User u) {
 		User u1 = userRepo.save(u);
-		Vendeur v = new Vendeur(null, u1);
-		return vendeurRepo.save(v);
+		Admin ad = new Admin(null, u1);
+		return adminRepo.save(ad);
 		
 	}
 	
 	
-	@GetMapping("vendeur/list")
-	public Iterable<Vendeur> getAllVendeur(){
-		return vendeurRepo.findAll();
+	@GetMapping("admin/list")
+	public Iterable<Admin> getAllAdmin(){
+		return adminRepo.findAll();
 	}
 	
 
 	
 
 	
-	@GetMapping("vendeur/id/{id}")
-	public Optional<Vendeur> getVendeurById(@PathVariable Long id){
-		return vendeurRepo.findById(id);
+	@GetMapping("admin/id/{id}")
+	public Optional<Admin> getAdminById(@PathVariable Long id){
+		return adminRepo.findById(id);
 	}
 	
-	@GetMapping("vendeur/login/{login}")
-	public Optional<Vendeur> getVendeurByLogin(@PathVariable String login){
-		return vendeurRepo.findByUserLogin(login);
-	}
-	
-	
-	@PostMapping("vendeur/recherche")
-	public Optional<Vendeur> rechercheVendeurByLogin(@RequestBody User v){
-		return vendeurRepo.findByUserLogin(v.getLogin() );
+	@GetMapping("admin/login/{login}")
+	public Optional<Admin> getAdminByLogin(@PathVariable String login){
+		return adminRepo.findByUserLogin(login);
 	}
 
 	
