@@ -13,42 +13,49 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.solutec.entities.Joueur;
 import fr.solutec.entities.User;
+import fr.solutec.entities.Vendeur;
 import fr.solutec.repository.JoueurRepository;
 import fr.solutec.repository.UserRepository;
+import fr.solutec.repository.VendeurRepository;
 
 @RestController @CrossOrigin("*")
-public class JoueurRest {
+public class VendeurRest {
 
 	@Autowired
-	JoueurRepository joueurRepo;
+	VendeurRepository vendeurRepo;
 	
 	@Autowired
 	UserRepository userRepo;
 	
 	
-	//Creation joueur depuis infos user
-	@PostMapping("joueur/save")
-	public Joueur addJoueur(@RequestBody User u) {
+	//Creation Vendeur depuis infos user
+	@PostMapping("vendeur/save")
+	public Vendeur addVendeur(@RequestBody User u) {
 		User u1 = userRepo.save(u);
-		Joueur j = new Joueur(null, u1);
-		return joueurRepo.save(j);
+		Vendeur v = new Vendeur(null, u1);
+		return vendeurRepo.save(v);
 		
 	}
 	
-	@GetMapping("joueur/list")
-	public Iterable<Joueur> getAllJoueur(){
-		return joueurRepo.findAll();
+	
+	@GetMapping("vendeur/list")
+	public Iterable<Vendeur> getAllVendeur(){
+		return vendeurRepo.findAll();
 	}
 	
 
 	
 
 	
-	@GetMapping("joueur/{id}")
-	public Optional<User> getJoueurById(@PathVariable Long id){
-		return userRepo.findById(id);
+	@GetMapping("vendeur/id/{id}")
+	public Optional<Vendeur> getVendeurById(@PathVariable Long id){
+		return vendeurRepo.findById(id);
 	}
 	
+	@GetMapping("vendeur/login/{login}")
+	public Optional<Vendeur> getVendeurByLogin(@PathVariable String login){
+		return vendeurRepo.findByUserLogin(login);
+	}
 
 	
 	

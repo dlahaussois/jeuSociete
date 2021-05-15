@@ -30,7 +30,9 @@ public class UserRest {
 		return userRepo.connect(u.getLogin(), u.getPassword());
 	}
 	
-	@GetMapping("user/{id}")
+	
+	
+	@GetMapping("user/id/{id}")
 	public Optional<User> getUserById(@PathVariable Long id){
 		return userRepo.findById(id);
 	}
@@ -39,4 +41,13 @@ public class UserRest {
 	public User addUser(@RequestBody User u){
 		return userRepo.save(u);
 	}
+	
+	
+	@GetMapping("user/login/{login}")
+	public Optional<User> getUserByLogin(@PathVariable String login){
+		return userRepo.findByLogin(login);
+	}
+	
+	
+	
 }
