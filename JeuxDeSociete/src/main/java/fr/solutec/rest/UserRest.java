@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.solutec.entities.User;
+import fr.solutec.entities.Vendeur;
 import fr.solutec.repository.UserRepository;
 
 @RestController @CrossOrigin("*")
@@ -48,6 +49,10 @@ public class UserRest {
 		return userRepo.findByLogin(login);
 	}
 	
-	
+	@PutMapping("user/bloquer")
+	public  User bloquerUser(@RequestBody User u){
+		u.setActivity(false);
+		return userRepo.save(u);
+	}
 	
 }
