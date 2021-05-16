@@ -12,12 +12,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import fr.solutec.entities.Admin;
 import fr.solutec.entities.Categorie;
 import fr.solutec.entities.Jeu;
+import fr.solutec.entities.JeuAchat;
+import fr.solutec.entities.JeuLocation;
 import fr.solutec.entities.Joueur;
 import fr.solutec.entities.Marque;
 import fr.solutec.entities.User;
 import fr.solutec.entities.Vendeur;
 import fr.solutec.repository.AdminRepository;
 import fr.solutec.repository.CategorieRepository;
+import fr.solutec.repository.JeuAchatRepository;
+import fr.solutec.repository.JeuLocationRepository;
 import fr.solutec.repository.JeuRepository;
 import fr.solutec.repository.JoueurRepository;
 import fr.solutec.repository.MarqueRepository;
@@ -41,6 +45,11 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 	@Autowired
 	JeuRepository jeuRepo;
 	
+	@Autowired
+	JeuAchatRepository jaRepo;
+	
+	@Autowired
+	JeuLocationRepository jlRepo;
 	
 	@Autowired
 	JoueurRepository joueurRepo;
@@ -98,6 +107,21 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		Jeu j4 = new Jeu(null, "Puzzle - Inner Mystic - 1000 Pièces", 1, 1, 10, "Difficile", 120, "Puzzle de 1000 pièces en carton de la marque HEYE.\r\nFormat : Paysage\r\nDimensions : 50x70 cm\r\nFabriqué avec du carton recyclé.\r\nSous le ciel grandiose rêve une petite créature mythique. Si vous regardez de plus près en faisant le puzzle, vous découvrirez l'attention incroyablement affectueuse qu'Andy Kehoe porte aux détails.", "Assemblez les pièces pour reproduire le motif.", "https://cdn1.philibertnet.com/503142-thickbox_default/puzzle-inner-mystic-1000-pieces.jpg", c4, m4);
 		Jeu j5 = new Jeu(null, "Puzzle - Vincent Van Gogh - Nuit Etoilée - 1000 Pièces", 1, 1, 10, "difficulte", 120, "Puzzle classique de 1000 pièces\r\nFormat:Paysage\r\nDimensions :\r\n46 cm x 65 cm\r\nArtiste maudit et incompris, esprit sensible et torturé, Vincent Van Gogh (1853–1890) est devenu une légende. Réputé inclassable, il appartient pourtant à la mouvance postimpressionniste, tout comme son ami Paul Gauguin. Avec sa palette vive et sa touche exaltée, il apparaît aussi comme un précurseur du fauvisme et de l’expressionnisme tout en se rapprochant du symbolisme par sa conception mystique de l’art. Peintre infatigable mort à 37 ans, il a produit plus de 800 toiles. Associant réflexions sur la forme et sur la couleur, la démarche de Vincent Van Gogh incarne parfaitement le génie de l’art moderne.\r\nLa Nuit étoilée, 1889\r\n\r\n« Souvent, il me semble que la nuit est encore plus richement colorée que le jour », écrivit le peintre. Ce paysage nocturne fut réalisé depuis la chambre que Vincent Van Gogh occupait à l’asile de Saint-Rémy-de-Provence. Il se singularise par le traitement du ciel, qui occupe la majeure partie de la toile. Le mouvement tourbillonnant de l’air forme des vagues, et les étoiles étincellent comme autant de soleils. La touche est fragmentée, les couleurs sont pures. L’agitation du ciel contraste avec la tranquillité du village endormi. Vincent Van Gogh exprime ici sa vision mystique du monde, à la recherche d’une vérité invisible.", "Assemblez les pièces pour reproduire le motif.", "https://cdn2.philibertnet.com/502566-thickbox_default/puzzle-vincent-van-gogh-nuit-etoilee-1000-pieces.jpg", c4, m5);
 		Stream.of(j1,j2,j3,j4,j5).forEach(j -> jeuRepo.save(j));
+		
+		JeuAchat ja1 = new JeuAchat(null, 40.50, 100, j1);
+		JeuAchat ja2 = new JeuAchat(null, 9.99, 100, j2);
+		JeuAchat ja3 = new JeuAchat(null, 54.00, 100, j3);
+		JeuAchat ja4 = new JeuAchat(null, 18.90, 100, j4);
+		JeuAchat ja5 = new JeuAchat(null, 20.90, 100, j5);
+		Stream.of(ja1,ja2,ja3,ja4,ja5).forEach(ja -> jaRepo.save(ja));
+		
+		JeuLocation jl1 = new JeuLocation(null, 8.10, j1);
+		JeuLocation jl2 = new JeuLocation(null, 2.00, j2);
+		JeuLocation jl3 = new JeuLocation(null, 10.80, j3);
+		JeuLocation jl4 = new JeuLocation(null, 3.90, j4);
+		JeuLocation jl5 = new JeuLocation(null, 4.18, j5);
+		Stream.of(jl1,jl2,jl3,jl4,jl5).forEach(jl -> jlRepo.save(jl));
+		
 		
 		Admin a1 = new Admin(null,panoramix);
 		Admin a2 = new Admin(null,u4);
