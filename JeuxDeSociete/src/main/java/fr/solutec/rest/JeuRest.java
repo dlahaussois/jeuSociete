@@ -11,10 +11,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.solutec.entities.Categorie;
 import fr.solutec.entities.Jeu;
-
+import fr.solutec.entities.JeuAchat;
+import fr.solutec.repository.JeuAchatRepository;
+import fr.solutec.repository.JeuLocationRepository;
 import fr.solutec.repository.JeuRepository;
 
 
@@ -23,6 +27,12 @@ public class JeuRest {
 
 	@Autowired
 	JeuRepository jeuRepo;
+	
+	@Autowired
+	JeuAchatRepository jaRepo;
+	
+	@Autowired
+	JeuLocationRepository jlRepo;
 	
 	@GetMapping("/jeu/list")
 	public Iterable<Jeu> getAllJeu(){
@@ -46,8 +56,59 @@ public class JeuRest {
 	
 	@GetMapping("/jeu/findByNomLike")
 	public Optional<Iterable<Jeu>> getJeuByNomLike(@RequestBody Jeu jeu){
-		return jeuRepo.getByNom(jeu.getNom());
+		return jeuRepo.getJeuByNom(jeu.getNom());
 	}
+	
+	@GetMapping("/jeu/findByAgeMin")
+	public Optional<Iterable<Jeu>> getJeuByAgeMin(@RequestBody Jeu jeu){
+		return jeuRepo.getJeuByAgeMin(jeu.getAgeMin());
+	}
+	
+	@GetMapping("/jeu/findByMoreThanAgeMin")
+	public Optional<Iterable<Jeu>> getJeuByMoreThanAgeMin(@RequestBody Jeu jeu){
+		return jeuRepo.getJeuByMoreThanAgeMin(jeu.getAgeMin());
+	}
+	
+	@GetMapping("/jeu/findByLessThanAgeMin")
+	public Optional<Iterable<Jeu>> getJeuByLessThanAgeMin(@RequestBody Jeu jeu){
+		return jeuRepo.getJeuByLessThanAgeMin(jeu.getAgeMin());
+	}
+	
+	@GetMapping("/jeu/findByBetweenAgeMin")
+	public Optional<Iterable<Jeu>> getJeuByBetweenAgeMin(@RequestBody int[] ageMins){
+		return jeuRepo.getJeuByBetweenAgeMin(ageMins[0],ageMins[1]);
+	}
+	
+	@GetMapping("/jeu/findByCategorie")
+	public Optional<Iterable<Jeu>> getJeuByCategorie(@RequestBody Jeu jeu){
+		return jeuRepo.getJeuByCategorie(jeu.getCategorieDuJeu());
+	}
+	
+	@GetMapping("/jeu/findByMarque")
+	public Optional<Iterable<Jeu>> getJeuByMarque(@RequestBody Jeu jeu){
+		return jeuRepo.getJeuByMarque(jeu.getMarqueDuJeu());
+	}
+	
+	@GetMapping("/jeu/listJeuAchat")
+	public Iterable<JeuAchat> getAllJeuAchat(){
+		return jaRepo.findAll();
+	}
+	
+	@GetMapping("/jeu/findByPrixAchat")
+	public Optional<Iterable<JeuAchat>> getJeuByPrixAchat(@RequestBody JeuAchat ja){
+		return jaRepo.getJeuByPrixAchat(ja.getPrixAchat());
+	}
+	
+	@GetMapping("/jeu/findByMoreThanPrixAchat")
+	public Optional<Iterable<JeuAchat>> getJeuByMoreThanPrixAchat(@RequestBody JeuAchat ja){
+		return jaRepo.getJeuByMoreThanPrixAchat(ja.getPrixAchat());
+	}
+	
+	@GetMapping("/jeu/findByLessThanPrixAchat")
+	public Optional<Iterable<JeuAchat>> getJeuByLessThanPrixAchat(@RequestBody JeuAchat ja){
+		return jaRepo.getJeuByLessThanPrixAchat(ja.getPrixAchat());
+	}
+	
 	
 	@PostMapping("/jeu/save")
 	public Jeu saveJeu(@RequestBody Jeu jeu) {
