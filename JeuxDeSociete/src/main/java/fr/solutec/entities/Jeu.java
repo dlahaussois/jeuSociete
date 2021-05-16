@@ -27,10 +27,10 @@ public class Jeu {
 	private String RegleDuJeu;
 	
 	@ManyToOne
-	private Categorie categorieDuJeu;
+	private Categorie categorie;
 	
 	@ManyToOne
-	private Marque marqueDuJeu;
+	private Marque marque;
 
 	
 }
