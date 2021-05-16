@@ -26,6 +26,7 @@ public class Jeu {
 	private int TempsDeJeu;
 	@Column(length = 10000)
 	private String Description;
+	@Column(length = 10000)
 	private String RegleDuJeu;
 	
 	@ManyToOne
