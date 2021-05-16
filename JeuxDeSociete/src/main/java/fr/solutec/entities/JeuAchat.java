@@ -27,7 +27,7 @@ public class JeuAchat {
 	private int stockAchat;
 	
 	@OneToOne
-	private Jeu jeu;
+	private Jeu lejeu;
 	
 	
 

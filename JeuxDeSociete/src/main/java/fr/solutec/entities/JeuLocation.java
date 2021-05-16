@@ -26,7 +26,7 @@ public class JeuLocation {
 	private double prixLocation;
 		
 	@OneToOne
-	private Jeu jeu;
+	private Jeu lejeu;
 	
 	
 

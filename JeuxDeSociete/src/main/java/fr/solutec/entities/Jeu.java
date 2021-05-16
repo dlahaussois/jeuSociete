@@ -29,10 +29,10 @@ public class Jeu {
 	private String urlImage;
 	
 	@ManyToOne
-	private Categorie categorie;
+	private Categorie categorieDuJeu;
 	
 	@ManyToOne
-	private Marque marque;
+	private Marque marqueDuJeu;
 
 	
 }
