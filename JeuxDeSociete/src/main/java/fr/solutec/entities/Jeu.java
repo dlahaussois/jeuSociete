@@ -1,7 +1,6 @@
 package fr.solutec.entities;
 
-import java.util.Date;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -23,9 +22,17 @@ public class Jeu {
 	private int AgeMin;
 	private String NiveauDifficulte;
 	private int TempsDeJeu;
+	@Column(length = 10000)
 	private String Description;
+	@Column(length = 10000)
 	private String RegleDuJeu;
+	private String urlImage;
 	
+	@ManyToOne
+	private Categorie categorieDuJeu;
+	
+	@ManyToOne
+	private Marque marqueDuJeu;
 
 	
 }

@@ -9,5 +9,10 @@ import fr.solutec.entities.Jeu;
 
 public interface JeuRepository extends CrudRepository<Jeu, Long>{
 	
+	public Optional<Jeu> findByNom(String nom);
+	
+	@Query(value="SELECT j FROM Jeu j WHERE j.nom LIKE %?1%")
+	public Optional<Iterable<Jeu>> getByNom(String nom);
+		
 	
 }
