@@ -26,6 +26,11 @@ public class Jeu {
 	private String Description;
 	private String RegleDuJeu;
 	
+	@ManyToOne
+	private Categorie categorieDuJeu;
+	
+	@ManyToOne
+	private Marque marqueDuJeu;
 
 	
 }

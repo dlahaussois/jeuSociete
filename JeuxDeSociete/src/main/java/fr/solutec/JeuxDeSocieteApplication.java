@@ -87,8 +87,8 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		
 		System.out.println(jo1);
 		
-		Jeu j1 = new Jeu(null, "7 Wonders", 3, 7, 10, "Difficile", 30, "Un jeu où l'objectif est d'accumuler des points par divers moyens en un nombre de tours restraint.", "Je sais plus du tout dsl");
-		Jeu j2 = new Jeu(null, "Tarot", 4, 5, 10, "Difficile", 15, "2 camps s'affrontent pour remporter un maximum de points dans un jeu par manches.", "C'est compliqué ...");
+		Jeu j1 = new Jeu(null, "7 Wonders", 3, 7, 10, "Difficile", 30, "Un jeu où l'objectif est d'accumuler des points par divers moyens en un nombre de tours restraint.", "Je sais plus du tout dsl",c1,m1);
+		Jeu j2 = new Jeu(null, "Tarot", 4, 5, 10, "Difficile", 15, "2 camps s'affrontent pour remporter un maximum de points dans un jeu par manches.", "C'est compliqué ...",c2,m2);
 		Stream.of(j1,j2).forEach(j -> jeuRepo.save(j));
 		
 		Admin a1 = new Admin(null,panoramix);
