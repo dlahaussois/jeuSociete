@@ -59,10 +59,8 @@ public class JoueurRest {
 	public  void adhererJoueur(@RequestBody Joueur j){
 		
 		boolean a;
-		a = j.isCotisation();
-				
+		a = j.isCotisation();	
 		System.out.println(j);
-		
 		
 		if (a == true ) {
 			j.setCotisation(false);
@@ -72,7 +70,6 @@ public class JoueurRest {
 			
 		}
 		System.out.println(j);
-		
 		joueurRepo.save(j);
 	}
 	
