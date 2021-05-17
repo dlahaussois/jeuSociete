@@ -59,8 +59,8 @@ public class MessageRest {
 			}
 	 //avoir tous les mesages d'un forum par sujet
 		@GetMapping("sujet/messages")
-		public List<Message> getMessageByNameSujet(@RequestBody Forum forum){
+		public List<Message> getMessageByForumSujet(@RequestBody Forum sujet){
 			
-			return messageRepo.findByForumSujet(forum.getSujet());
+			return messageRepo.findByForumSujet(sujet.getSujet());
 			}
 }

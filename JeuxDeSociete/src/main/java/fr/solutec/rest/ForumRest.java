@@ -16,7 +16,7 @@ public class ForumRest {
 	@Autowired //notre personne repository herite de crud repository
 	private ForumRepository forumRepo;
 	
-	//obtenir tous les forum
+	//obtenir tous les forums
 	@GetMapping("/forums")
 	public Iterable<Forum> getAllForum(){
 	return forumRepo.findAll();

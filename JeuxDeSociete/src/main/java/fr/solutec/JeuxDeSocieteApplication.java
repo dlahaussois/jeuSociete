@@ -165,19 +165,19 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 
 		Stream.of(v1).forEach(a -> vendeurRepo.save(a));
 		
-		Forum f1 = new Forum(null, "question1");
-		Forum f2 = new Forum(null, "question2");
-		Forum f3 = new Forum(null, "question3");
-		Forum f4 = new Forum(null, "question4");
-		Forum f5 = new Forum(null, "question5");
+		Forum f1 = new Forum(null, "délais de livraison");
+		Forum f2 = new Forum(null, "retour/échange");
+		Forum f3 = new Forum(null, "disponibilité de jeux");
+		Forum f4 = new Forum(null, "réservations de salles");
+		Forum f5 = new Forum(null, "retour/échange");
 		
 		Stream.of(f1, f2, f3, f4, f5).forEach(a -> forumRepo.save(a));
 		
-		Message me1= new Message(null, null, "Quel est le but du jeu Risk ?", asterix, f1);
-		Message me2= new Message(null, null, "Est-il possible de réserver une salle plusieurs semaines à l'avance ?", obelix,f3);
-		Message me3= new Message(null, null, "Peut-on tester un jeu avant de l'acheter ?", panoramix,f2);
-		Message me4= new Message(null, null, "Faites vous des promotions pour noel ?", u4, f3);
-		Message me5= new Message(null, null, "Avez-vous un système de fidélisation des clients ?", u5,f4);
+		Message me1= new Message(null, null, "Quels sont les délais de livraison ?", asterix, f1);
+		Message me2= new Message(null, null, "Est-il possible de se faire rembourser un jeu ?", obelix,f3);
+		Message me3= new Message(null, null, "La dernière version du jeu Monopoly est-elle disponible en commande chez vous ?", panoramix,f2);
+		Message me4= new Message(null, null, "Serait-il possible de réserver une salle pour 15 dans 1 mois ?", u4, f3);
+		Message me5= new Message(null, null, "J'ai reç mon jeu, il est imcomplet, comment se passe l'échange ?", u5,f4);
 		
 		Stream.of(me1, me2, me3, me4, me5).forEach(a -> messageRepo.save(a));
 	
