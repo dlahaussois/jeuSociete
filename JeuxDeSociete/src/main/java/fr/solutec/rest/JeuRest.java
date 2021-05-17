@@ -109,6 +109,35 @@ public class JeuRest {
 		return jaRepo.getJeuByLessThanPrixAchat(ja.getPrixAchat());
 	}
 	
+	@GetMapping("/jeu/findByBetweenPrixAchat")
+	public Optional<Iterable<JeuAchat>> getJeuByBetweenPrixAchat(@RequestBody int[] PrixAchats){
+		return jaRepo.getJeuByBetweenPrixAchat(PrixAchats[0],PrixAchats[1]);
+	}
+	
+	@GetMapping("/jeu/findByTempsDeJeu")
+	public Optional<Iterable<Jeu>> getJeuByTempsDeJeu(@RequestBody Jeu jeu){
+		return jeuRepo.getJeuByTempsDeJeu(jeu.getTempsDeJeu());
+	}
+	
+	@GetMapping("/jeu/findByMoreThanTempsDeJeu")
+	public Optional<Iterable<Jeu>> getJeuByMoreThanTempsDeJeu(@RequestBody Jeu jeu){
+		return jeuRepo.getJeuByMoreThanTempsDeJeu(jeu.getTempsDeJeu());
+	}
+	
+	@GetMapping("/jeu/findByLessThanTempsDeJeu")
+	public Optional<Iterable<Jeu>> getJeuByLessThanTempsDeJeu(@RequestBody Jeu jeu){
+		return jeuRepo.getJeuByLessThanTempsDeJeu(jeu.getTempsDeJeu());
+	}
+	
+	@GetMapping("/jeu/findByBetweenTempsDeJeu") 
+	public Optional<Iterable<Jeu>> getJeuByBetweenTempsDeJeu(@RequestBody int[] TempsDeJeux){
+		return jeuRepo.getJeuByBetweenTempsDeJeu(TempsDeJeux[0],TempsDeJeux[1]);
+	}
+	
+	@GetMapping("/jeu/findByDifficulte")
+	public Optional<Iterable<Jeu>> getJeuByDifficulte(@RequestBody Jeu jeu){
+		return jeuRepo.getByNiveauDifficulte(jeu.getNiveauDifficulte());
+	}
 	
 	@PostMapping("/jeu/save")
 	public Jeu saveJeu(@RequestBody Jeu jeu) {

@@ -15,7 +15,8 @@ public interface JeuRepository extends CrudRepository<Jeu, Long>{
 	
 	public Optional<Jeu> findByNom(String nom);
 	
-	@Query(value="SELECT j FROM Jeu j WHERE j.nom LIKE %?1%")
+	
+	@Query(value="SELECT j FROM Jeu j WHERE lower(j.nom) LIKE %?1%")
 	public Optional<Iterable<Jeu>> getJeuByNom(String nom);
 	
 	@Query(value="SELECT j FROM Jeu j WHERE j.AgeMin = ?1")
@@ -36,6 +37,19 @@ public interface JeuRepository extends CrudRepository<Jeu, Long>{
 	@Query(value="SELECT j FROM Jeu j WHERE j.marqueDuJeu = ?1")
 	public Optional<Iterable<Jeu>> getJeuByMarque(Marque marque);
 	
-
-
+	@Query(value="SELECT j FROM Jeu j WHERE j.TempsDeJeu = ?1")
+	public Optional<Iterable<Jeu>> getJeuByTempsDeJeu(int TempsDeJeu);
+	
+	@Query(value="SELECT j FROM Jeu j WHERE j.TempsDeJeu >= ?1")
+	public Optional<Iterable<Jeu>> getJeuByMoreThanTempsDeJeu(int TempsDeJeu);
+	
+	@Query(value="SELECT j FROM Jeu j WHERE j.TempsDeJeu <= ?1")
+	public Optional<Iterable<Jeu>> getJeuByLessThanTempsDeJeu(int TempsDeJeu);
+	
+	@Query(value="SELECT j FROM Jeu j WHERE j.TempsDeJeu BETWEEN ?1 AND ?2")
+	public Optional<Iterable<Jeu>> getJeuByBetweenTempsDeJeu(int TempsDeJeuMin, int TempsDeJeuMax);
+	
+	@Query(value="SELECT j FROM Jeu j WHERE j.NiveauDifficulte = ?1")
+	public Optional<Iterable<Jeu>> getByNiveauDifficulte(String difficulte);
+	
 }
