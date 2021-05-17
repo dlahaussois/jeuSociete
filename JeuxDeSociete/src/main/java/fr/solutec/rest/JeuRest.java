@@ -64,7 +64,7 @@ public class JeuRest {
 	
 	@GetMapping("/jeu/findByNomLike")
 	public Optional<Iterable<Jeu>> getJeuByNomLike(@RequestBody Jeu jeu){
-		return jeuRepo.getJeuByNom(jeu.getNom());
+		return jeuRepo.getJeuByNom(jeu.getNom().toLowerCase());
 	}
 	
 	//---------------------------------------------------------------------------------------------------
