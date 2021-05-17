@@ -2,29 +2,37 @@ package fr.solutec;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 import fr.solutec.entities.Admin;
 import fr.solutec.entities.Categorie;
+import fr.solutec.entities.Forum;
 import fr.solutec.entities.Jeu;
 import fr.solutec.entities.JeuAchat;
 import fr.solutec.entities.JeuLocation;
 import fr.solutec.entities.Joueur;
 import fr.solutec.entities.Marque;
+import fr.solutec.entities.Message;
 import fr.solutec.entities.User;
 import fr.solutec.entities.Vendeur;
+
 import fr.solutec.repository.AdminRepository;
 import fr.solutec.repository.CategorieRepository;
+import fr.solutec.repository.ForumRepository;
 import fr.solutec.repository.JeuAchatRepository;
 import fr.solutec.repository.JeuLocationRepository;
 import fr.solutec.repository.JeuRepository;
 import fr.solutec.repository.JoueurRepository;
 import fr.solutec.repository.MarqueRepository;
+import fr.solutec.repository.MessageRepository;
 import fr.solutec.repository.UserRepository;
 import fr.solutec.repository.VendeurRepository;
 
@@ -60,6 +68,11 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 	@Autowired
 	VendeurRepository vendeurRepo;
 	
+	@Autowired
+	MessageRepository messageRepo;
+	
+	@Autowired
+	ForumRepository forumRepo;
 	
 	
 	public static void main(String[] args) {
@@ -152,6 +165,26 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 
 		Stream.of(v1).forEach(a -> vendeurRepo.save(a));
 		
-	}
-
+		Forum f1 = new Forum(null, "question1");
+		Forum f2 = new Forum(null, "question2");
+		Forum f3 = new Forum(null, "question3");
+		Forum f4 = new Forum(null, "question4");
+		Forum f5 = new Forum(null, "question5");
+		
+		Stream.of(f1, f2, f3, f4, f5).forEach(a -> forumRepo.save(a));
+		
+		Message me1= new Message(null, null, "Quel est le but du jeu Risk ?", asterix, f1);
+		Message me2= new Message(null, null, "Est-il possible de réserver une salle plusieurs semaines à l'avance ?", obelix,f3);
+		Message me3= new Message(null, null, "Peut-on tester un jeu avant de l'acheter ?", panoramix,f2);
+		Message me4= new Message(null, null, "Faites vous des promotions pour noel ?", u4, f3);
+		Message me5= new Message(null, null, "Avez-vous un système de fidélisation des clients ?", u5,f4);
+		
+		Stream.of(me1, me2, me3, me4, me5).forEach(a -> messageRepo.save(a));
+	
+		
+		
+		
+		
+	}	
+		
 }

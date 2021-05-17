@@ -1,13 +1,11 @@
 package fr.solutec.entities;
 
-import java.util.Date;
+
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
-import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,17 +15,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-
-public class Message {
+public class Forum {
 	@Id @GeneratedValue
 	private Long id;
-	@CreationTimestamp 
-    private Date dateCreation;
 	
-	private String contenu;
-	
-	@ManyToOne
-	private User user;
-	@ManyToOne
-	private Forum forum;
+	private String sujet;
 }
