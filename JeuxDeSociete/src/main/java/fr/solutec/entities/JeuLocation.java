@@ -3,7 +3,7 @@ package fr.solutec.entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 
@@ -23,9 +23,9 @@ public class JeuLocation {
 	@Id @GeneratedValue
 	private Long id;
 	
-	private double prixLocation;
+
 		
-	@OneToOne
+	@ManyToOne
 	private Jeu lejeu;
 	
 	
