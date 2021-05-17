@@ -16,6 +16,7 @@ import fr.solutec.entities.JeuAchat;
 import fr.solutec.entities.JeuLocation;
 import fr.solutec.entities.Joueur;
 import fr.solutec.entities.Marque;
+import fr.solutec.entities.Message;
 import fr.solutec.entities.User;
 import fr.solutec.entities.Vendeur;
 import fr.solutec.repository.AdminRepository;
@@ -25,6 +26,7 @@ import fr.solutec.repository.JeuLocationRepository;
 import fr.solutec.repository.JeuRepository;
 import fr.solutec.repository.JoueurRepository;
 import fr.solutec.repository.MarqueRepository;
+import fr.solutec.repository.MessageRepository;
 import fr.solutec.repository.UserRepository;
 import fr.solutec.repository.VendeurRepository;
 
@@ -60,6 +62,8 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 	@Autowired
 	VendeurRepository vendeurRepo;
 	
+	@Autowired
+	MessageRepository messageRepo;
 	
 	
 	public static void main(String[] args) {
@@ -152,6 +156,13 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 
 		Stream.of(v1).forEach(a -> vendeurRepo.save(a));
 		
+		Message me1= new Message(null, null, "Quel est le but du jeu Risk ?", asterix);
+		Message me2= new Message(null, null, "Est-il possible de réserver une salle plusieurs semaines à l'avance ?", obelix);
+		Message me3= new Message(null, null, "Peut-on tester un jeu avant de l'acheter ?", panoramix);
+		Message me4= new Message(null, null, "Faites vous des promotions pour noel ?", u4);
+		Message me5= new Message(null, null, "Avez-vous un système de fidélisation des clients ?", u5);
+		
+		Stream.of(me1, me2, me3, me4, me5).forEach(a -> messageRepo.save(a));
 	}
 
 }
