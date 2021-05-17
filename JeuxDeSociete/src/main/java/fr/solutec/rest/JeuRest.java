@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.solutec.entities.Categorie;
 import fr.solutec.entities.Jeu;
 import fr.solutec.entities.JeuAchat;
+import fr.solutec.entities.JeuLocation;
 import fr.solutec.repository.JeuAchatRepository;
 import fr.solutec.repository.JeuLocationRepository;
 import fr.solutec.repository.JeuRepository;
@@ -87,6 +88,16 @@ public class JeuRest {
 	@GetMapping("/jeu/findByMarque")
 	public Optional<Iterable<Jeu>> getJeuByMarque(@RequestBody Jeu jeu){
 		return jeuRepo.getJeuByMarque(jeu.getMarqueDuJeu());
+	}
+	
+	@GetMapping("/jeu/JeuAchat")
+	public Optional<JeuAchat> getJeuAchatByIdJeu(@RequestBody Jeu jeu){
+		return jaRepo.getJeuAchatByIdJeu(jeu.getId());
+	}
+	
+	@GetMapping("/jeu/JeuLocation")
+	public Optional<JeuLocation> getJeuLocationByIdJeu(@RequestBody Jeu jeu){
+		return jlRepo.getJeuLocationByIdJeu(jeu.getId());
 	}
 	
 	@GetMapping("/jeu/listJeuAchat")

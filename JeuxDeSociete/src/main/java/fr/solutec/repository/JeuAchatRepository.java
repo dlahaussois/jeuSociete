@@ -20,4 +20,9 @@ public interface JeuAchatRepository extends CrudRepository<JeuAchat, Long>{
 	
 	@Query(value="SELECT ja FROM JeuAchat ja WHERE ja.prixAchat Between ?1 AND ?2")
 	public Optional<Iterable<JeuAchat>> getJeuByBetweenPrixAchat(double prixAchatMin, double prixAchatMax);
+	
+	@Query(value="SELECT ja FROM JeuAchat ja WHERE ja.lejeu.id = ?1")
+	public Optional<JeuAchat> getJeuAchatByIdJeu(Long id);
+	
+	
 }
