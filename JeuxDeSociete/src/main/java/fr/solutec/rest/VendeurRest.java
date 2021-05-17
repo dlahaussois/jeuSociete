@@ -80,7 +80,7 @@ public class VendeurRest {
 		}
 		System.out.println(v);
 		
-		userRepo.save(v.getUser()); // SAUVEGARDER LE USER SINON MODIF PAS PRISE EN COMPTE
+		userRepo.save(v.getUser());
 		vendeurRepo.save(v);
 	}
 	
