@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import fr.solutec.entities.Admin;
+import fr.solutec.entities.Avis;
 import fr.solutec.entities.Categorie;
 import fr.solutec.entities.Jeu;
 import fr.solutec.entities.JeuAchat;
@@ -19,6 +20,7 @@ import fr.solutec.entities.Marque;
 import fr.solutec.entities.User;
 import fr.solutec.entities.Vendeur;
 import fr.solutec.repository.AdminRepository;
+import fr.solutec.repository.AvisRepository;
 import fr.solutec.repository.CategorieRepository;
 import fr.solutec.repository.JeuAchatRepository;
 import fr.solutec.repository.JeuLocationRepository;
@@ -60,6 +62,8 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 	@Autowired
 	VendeurRepository vendeurRepo;
 	
+	@Autowired
+	AvisRepository avisRepo;
 	
 	
 	public static void main(String[] args) {
@@ -151,6 +155,17 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		Vendeur v1 = new Vendeur(null,u5);
 
 		Stream.of(v1).forEach(a -> vendeurRepo.save(a));
+		
+		
+		
+		Avis av1 = new Avis(null, 5,"Pas terrible, je me suis ennuyé", asterix, j1);
+		Avis av2 = new Avis(null, 9,"Game night de folie!!!! Super bon moment passé avec Panoramix et Idéfix", obelix, j1);
+		Avis av3 = new Avis(null, 7,"Je préfère boire quand même", obelix, j2);
+		Stream.of(av1, av2, av3).forEach(a -> avisRepo.save(a));
+
+
+
+
 		
 	}
 
