@@ -27,6 +27,7 @@ public class Jeu {
 	@Column(length = 10000)
 	private String RegleDuJeu;
 	private String urlImage;
+	private double prixLocation;
 	
 	@ManyToOne
 	private Categorie categorieDuJeu;

@@ -35,6 +35,8 @@ public class JeuRest {
 	@Autowired
 	JeuLocationRepository jlRepo;
 	
+	//---------------------------------------------------------------------------------------------------
+	//Jeux
 	@GetMapping("/jeu/list")
 	public Iterable<Jeu> getAllJeu(){
 		return jeuRepo.findAll();
@@ -50,6 +52,8 @@ public class JeuRest {
 		return jeuRepo.findById(id);
 	}
 	
+	//---------------------------------------------------------------------------------------------------
+	//Jeux par Nom
 	@GetMapping("/jeu/findByNom")
 	public Optional<Jeu> getJeuByNom(@RequestBody Jeu jeu){
 		return jeuRepo.findByNom(jeu.getNom());
@@ -60,6 +64,8 @@ public class JeuRest {
 		return jeuRepo.getJeuByNom(jeu.getNom());
 	}
 	
+	//---------------------------------------------------------------------------------------------------
+	//Jeux par agemin
 	@GetMapping("/jeu/findByAgeMin")
 	public Optional<Iterable<Jeu>> getJeuByAgeMin(@RequestBody Jeu jeu){
 		return jeuRepo.getJeuByAgeMin(jeu.getAgeMin());
@@ -80,6 +86,8 @@ public class JeuRest {
 		return jeuRepo.getJeuByBetweenAgeMin(ageMins[0],ageMins[1]);
 	}
 	
+	//---------------------------------------------------------------------------------------------------
+	//Jeux par categorie et marque
 	@GetMapping("/jeu/findByCategorie")
 	public Optional<Iterable<Jeu>> getJeuByCategorie(@RequestBody Jeu jeu){
 		return jeuRepo.getJeuByCategorie(jeu.getCategorieDuJeu());
@@ -90,13 +98,15 @@ public class JeuRest {
 		return jeuRepo.getJeuByMarque(jeu.getMarqueDuJeu());
 	}
 	
+	//---------------------------------------------------------------------------------------------------
+	//Jeux achat et jeux location
 	@GetMapping("/jeu/JeuAchat")
 	public Optional<JeuAchat> getJeuAchatByIdJeu(@RequestBody Jeu jeu){
 		return jaRepo.getJeuAchatByIdJeu(jeu.getId());
 	}
 	
 	@GetMapping("/jeu/JeuLocation")
-	public Optional<JeuLocation> getJeuLocationByIdJeu(@RequestBody Jeu jeu){
+	public Optional<Iterable<JeuLocation>> getJeuLocationByIdJeu(@RequestBody Jeu jeu){
 		return jlRepo.getJeuLocationByIdJeu(jeu.getId());
 	}
 	
@@ -105,6 +115,13 @@ public class JeuRest {
 		return jaRepo.findAll();
 	}
 	
+	@GetMapping("/jeu/listJeuLocation")
+	public Iterable<JeuLocation> getAllJeuLocation(){
+		return jlRepo.findAll();
+	}
+	
+	//---------------------------------------------------------------------------------------------------
+	//Jeux par prix achat
 	@GetMapping("/jeu/findByPrixAchat")
 	public Optional<Iterable<JeuAchat>> getJeuByPrixAchat(@RequestBody JeuAchat ja){
 		return jaRepo.getJeuByPrixAchat(ja.getPrixAchat());
@@ -125,6 +142,8 @@ public class JeuRest {
 		return jaRepo.getJeuByBetweenPrixAchat(PrixAchats[0],PrixAchats[1]);
 	}
 	
+	//---------------------------------------------------------------------------------------------------
+	//Jeux par temps de jeu
 	@GetMapping("/jeu/findByTempsDeJeu")
 	public Optional<Iterable<Jeu>> getJeuByTempsDeJeu(@RequestBody Jeu jeu){
 		return jeuRepo.getJeuByTempsDeJeu(jeu.getTempsDeJeu());
@@ -145,6 +164,9 @@ public class JeuRest {
 		return jeuRepo.getJeuByBetweenTempsDeJeu(TempsDeJeux[0],TempsDeJeux[1]);
 	}
 	
+	
+	//---------------------------------------------------------------------------------------------------
+	//Jeux par difficulte
 	@GetMapping("/jeu/findByDifficulte")
 	public Optional<Iterable<Jeu>> getJeuByDifficulte(@RequestBody Jeu jeu){
 		return jeuRepo.getByNiveauDifficulte(jeu.getNiveauDifficulte());

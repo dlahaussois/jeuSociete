@@ -9,5 +9,5 @@ import fr.solutec.entities.JeuLocation;
 
 public interface JeuLocationRepository extends CrudRepository<JeuLocation, Long>{
 	@Query("SELECT jl FROM JeuLocation jl WHERE jl.lejeu.id = ?1")
-	public Optional<JeuLocation> getJeuLocationByIdJeu(Long id);
+	public Optional<Iterable<JeuLocation>> getJeuLocationByIdJeu(Long id);
 }
