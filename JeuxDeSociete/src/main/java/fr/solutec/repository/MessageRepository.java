@@ -9,6 +9,7 @@ import fr.solutec.entities.Message;
 
 public interface MessageRepository extends CrudRepository<Message, Long>{
 	public List<Message> findByUserId(Long id);
-
+	public List<Message> findByForumId(Long id);
+	public List<Message> findByForumSujet(String sujet);
 
 }

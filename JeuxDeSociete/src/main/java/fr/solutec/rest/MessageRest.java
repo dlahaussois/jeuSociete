@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.solutec.entities.Forum;
 import fr.solutec.entities.Message;
+
 import fr.solutec.repository.MessageRepository;
 
 @RestController 
@@ -49,4 +51,16 @@ public class MessageRest {
 		    	return false;
 		    }
 		}
+		//avoir tous les messages d'un forum by id
+		@GetMapping("forum/messages")
+		public List<Message> getMessageByIdForum(@RequestBody Long id){
+			
+			return messageRepo.findByForumId(id);
+			}
+	 //avoir tous les mesages d'un forum par sujet
+		@GetMapping("sujet/messages")
+		public List<Message> getMessageByNameSujet(@RequestBody Forum forum){
+			
+			return messageRepo.findByForumSujet(forum.getSujet());
+			}
 }
