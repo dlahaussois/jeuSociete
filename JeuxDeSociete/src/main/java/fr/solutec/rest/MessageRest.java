@@ -1,5 +1,6 @@
 package fr.solutec.rest;
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -23,21 +24,23 @@ public class MessageRest {
 	@Autowired 
 	private MessageRepository messageRepo;
 	
-	//écrire un message
+	//écrire un message dans le forum/à un user
 		@PostMapping("/message")
 		public Message save(@RequestBody Message m) {
 			return messageRepo.save(m);
 		}
-		//obtenir tous les messages
+		//obtenir tous les messages publics
 		@GetMapping("/messages")
-		public Iterable<Message> getAllMessage(){
-			return messageRepo.findAll();
+		public Iterable<Message> getAllPublic(){
+			return messageRepo.findByPriveeIsFalse();
 		}
-		//obtenir les messages d'un user en particulier//perso
-		@GetMapping("messages/user/{id}")
-		public List<Message> getMessageByIdUser(@PathVariable Long id){
 		
-		return messageRepo.findByUserId(id);
+		
+		//obtenir les messages d'un expéditeur en particulier
+		@GetMapping("messages/expediteur/{id}")
+		public List<Message> getByIdExpediteur(@PathVariable Long id){
+      
+		return messageRepo.findByExpediteurId(id);
 		}
 		//suppression d'un message
 		@DeleteMapping("message/{id}")
@@ -57,7 +60,7 @@ public class MessageRest {
 			
 			return messageRepo.findByForumId(id);
 			}
-	 //avoir tous les mesages d'un forum par sujet
+	 //avoir tous les messages d'un forum par sujet
 		@GetMapping("sujet/messages")
 		public List<Message> getMessageByForumSujet(@RequestBody Forum sujet){
 			

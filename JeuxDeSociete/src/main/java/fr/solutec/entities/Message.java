@@ -27,7 +27,11 @@ public class Message {
 	private String contenu;
 	
 	@ManyToOne
-	private User user;
+	private User expediteur;
+	
+	@ManyToOne
+	private User destinataire;
 	@ManyToOne
 	private Forum forum;
+	private boolean privee;//on défini les messages privés par défaut
 }
