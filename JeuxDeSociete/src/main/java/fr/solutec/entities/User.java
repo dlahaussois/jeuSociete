@@ -16,4 +16,5 @@ public class User {
 	String password;
 	String mail;
 	String tel;
+	Boolean activity = true; // variable activité du compte (1 - OK/ 0 - bloqué)
 }

@@ -1,7 +1,6 @@
 package fr.solutec.entities;
 
-import java.sql.Date;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,18 +15,25 @@ import lombok.NoArgsConstructor;
 public class Jeu {
 	@Id @GeneratedValue
 	private Long id;
+	
 	private String nom;
-	private int NombreJoueurs;
+	private int NombreJoueursMin;
+	private int NombreJoueursMax;
 	private int AgeMin;
 	private String NiveauDifficulte;
-	private Date TempsDeJeu;
+	private int TempsDeJeu;
+	@Column(length = 10000)
 	private String Description;
+	@Column(length = 10000)
 	private String RegleDuJeu;
+	private String urlImage;
+	private double prixLocation;
 	
 	@ManyToOne
-	private Categorie categorie;
+	private Categorie categorieDuJeu;
 	
 	@ManyToOne
-	private Marque marque;
+	private Marque marqueDuJeu;
+
 	
 }

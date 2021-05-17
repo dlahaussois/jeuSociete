@@ -1,32 +1,19 @@
 package fr.solutec.entities;
 
-import fr.solutec.entities.User;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import javax.persistence.OneToOne;
-
-
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Data @NoArgsConstructor @AllArgsConstructor
 @Entity
+public class Salle {
 
-
-public class Joueur {
-	
 	@Id @GeneratedValue
 	Long id;
-	
-	@OneToOne
-	User user;
-	
-
-	
+	String nom;
+	double prix;
 }
