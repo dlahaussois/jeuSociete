@@ -6,10 +6,11 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -228,11 +229,76 @@ public class JeuRest {
 	}
 	
 	
-	
+	//---------------------------------------------------------------------------------------------------
+	//Ajouter/modifier/supprimer un jeu
 	
 	@PostMapping("/jeu/save")
 	public Jeu saveJeu(@RequestBody Jeu jeu) {
 		return jeuRepo.save(jeu);
+	}
+	
+	@PutMapping("/jeu/modifier")
+	public Jeu modifierJeu(@RequestBody Jeu jeu) {
+		return jeuRepo.save(jeu);
+	}
+	
+	@DeleteMapping("/jeu/delete")
+	public boolean deleteJeu(@RequestBody Long id) {
+		if (jeuRepo.findById(id).isPresent()) {
+			jeuRepo.deleteById(id);
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	//---------------------------------------------------------------------------------------------------
+	//Ajouter/modifier/supprimer un jeu achat
+	
+	@PostMapping("/jeuAchat/save")
+	public JeuAchat saveJeuAchat(@RequestBody JeuAchat jeuAchat) {
+		return jaRepo.save(jeuAchat);
+	}
+	
+	@PutMapping("/jeuAchat/modifier")
+	public JeuAchat modifierJeuAchat(@RequestBody JeuAchat jeuAchat) {
+		return jaRepo.save(jeuAchat);
+	}
+	
+	@DeleteMapping("/jeuAchat/delete")
+	public boolean deleteJeuAchat(@RequestBody Long id) {
+		if (jaRepo.findById(id).isPresent()) {
+			jaRepo.deleteById(id);
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	//---------------------------------------------------------------------------------------------------
+	//Ajouter/modifier/supprimer un jeu location
+	
+	@PostMapping("/jeuLocation/save")
+	public JeuLocation saveJeuLocation(@RequestBody JeuLocation jeuLocation) {
+		return jlRepo.save(jeuLocation);
+	}
+	
+	@PutMapping("/jeuLocation/modifier")
+	public JeuLocation modifierJeuLocation(@RequestBody JeuLocation jeuLocation) {
+		return jlRepo.save(jeuLocation);
+	}
+	
+	@DeleteMapping("/jeuLocation/delete")
+	public boolean deleteJeuLocation(@RequestBody Long id) {
+		if (jlRepo.findById(id).isPresent()) {
+			jlRepo.deleteById(id);
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 }
