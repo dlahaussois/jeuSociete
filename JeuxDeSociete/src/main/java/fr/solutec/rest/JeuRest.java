@@ -37,6 +37,7 @@ public class JeuRest {
 	
 	//---------------------------------------------------------------------------------------------------
 	//Jeux
+	
 	@GetMapping("/jeu/list")
 	public Iterable<Jeu> getAllJeu(){
 		return jeuRepo.findAll();
@@ -54,6 +55,7 @@ public class JeuRest {
 	
 	//---------------------------------------------------------------------------------------------------
 	//Jeux par Nom
+	
 	@GetMapping("/jeu/findByNom")
 	public Optional<Jeu> getJeuByNom(@RequestBody Jeu jeu){
 		return jeuRepo.findByNom(jeu.getNom());
@@ -66,6 +68,7 @@ public class JeuRest {
 	
 	//---------------------------------------------------------------------------------------------------
 	//Jeux par agemin
+	
 	@GetMapping("/jeu/findByAgeMin")
 	public Optional<Iterable<Jeu>> getJeuByAgeMin(@RequestBody Jeu jeu){
 		return jeuRepo.getJeuByAgeMin(jeu.getAgeMin());
@@ -88,6 +91,7 @@ public class JeuRest {
 	
 	//---------------------------------------------------------------------------------------------------
 	//Jeux par categorie et marque
+	
 	@GetMapping("/jeu/findByCategorie")
 	public Optional<Iterable<Jeu>> getJeuByCategorie(@RequestBody Jeu jeu){
 		return jeuRepo.getJeuByCategorie(jeu.getCategorieDuJeu());
@@ -100,6 +104,7 @@ public class JeuRest {
 	
 	//---------------------------------------------------------------------------------------------------
 	//Jeux achat et jeux location
+	
 	@GetMapping("/jeu/JeuAchat")
 	public Optional<JeuAchat> getJeuAchatByIdJeu(@RequestBody Jeu jeu){
 		return jaRepo.getJeuAchatByIdJeu(jeu.getId());
@@ -122,6 +127,7 @@ public class JeuRest {
 	
 	//---------------------------------------------------------------------------------------------------
 	//Jeux par prix achat
+	
 	@GetMapping("/jeu/findByPrixAchat")
 	public Optional<Iterable<JeuAchat>> getJeuByPrixAchat(@RequestBody JeuAchat ja){
 		return jaRepo.getJeuByPrixAchat(ja.getPrixAchat());
@@ -144,6 +150,7 @@ public class JeuRest {
 	
 	//---------------------------------------------------------------------------------------------------
 	//Jeux par temps de jeu
+	
 	@GetMapping("/jeu/findByTempsDeJeu")
 	public Optional<Iterable<Jeu>> getJeuByTempsDeJeu(@RequestBody Jeu jeu){
 		return jeuRepo.getJeuByTempsDeJeu(jeu.getTempsDeJeu());
@@ -167,10 +174,61 @@ public class JeuRest {
 	
 	//---------------------------------------------------------------------------------------------------
 	//Jeux par difficulte
+	
 	@GetMapping("/jeu/findByDifficulte")
 	public Optional<Iterable<Jeu>> getJeuByDifficulte(@RequestBody Jeu jeu){
 		return jeuRepo.getByNiveauDifficulte(jeu.getNiveauDifficulte());
 	}
+	
+	
+	//---------------------------------------------------------------------------------------------------
+	//Jeux par nombre de joueurs min
+	
+	@GetMapping("/jeu/findByNombreJoueursMin")
+	public Optional<Iterable<Jeu>> getJeuByNombreJoueursMin(@RequestBody Jeu jeu){
+		return jeuRepo.getJeuByNombreJoueursMin(jeu.getNombreJoueursMin());
+	}
+	
+	@GetMapping("/jeu/findByMoreThanNombreJoueursMin")
+	public Optional<Iterable<Jeu>> getJeuByMoreThanNombreJoueursMin(@RequestBody Jeu jeu){
+		return jeuRepo.getJeuByMoreThanNombreJoueursMin(jeu.getNombreJoueursMin());
+	}
+	
+	@GetMapping("/jeu/findByLessThanNombreJoueursMin")
+	public Optional<Iterable<Jeu>> getJeuByLessThanNombreJoueursMin(@RequestBody Jeu jeu){
+		return jeuRepo.getJeuByLessThanNombreJoueursMin(jeu.getNombreJoueursMin());
+	}
+	
+	@GetMapping("/jeu/findByBetweenNombreJoueursMin") 
+	public Optional<Iterable<Jeu>> getJeuByBetweenNombreJoueursMin(@RequestBody int[] NombresJoueursMin){
+		return jeuRepo.getJeuByBetweenNombreJoueursMin(NombresJoueursMin[0],NombresJoueursMin[1]);
+	}
+	
+	//---------------------------------------------------------------------------------------------------
+	//Jeux par nombre de joueurs Max
+	
+	@GetMapping("/jeu/findByNombreJoueursMax")
+	public Optional<Iterable<Jeu>> getJeuByNombreJoueursMax(@RequestBody Jeu jeu){
+		return jeuRepo.getJeuByNombreJoueursMax(jeu.getNombreJoueursMax());
+	}
+	
+	@GetMapping("/jeu/findByMoreThanNombreJoueursMax")
+	public Optional<Iterable<Jeu>> getJeuByMoreThanNombreJoueursMax(@RequestBody Jeu jeu){
+		return jeuRepo.getJeuByMoreThanNombreJoueursMax(jeu.getNombreJoueursMax());
+	}
+	
+	@GetMapping("/jeu/findByLessThanNombreJoueursMax")
+	public Optional<Iterable<Jeu>> getJeuByLessThanNombreJoueursMax(@RequestBody Jeu jeu){
+		return jeuRepo.getJeuByLessThanNombreJoueursMax(jeu.getNombreJoueursMax());
+	}
+	
+	@GetMapping("/jeu/findByBetweenNombreJoueursMax") 
+	public Optional<Iterable<Jeu>> getJeuByBetweenNombreJoueursMax(@RequestBody int[] NombresJoueursMax){
+		return jeuRepo.getJeuByBetweenNombreJoueursMax(NombresJoueursMax[0],NombresJoueursMax[1]);
+	}
+	
+	
+	
 	
 	@PostMapping("/jeu/save")
 	public Jeu saveJeu(@RequestBody Jeu jeu) {
