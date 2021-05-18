@@ -123,7 +123,7 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		
 
 		Joueur jo1 = new Joueur(null,true, u1);
-		Joueur jo2 = new Joueur(null, false , u2);
+		Joueur jo2 = new Joueur(null,true, u2);
 
 		Stream.of(jo1,jo2).forEach(jo -> joueurRepo.save(jo));
 		
