@@ -207,9 +207,9 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		
 		
 		
-		Avis av1 = new Avis(null, "5","Pas terrible, je me suis ennuyé", asterix, j1);
-		Avis av2 = new Avis(null, "9","Game night de folie!!!! Super bon moment passé avec Panoramix et Idéfix", obelix, j1);
-		Avis av3 = new Avis(null, "7","Je préfère boire quand même", obelix, j2);
+		Avis av1 = new Avis(null, 5, "Pas terrible, je me suis ennuyé", asterix, j1);
+		Avis av2 = new Avis(null, 9,"Game night de folie!!!! Super bon moment passé avec Panoramix et Idéfix", obelix, j1);
+		Avis av3 = new Avis(null, 7,"Je préfère boire quand même", obelix, j2);
 		Stream.of(av1, av2, av3).forEach(a -> avisRepo.save(a));
 
 		Salle s1 = new Salle(null, "Paris", 20.0, 8, true, "https://cdn.pixabay.com/photo/2015/05/15/14/27/eiffel-tower-768501_960_720.jpg");
