@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.solutec.entities.Admin;
-
+import fr.solutec.entities.JeuAchat;
 import fr.solutec.entities.User;
 import fr.solutec.entities.Vendeur;
 import fr.solutec.repository.AdminRepository;
@@ -62,6 +62,11 @@ public class AdminRest {
 		return adminRepo.findByUserLogin(login);
 	}
 
+	@PutMapping("/admin/modifier")
+	public Admin modifierAdmin(@RequestBody Admin admin) {
+		return adminRepo.save(admin);
+	}
+	
 	@PutMapping("admin/bloquer")
 	public  Admin bloquerVendeur(@RequestBody Admin v){
 		
