@@ -24,7 +24,8 @@ public class JeuDansPanier {
 	private User user;
 	
 	@ManyToOne
-	private Jeu jeu;
+	private JeuAchat jeuAchat;
 
 	private int quantite;
+	private boolean isAchat;
 }

@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import fr.solutec.entities.JeuDansPanier;
 
 public interface JeuDansPanierRepository extends CrudRepository<JeuDansPanier, Long>{
-	@Query("SELECT jdp FROM JeuDansPanier jdp ")
+	@Query("SELECT jdp FROM JeuDansPanier jdp WHERE jdp.user.id=?1")
 	public Optional<Iterable<JeuDansPanier>> getByUserId(Long id);
 
 }
