@@ -54,4 +54,10 @@ public class UserRest {
 		return userRepo.save(u);
 	}
 	
+	@PostMapping("user/recherche")
+	public  Optional<User> rechercheVendeurByLogin(@RequestBody User v){
+		return userRepo.findByLogin(v.getLogin() );
+	}
+	
+	
 }
