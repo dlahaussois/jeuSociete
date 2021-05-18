@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class Avis {
 	@Id @GeneratedValue
 	private Long id;
-	private String note;
+	private float note;
 	private String commentaire;
 	
 	@OneToOne

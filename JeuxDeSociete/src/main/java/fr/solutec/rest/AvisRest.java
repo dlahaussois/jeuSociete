@@ -31,13 +31,13 @@ public class AvisRest {
 		return avisRepo.findAll();
 	}
 	
-	@GetMapping("avis/list/jeu/{id}")
+	@GetMapping("avis/jeu/{id}")
 	public List<Avis> getAllAvisbyJeuId(@PathVariable Long id){
 		return avisRepo.findByJeuId(id);
 		
 	}
 	
-	@GetMapping("avis/list/user/{id}")
+	@GetMapping("avis/user/{id}")
 	public List<Avis> getAllAvisbyUserId(@PathVariable Long id){
 		return avisRepo.findByUserId(id);
 		
