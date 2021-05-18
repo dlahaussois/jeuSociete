@@ -121,9 +121,9 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		Marque m7 = new Marque(null, "Ravensburger");
 		Stream.of(m1,m2,m3,m4,m5,m6,m7).forEach(m -> marqueRepo.save(m));
 		
+		Joueur jo1 = new Joueur(null,true,u1);
+		Joueur jo2 = new Joueur(null,false, u2);
 
-		Joueur jo1 = new Joueur(null,true, u1);
-		Joueur jo2 = new Joueur(null,true, u2);
 
 		Stream.of(jo1,jo2).forEach(jo -> joueurRepo.save(jo));
 		
