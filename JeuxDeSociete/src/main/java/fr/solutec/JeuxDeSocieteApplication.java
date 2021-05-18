@@ -12,21 +12,25 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import fr.solutec.entities.Admin;
 import fr.solutec.entities.Avis;
 import fr.solutec.entities.Categorie;
+import fr.solutec.entities.Forum;
 import fr.solutec.entities.Jeu;
 import fr.solutec.entities.JeuAchat;
 import fr.solutec.entities.JeuLocation;
 import fr.solutec.entities.Joueur;
 import fr.solutec.entities.Marque;
+import fr.solutec.entities.Message;
 import fr.solutec.entities.User;
 import fr.solutec.entities.Vendeur;
 import fr.solutec.repository.AdminRepository;
 import fr.solutec.repository.AvisRepository;
 import fr.solutec.repository.CategorieRepository;
+import fr.solutec.repository.ForumRepository;
 import fr.solutec.repository.JeuAchatRepository;
 import fr.solutec.repository.JeuLocationRepository;
 import fr.solutec.repository.JeuRepository;
 import fr.solutec.repository.JoueurRepository;
 import fr.solutec.repository.MarqueRepository;
+import fr.solutec.repository.MessageRepository;
 import fr.solutec.repository.UserRepository;
 import fr.solutec.repository.VendeurRepository;
 
@@ -65,6 +69,11 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 	@Autowired
 	AvisRepository avisRepo;
 	
+	@Autowired
+	ForumRepository forumRepo;
+	
+	@Autowired
+	MessageRepository messageRepo;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(JeuxDeSocieteApplication.class, args);
@@ -135,6 +144,26 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		JeuAchat ja10 = new JeuAchat(null, 38.99, 100, j10);
 		JeuAchat ja11 = new JeuAchat(null, 27.99, 100, j11);
 		Stream.of(ja1,ja2,ja3,ja4,ja5,ja6,ja7,ja8,ja9,ja10,ja11).forEach(ja -> jaRepo.save(ja));
+		
+		
+		
+		Forum f1 = new Forum(null, "délais de livraison");
+		Forum f2 = new Forum(null, "retour/échange");
+		Forum f3 = new Forum(null, "disponibilité de jeux");
+		Forum f4 = new Forum(null, "réservations de salles");
+		
+		
+		Stream.of(f1, f2, f3, f4).forEach(a -> forumRepo.save(a));
+		
+		Message me1= new Message(null, null, "Quels sont les délais de livraison ?", asterix, null, f1, false);
+		Message me2= new Message(null, null, "Est-il possible de se faire rembourser un jeu ?", obelix, null, f3, false);
+		Message me3= new Message(null, null, "La dernière version du jeu Monopoly est-elle disponible en commande chez vous ?", panoramix, null, f2, false);
+		Message me4= new Message(null, null, "Serait-il possible de réserver une salle pour 15 dans 1 mois ?", u4, null, f3, false);
+		Message me5= new Message(null, null, "J'ai reçu mon jeu, il est imcomplet, comment se passe l'échange ?", u5, null, f2, false);
+		Message me6= new Message(null, null, "Salut Paul, viens-tu dimanche jouer dans une des salles ?", u5, u4, null, true);
+		Message me7= new Message(null, null, "Bonjour obélix, j'ai loué 7 wonders, ça te dirait de venir jouer une partie ?", asterix, obelix, null, true);
+		
+		Stream.of(me1, me2, me3, me4, me5, me6, me7).forEach(a -> messageRepo.save(a));
 		
 		JeuLocation jl1 = new JeuLocation(null, j1);
 		JeuLocation jl2 = new JeuLocation(null, j2);
