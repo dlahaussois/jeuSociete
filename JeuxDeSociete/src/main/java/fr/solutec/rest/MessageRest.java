@@ -37,11 +37,11 @@ public class MessageRest {
 		
 		
 		//obtenir les messages publics d'un expéditeur en particulier
-		@GetMapping("messages/expediteur/{id}")
-		public List<Message> getByIdExpediteur(@PathVariable Long id){  
-		return messageRepo.findByExpediteurId(id);
+		@GetMapping("messages/expediteur")
+		public Optional<Iterable<Message>> getByIdExpediteur(@RequestBody Long id){  
+		return messageRepo.trouverPublicByExpediteurId(id);
 		}
-		//SELECT * FROM message m inner join user u ON m.expediteur_id=u.id WHERE privee=true AND u.id=5;
+		
 		//suppression d'un message
 		@DeleteMapping("message/{id}")
 		public boolean suppMessage(@PathVariable Long id) {
