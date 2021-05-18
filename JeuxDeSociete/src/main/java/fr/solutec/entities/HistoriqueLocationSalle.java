@@ -1,5 +1,7 @@
 package fr.solutec.entities;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,21 +12,21 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-public class Avis {
+@Data @Entity @NoArgsConstructor @AllArgsConstructor
+public class HistoriqueLocationSalle {
 	@Id @GeneratedValue
 	private Long id;
-	private float note;
-	private String commentaire;
+	private Date dateDebut;
+	private Date dateFin;
+	private boolean locationValidee;
 	
 	@OneToOne
-	private User user;
-	
+	private Salle salle;
 	@ManyToOne
-	private Jeu jeu;
-	
+	private Joueur joueur;
+	@ManyToOne
+	private Vendeur vendeur;
+	@OneToOne
+	private Joueur joueurMaitreSalle;
 	
 }
