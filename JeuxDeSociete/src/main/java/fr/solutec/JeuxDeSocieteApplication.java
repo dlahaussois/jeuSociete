@@ -16,6 +16,7 @@ import fr.solutec.entities.Forum;
 import fr.solutec.entities.HistoriqueLocationSalle;
 import fr.solutec.entities.Jeu;
 import fr.solutec.entities.JeuAchat;
+import fr.solutec.entities.JeuDansPanier;
 import fr.solutec.entities.JeuLocation;
 import fr.solutec.entities.Joueur;
 import fr.solutec.entities.Marque;
@@ -29,6 +30,7 @@ import fr.solutec.repository.CategorieRepository;
 import fr.solutec.repository.ForumRepository;
 import fr.solutec.repository.HistoriqueLocationSalleRepository;
 import fr.solutec.repository.JeuAchatRepository;
+import fr.solutec.repository.JeuDansPanierRepository;
 import fr.solutec.repository.JeuLocationRepository;
 import fr.solutec.repository.JeuRepository;
 import fr.solutec.repository.JoueurRepository;
@@ -80,10 +82,15 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 	MessageRepository messageRepo;
 	
 	@Autowired
+
 	SalleRepository salleRepo;
 	
 	@Autowired
 	HistoriqueLocationSalleRepository histoRepo;
+
+	@Autowired
+	JeuDansPanierRepository jeudanspanierRepo;
+
 	
 	public static void main(String[] args) {
 		SpringApplication.run(JeuxDeSocieteApplication.class, args);
@@ -211,6 +218,7 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		Salle s4 = new Salle(null, "Toulouse", 10.0, 4, true, "https://cdn.pixabay.com/photo/2020/01/07/12/21/toulouse-4747440_960_720.jpg");
 		Salle s5 = new Salle(null, "Bordeaux", 20.0, 8, true, "https://cdn.pixabay.com/photo/2017/04/05/10/51/bordeaux-2204634_960_720.jpg");
 
+
 		Stream.of(s1, s2, s3, s4, s5).forEach(s -> salleRepo.save(s));
 
 		
@@ -229,7 +237,17 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		
 		Stream.of(h1, h2, h3, h4).forEach(h -> histoRepo.save(h));
 
-		
+
+		JeuDansPanier jdp1 = new JeuDansPanier(null, u5, ja2, 3,true);
+		JeuDansPanier jdp2 = new JeuDansPanier(null, u5, ja4, 2,false);
+		JeuDansPanier jdp3 = new JeuDansPanier(null, u5, ja5, 1,true);
+		JeuDansPanier jdp4 = new JeuDansPanier(null, u5, ja6, 3,true);
+		JeuDansPanier jdp5 = new JeuDansPanier(null, u5, ja8, 1,false);
+		JeuDansPanier jdp6 = new JeuDansPanier(null, u5, ja9, 2,true);
+		JeuDansPanier jdp7 = new JeuDansPanier(null, u5, ja11, 3,false);
+		JeuDansPanier jdp8 = new JeuDansPanier(null, u4, ja1, 3,true);
+		Stream.of(jdp1,jdp2,jdp3,jdp4,jdp5,jdp6,jdp7,jdp8).forEach(jdp -> jeudanspanierRepo.save(jdp));
+
 	}
 
 }
