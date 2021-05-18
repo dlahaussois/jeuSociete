@@ -55,18 +55,18 @@ public class VendeurRest {
 	}
 	
 	@GetMapping("vendeur/login/{login}")
-	public Iterable<Vendeur> getVendeurByLogin(@PathVariable String login){
+	public Optional<Vendeur> getVendeurByLogin(@PathVariable String login){
 		return vendeurRepo.findByUserLogin(login);
 	}
 	
 	
 	@PostMapping("vendeur/recherche")
-	public  Iterable<Vendeur> rechercheVendeurByLogin(@RequestBody User v){
+	public  Optional<Vendeur> rechercheVendeurByLogin(@RequestBody User v){
 		return vendeurRepo.findByUserLogin(v.getLogin() );
 	}
 
 	@PutMapping("vendeur/bloquer")
-	public  void bloquerVendeur(@RequestBody Vendeur v){
+	public  Vendeur bloquerVendeur(@RequestBody Vendeur v){
 		
 		System.out.println(v);
 		boolean a = v.getUser().getActivity();
@@ -81,7 +81,7 @@ public class VendeurRest {
 		System.out.println(v);
 		
 		userRepo.save(v.getUser());
-		vendeurRepo.save(v);
+		return vendeurRepo.save(v);
 	}
 	
 	
