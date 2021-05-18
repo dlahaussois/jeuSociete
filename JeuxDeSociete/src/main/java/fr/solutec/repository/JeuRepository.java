@@ -37,10 +37,13 @@ public interface JeuRepository extends CrudRepository<Jeu, Long>{
 	public Optional<Iterable<Jeu>> getJeuByBetweenAgeMin(int ageMinMin, int ageMinMax);
 	
 	//-------------------------------------------------------------------------
-	// Find by Categorie et marque
+	// Find by Categorie, marque et niveau difficulte
 	
 	@Query(value="SELECT j FROM Jeu j WHERE j.categorieDuJeu = ?1")
 	public Optional<Iterable<Jeu>> getJeuByCategorie(Categorie categorie);
+	
+	@Query(value="SELECT j FROM Jeu j WHERE j.categorieDuJeu.libelle = ?1")
+	public Optional<Iterable<Jeu>> getJeuByLibelleCategorie(String libelle);
 	
 	@Query(value="SELECT j FROM Jeu j WHERE j.marqueDuJeu = ?1")
 	public Optional<Iterable<Jeu>> getJeuByMarque(Marque marque);

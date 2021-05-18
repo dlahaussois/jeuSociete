@@ -98,6 +98,11 @@ public class JeuRest {
 		return jeuRepo.getJeuByCategorie(jeu.getCategorieDuJeu());
 	}
 	
+	@GetMapping("/jeu/findByLibelleCategorie")
+	public Optional<Iterable<Jeu>> getJeuByLibelleCategorie(@RequestBody Jeu jeu){
+		return jeuRepo.getJeuByLibelleCategorie(jeu.getCategorieDuJeu().getLibelle());
+	}
+	
 	@GetMapping("/jeu/findByMarque")
 	public Optional<Iterable<Jeu>> getJeuByMarque(@RequestBody Jeu jeu){
 		return jeuRepo.getJeuByMarque(jeu.getMarqueDuJeu());
