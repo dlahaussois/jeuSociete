@@ -20,4 +20,11 @@ public class JeuDansPanier {
 	@Id @GeneratedValue
 	private Long id;
 
+	@ManyToOne
+	private User user;
+	
+	@ManyToOne
+	private Jeu jeu;
+
+	private int quantite;
 }
