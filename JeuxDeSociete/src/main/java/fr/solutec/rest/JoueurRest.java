@@ -56,10 +56,10 @@ public class JoueurRest {
 	}
 
 	@PutMapping("joueur/adherer")
-	public  void adhererJoueur(@RequestBody Joueur j){
+	public Joueur adhererJoueur(@RequestBody Joueur j){
 		
 		boolean a;
-		a = j.isCotisation();	
+		a = j.getCotisation();	
 		System.out.println(j);
 		
 		if (a == true ) {
@@ -70,7 +70,7 @@ public class JoueurRest {
 			
 		}
 		System.out.println(j);
-		joueurRepo.save(j);
+		return joueurRepo.save(j);
 	}
 	
 	@PutMapping("joueur/bloquer")
