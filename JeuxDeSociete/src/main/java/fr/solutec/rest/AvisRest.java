@@ -6,9 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.solutec.entities.Avis;
+import fr.solutec.entities.Joueur;
+import fr.solutec.entities.User;
 import fr.solutec.repository.AvisRepository;
 import fr.solutec.repository.UserRepository;
 
@@ -22,7 +26,7 @@ public class AvisRest {
 	UserRepository userRepo;
 	
 	
-	@GetMapping("avis/list")
+	@GetMapping("avis")
 	public Iterable<Avis> getAllAvis(){
 		return avisRepo.findAll();
 	}
@@ -39,6 +43,17 @@ public class AvisRest {
 		
 	}
 	
+	@PostMapping("avis")
+	public Avis saveAvis(@RequestBody Avis a) {
+		return avisRepo.save(a);
+	}
+
+	//Un user poste un avis
+	@PostMapping("avis/post") 
+	public Avis ecrireAvis(@RequestBody Avis a ) {
+		Avis avis= new Avis();
+		return avis= avisRepo.save(a);
+	}
 	
 	
 	
