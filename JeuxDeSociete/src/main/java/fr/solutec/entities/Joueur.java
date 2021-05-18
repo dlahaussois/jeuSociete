@@ -24,6 +24,8 @@ public class Joueur {
 	@Id @GeneratedValue
 	Long id;
 	
+	boolean cotisation; // 1 - ok / 0 - pas de cotisation 
+	
 	@OneToOne
 	User user;
 	

@@ -26,11 +26,10 @@ public class UserRest {
 		return userRepo.findAll();
 	}
 	
-	@GetMapping("connect")
+	@PostMapping("connect")
 	public Optional<User> connexion(@RequestBody User u){
 		return userRepo.connect(u.getLogin(), u.getPassword());
 	}
-	
 	
 	
 	@GetMapping("user/id/{id}")

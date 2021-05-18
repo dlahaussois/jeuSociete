@@ -15,9 +15,14 @@ public interface JeuRepository extends CrudRepository<Jeu, Long>{
 	
 	public Optional<Jeu> findByNom(String nom);
 	
+	//-------------------------------------------------------------------------
+	// Find by Nom
 	
 	@Query(value="SELECT j FROM Jeu j WHERE lower(j.nom) LIKE %?1%")
 	public Optional<Iterable<Jeu>> getJeuByNom(String nom);
+
+	//-------------------------------------------------------------------------
+	// Find by Agemin
 	
 	@Query(value="SELECT j FROM Jeu j WHERE j.AgeMin = ?1")
 	public Optional<Iterable<Jeu>> getJeuByAgeMin(int ageMin);
@@ -31,11 +36,20 @@ public interface JeuRepository extends CrudRepository<Jeu, Long>{
 	@Query(value="SELECT j FROM Jeu j WHERE j.AgeMin BETWEEN ?1 AND ?2")
 	public Optional<Iterable<Jeu>> getJeuByBetweenAgeMin(int ageMinMin, int ageMinMax);
 	
+	//-------------------------------------------------------------------------
+	// Find by Categorie et marque
+	
 	@Query(value="SELECT j FROM Jeu j WHERE j.categorieDuJeu = ?1")
 	public Optional<Iterable<Jeu>> getJeuByCategorie(Categorie categorie);
 	
 	@Query(value="SELECT j FROM Jeu j WHERE j.marqueDuJeu = ?1")
 	public Optional<Iterable<Jeu>> getJeuByMarque(Marque marque);
+
+	@Query(value="SELECT j FROM Jeu j WHERE j.NiveauDifficulte = ?1")
+	public Optional<Iterable<Jeu>> getByNiveauDifficulte(String difficulte);
+	
+	//-------------------------------------------------------------------------
+	// Find by Temps de jeu
 	
 	@Query(value="SELECT j FROM Jeu j WHERE j.TempsDeJeu = ?1")
 	public Optional<Iterable<Jeu>> getJeuByTempsDeJeu(int TempsDeJeu);
@@ -49,7 +63,34 @@ public interface JeuRepository extends CrudRepository<Jeu, Long>{
 	@Query(value="SELECT j FROM Jeu j WHERE j.TempsDeJeu BETWEEN ?1 AND ?2")
 	public Optional<Iterable<Jeu>> getJeuByBetweenTempsDeJeu(int TempsDeJeuMin, int TempsDeJeuMax);
 	
-	@Query(value="SELECT j FROM Jeu j WHERE j.NiveauDifficulte = ?1")
-	public Optional<Iterable<Jeu>> getByNiveauDifficulte(String difficulte);
+	//-------------------------------------------------------------------------
+	// Find by NombreJoueursMin
+	
+	@Query(value="SELECT j FROM Jeu j WHERE j.NombreJoueursMin = ?1")
+	public Optional<Iterable<Jeu>> getJeuByNombreJoueursMin(int NombreJoueursMin);
+	
+	@Query(value="SELECT j FROM Jeu j WHERE j.NombreJoueursMin >= ?1")
+	public Optional<Iterable<Jeu>> getJeuByMoreThanNombreJoueursMin(int NombreJoueursMin);
+	
+	@Query(value="SELECT j FROM Jeu j WHERE j.NombreJoueursMin <= ?1")
+	public Optional<Iterable<Jeu>> getJeuByLessThanNombreJoueursMin(int NombreJoueursMin);
+	
+	@Query(value="SELECT j FROM Jeu j WHERE j.NombreJoueursMin BETWEEN ?1 AND ?2")
+	public Optional<Iterable<Jeu>> getJeuByBetweenNombreJoueursMin(int NombreJoueursMinMin, int NombreJoueursMinMax);
+	
+	//-------------------------------------------------------------------------
+		// Find by NombreJoueursMax
+		
+		@Query(value="SELECT j FROM Jeu j WHERE j.NombreJoueursMax = ?1")
+		public Optional<Iterable<Jeu>> getJeuByNombreJoueursMax(int NombreJoueursMax);
+		
+		@Query(value="SELECT j FROM Jeu j WHERE j.NombreJoueursMax >= ?1")
+		public Optional<Iterable<Jeu>> getJeuByMoreThanNombreJoueursMax(int NombreJoueursMax);
+		
+		@Query(value="SELECT j FROM Jeu j WHERE j.NombreJoueursMax <= ?1")
+		public Optional<Iterable<Jeu>> getJeuByLessThanNombreJoueursMax(int NombreJoueursMax);
+		
+		@Query(value="SELECT j FROM Jeu j WHERE j.NombreJoueursMax BETWEEN ?1 AND ?2")
+		public Optional<Iterable<Jeu>> getJeuByBetweenNombreJoueursMax(int NombreJoueursMaxMin, int NombreJoueursMaxMax);
 	
 }
