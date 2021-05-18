@@ -13,24 +13,28 @@ import fr.solutec.entities.Admin;
 import fr.solutec.entities.Avis;
 import fr.solutec.entities.Categorie;
 import fr.solutec.entities.Forum;
+import fr.solutec.entities.HistoriqueLocationSalle;
 import fr.solutec.entities.Jeu;
 import fr.solutec.entities.JeuAchat;
 import fr.solutec.entities.JeuLocation;
 import fr.solutec.entities.Joueur;
 import fr.solutec.entities.Marque;
 import fr.solutec.entities.Message;
+import fr.solutec.entities.Salle;
 import fr.solutec.entities.User;
 import fr.solutec.entities.Vendeur;
 import fr.solutec.repository.AdminRepository;
 import fr.solutec.repository.AvisRepository;
 import fr.solutec.repository.CategorieRepository;
 import fr.solutec.repository.ForumRepository;
+import fr.solutec.repository.HistoriqueLocationSalleRepository;
 import fr.solutec.repository.JeuAchatRepository;
 import fr.solutec.repository.JeuLocationRepository;
 import fr.solutec.repository.JeuRepository;
 import fr.solutec.repository.JoueurRepository;
 import fr.solutec.repository.MarqueRepository;
 import fr.solutec.repository.MessageRepository;
+import fr.solutec.repository.SalleRepository;
 import fr.solutec.repository.UserRepository;
 import fr.solutec.repository.VendeurRepository;
 
@@ -74,6 +78,12 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 	
 	@Autowired
 	MessageRepository messageRepo;
+	
+	@Autowired
+	SalleRepository salleRepo;
+	
+	@Autowired
+	HistoriqueLocationSalleRepository histoRepo;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(JeuxDeSocieteApplication.class, args);
@@ -195,8 +205,29 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		Avis av3 = new Avis(null, "7","Je préfère boire quand même", obelix, j2);
 		Stream.of(av1, av2, av3).forEach(a -> avisRepo.save(a));
 
+		Salle s1 = new Salle(null, "Paris", 20.0, 8, true, "https://cdn.pixabay.com/photo/2015/05/15/14/27/eiffel-tower-768501_960_720.jpg");
+		Salle s2 = new Salle(null, "Lyon", 20.0, 8, true, "https://cdn.pixabay.com/photo/2017/06/08/08/28/lyon-2382879_960_720.jpg");
+		Salle s3 = new Salle(null, "Strasbourg", 10.0, 4, false, "https://cdn.pixabay.com/photo/2019/07/21/01/43/city-4351840_960_720.jpg");
+		Salle s4 = new Salle(null, "Toulouse", 10.0, 4, true, "https://cdn.pixabay.com/photo/2020/01/07/12/21/toulouse-4747440_960_720.jpg");
+		Salle s5 = new Salle(null, "Bordeaux", 20.0, 8, true, "https://cdn.pixabay.com/photo/2017/04/05/10/51/bordeaux-2204634_960_720.jpg");
 
+		Stream.of(s1, s2, s3, s4, s5).forEach(s -> salleRepo.save(s));
 
+		
+		Date d1 =new SimpleDateFormat("yyyy-mm-dd HH:mm").parse("2021-06-23 8:00");
+		Date d2 =new SimpleDateFormat("yyyy-mm-dd HH:mm").parse("2021-06-23 16:00");
+		Date d3 =new SimpleDateFormat("yyyy-mm-dd HH:mm").parse("2021-06-23 8:00");
+		Date d4 =new SimpleDateFormat("yyyy-mm-dd HH:mm").parse("2021-06-23 16:00");
+		Date d5 =new SimpleDateFormat("yyyy-mm-dd HH:mm").parse("2021-06-29 8:00");
+		Date d6 =new SimpleDateFormat("yyyy-mm-dd HH:mm").parse("2021-06-29 16:00");
+		Date d7 =new SimpleDateFormat("yyyy-mm-dd HH:mm").parse("2021-06-20 8:00");
+		Date d8 =new SimpleDateFormat("yyyy-mm-dd HH:mm").parse("2021-06-21 16:00");
+		HistoriqueLocationSalle h1 = new HistoriqueLocationSalle(null, d1, d2, false, s1, jo1, v1, jo1);
+		HistoriqueLocationSalle h2 = new HistoriqueLocationSalle(null, d3, d4, false, s1, jo2, v1, jo1);
+		HistoriqueLocationSalle h3 = new HistoriqueLocationSalle(null, d5, d6, false, s2, jo1, v1, jo1);
+		HistoriqueLocationSalle h4 = new HistoriqueLocationSalle(null, d7, d8, false, s3, jo2, v1, jo2);
+		
+		Stream.of(h1, h2, h3, h4).forEach(h -> histoRepo.save(h));
 
 		
 	}
