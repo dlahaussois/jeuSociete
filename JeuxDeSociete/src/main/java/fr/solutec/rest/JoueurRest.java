@@ -51,7 +51,7 @@ public class JoueurRest {
 	
 
 	@PostMapping("joueur/recherche")
-	public  Iterable<Joueur> rechercheVendeurByLogin(@RequestBody User j){
+	public  Optional<Joueur> rechercheVendeurByLogin(@RequestBody User j){
 		return joueurRepo.findByUserLogin(j.getLogin());
 	}
 
@@ -73,6 +73,23 @@ public class JoueurRest {
 		joueurRepo.save(j);
 	}
 	
-	
+	@PutMapping("joueur/bloquer")
+	public  Joueur bloquerVendeur(@RequestBody Joueur v){
+		
+		System.out.println(v);
+		boolean a = v.getUser().getActivity();
+		
+		if (a == true ) {
+			v.getUser().setActivity(false);
+			
+		} else {
+			v.getUser().setActivity(true);
+			
+		}
+		System.out.println(v);
+		
+		userRepo.save(v.getUser());
+		return joueurRepo.save(v);
+	}
 	
 }

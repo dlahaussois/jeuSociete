@@ -10,6 +10,6 @@ import fr.solutec.entities.Vendeur;
 
 
 public interface JoueurRepository extends CrudRepository<Joueur, Long>{
-	public Iterable<Joueur> findByUserLogin(String login);
+	public  Optional<Joueur> findByUserLogin(String login);
 	
 }
