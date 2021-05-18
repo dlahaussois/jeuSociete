@@ -68,6 +68,7 @@ public class VendeurRest {
 	@PutMapping("vendeur/bloquer")
 	public  Vendeur bloquerVendeur(@RequestBody Vendeur v){
 		
+		Vendeur ve = new Vendeur();
 		System.out.println(v);
 		boolean a = v.getUser().getActivity();
 		
@@ -78,10 +79,12 @@ public class VendeurRest {
 			v.getUser().setActivity(true);
 			
 		}
-		System.out.println(v);
+		System.out.println("v" + v);
 		
 		userRepo.save(v.getUser());
-		return vendeurRepo.save(v);
+		ve =  vendeurRepo.save(v);
+		System.out.println("ve" + ve);
+		return ve;
 	}
 	
 	

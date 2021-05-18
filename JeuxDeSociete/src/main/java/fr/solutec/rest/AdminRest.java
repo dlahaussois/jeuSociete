@@ -7,13 +7,14 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.solutec.entities.Admin;
 
 import fr.solutec.entities.User;
-
+import fr.solutec.entities.Vendeur;
 import fr.solutec.repository.AdminRepository;
 
 import fr.solutec.repository.UserRepository;
@@ -40,11 +41,14 @@ public class AdminRest {
 	
 	
 	@GetMapping("admin/list")
-	public Iterable<Admin> getAllAdmin(){
+	public  Iterable<Admin> getAllAdmin(){
 		return adminRepo.findAll();
 	}
 	
-
+	@PostMapping("admin/recherche")
+	public  Optional<Admin> rechercheadminByLogin(@RequestBody User u){
+		return adminRepo.findByUserLogin(u.getLogin() );
+	}
 	
 
 	
@@ -58,6 +62,23 @@ public class AdminRest {
 		return adminRepo.findByUserLogin(login);
 	}
 
-	
+	@PutMapping("admin/bloquer")
+	public  Admin bloquerVendeur(@RequestBody Admin v){
+		
+		System.out.println(v);
+		boolean a = v.getUser().getActivity();
+		
+		if (a == true ) {
+			v.getUser().setActivity(false);
+			
+		} else {
+			v.getUser().setActivity(true);
+			
+		}
+		System.out.println(v);
+		
+		userRepo.save(v.getUser());
+		return adminRepo.save(v);
+	}
 	
 }
