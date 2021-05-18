@@ -16,7 +16,6 @@ import fr.solutec.entities.JeuAchat;
 import fr.solutec.entities.JeuLocation;
 import fr.solutec.entities.Joueur;
 import fr.solutec.entities.Marque;
-import fr.solutec.entities.Salle;
 import fr.solutec.entities.User;
 import fr.solutec.entities.Vendeur;
 import fr.solutec.repository.AdminRepository;
@@ -26,7 +25,6 @@ import fr.solutec.repository.JeuLocationRepository;
 import fr.solutec.repository.JeuRepository;
 import fr.solutec.repository.JoueurRepository;
 import fr.solutec.repository.MarqueRepository;
-import fr.solutec.repository.SalleRepository;
 import fr.solutec.repository.UserRepository;
 import fr.solutec.repository.VendeurRepository;
 
@@ -62,8 +60,6 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 	@Autowired
 	VendeurRepository vendeurRepo;
 	
-	@Autowired
-	SalleRepository salleRepo;
 	
 	
 	public static void main(String[] args) {
@@ -77,13 +73,13 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("test");
-		User u1 = new User(null, "asterix", "azerty", "asterix.legaulois@gmail.com", "06.65.83.92.01",true);
-		User u2 = new User(null, "obelix", "sanglier","obelix.lebg@outlook.com", "07.23.54.74.36",true);
-		User u3 = new User(null, "panoramix", "potion","pano.ledruide@orange.fr", "01.35.28.75.64",true );
+		User asterix = new User(null, "asterix", "azerty", "asterix.legaulois@gmail.com", "06.65.83.92.01",true);
+		User obelix = new User(null, "obelix", "sanglier","obelix.lebg@outlook.com", "07.23.54.74.36",true);
+		User panoramix = new User(null, "panoramix", "potion","pano.ledruide@orange.fr", "01.35.28.75.64",true );
 		User u4 = new User(null, "Admin", "Admin","admin@admin.fr", "01.35.28.75.64",true );
 		User u5 = new User(null, "Vendeur", "Vendeur","vendeur@vendeur.fr", "01.35.28.75.64",true );
 		
-		Stream.of(u1, u2, u3, u4, u5).forEach(c -> userRepo.save(c));
+		Stream.of(asterix, obelix, panoramix, u4, u5).forEach(c -> userRepo.save(c));
 
 		
 		Categorie c1= new Categorie(null, "Plateau");
@@ -101,8 +97,8 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		Marque m7 = new Marque(null, "Ravensburger");
 		Stream.of(m1,m2,m3,m4,m5,m6,m7).forEach(m -> marqueRepo.save(m));
 		
-		Joueur jo1 = new Joueur(null,u1);
-		Joueur jo2 = new Joueur(null,u2);
+		Joueur jo1 = new Joueur(null,true,asterix);
+		Joueur jo2 = new Joueur(null,false,obelix);
 		Stream.of(jo1,jo2).forEach(jo -> joueurRepo.save(jo));
 		
 		System.out.println(jo1);
@@ -148,21 +144,13 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		Stream.of(jl1,jl2,jl3,jl4,jl5,jl6,jl7,jl8,jl9,jl10,jl11,jl12).forEach(jl -> jlRepo.save(jl));
 		
 		
-		Admin a1 = new Admin(null,u3);
+		Admin a1 = new Admin(null,panoramix);
 		Admin a2 = new Admin(null,u4);
 		Stream.of(a1,a2).forEach(a -> adminRepo.save(a));
 		
 		Vendeur v1 = new Vendeur(null,u5);
 
 		Stream.of(v1).forEach(a -> vendeurRepo.save(a));
-		
-		Salle s1 = new Salle(null, "Paris", 20.0, 8, true, "https://cdn.pixabay.com/photo/2015/05/15/14/27/eiffel-tower-768501_960_720.jpg");
-		Salle s2 = new Salle(null, "Lyon", 20.0, 8, true, "https://cdn.pixabay.com/photo/2017/06/08/08/28/lyon-2382879_960_720.jpg");
-		Salle s3 = new Salle(null, "Strasbourg", 10.0, 4, false, "https://cdn.pixabay.com/photo/2019/07/21/01/43/city-4351840_960_720.jpg");
-		Salle s4 = new Salle(null, "Toulouse", 10.0, 4, true, "https://cdn.pixabay.com/photo/2020/01/07/12/21/toulouse-4747440_960_720.jpg");
-		Salle s5 = new Salle(null, "Bordeaux", 20.0, 8, true, "https://cdn.pixabay.com/photo/2017/04/05/10/51/bordeaux-2204634_960_720.jpg");
-
-		Stream.of(s1, s2, s3, s4, s5).forEach(s -> salleRepo.save(s));
 		
 	}
 
