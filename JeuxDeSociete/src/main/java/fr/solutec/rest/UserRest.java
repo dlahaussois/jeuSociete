@@ -32,7 +32,6 @@ public class UserRest {
 	}
 	
 	
-	
 	@GetMapping("user/id/{id}")
 	public Optional<User> getUserById(@PathVariable Long id){
 		return userRepo.findById(id);

@@ -16,4 +16,7 @@ public class Salle {
 	Long id;
 	String nom;
 	double prix;
+	int nombreDePlaces;
+	boolean publique;
+	String urlImage;
 }
