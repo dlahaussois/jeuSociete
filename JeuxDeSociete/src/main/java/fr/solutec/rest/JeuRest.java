@@ -98,9 +98,19 @@ public class JeuRest {
 		return jeuRepo.getJeuByCategorie(jeu.getCategorieDuJeu());
 	}
 	
+	@GetMapping("/jeu/findByLibelleCategorie")
+	public Optional<Iterable<Jeu>> getJeuByLibelleCategorie(@RequestBody Jeu jeu){
+		return jeuRepo.getJeuByLibelleCategorie(jeu.getCategorieDuJeu().getLibelle());
+	}
+	
 	@GetMapping("/jeu/findByMarque")
 	public Optional<Iterable<Jeu>> getJeuByMarque(@RequestBody Jeu jeu){
 		return jeuRepo.getJeuByMarque(jeu.getMarqueDuJeu());
+	}
+	
+	@GetMapping("/jeu/findByLibelleMarque")
+	public Optional<Iterable<Jeu>> getJeuByLibelleMarque(@RequestBody Jeu jeu){
+		return jeuRepo.getJeuByLibelleMarque(jeu.getMarqueDuJeu().getLibelle());
 	}
 	
 	//---------------------------------------------------------------------------------------------------
@@ -180,6 +190,7 @@ public class JeuRest {
 	public Optional<Iterable<Jeu>> getJeuByDifficulte(@RequestBody Jeu jeu){
 		return jeuRepo.getByNiveauDifficulte(jeu.getNiveauDifficulte());
 	}
+	
 	
 	
 	//---------------------------------------------------------------------------------------------------
