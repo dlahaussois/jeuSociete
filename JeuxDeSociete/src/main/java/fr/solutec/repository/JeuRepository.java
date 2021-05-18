@@ -47,6 +47,9 @@ public interface JeuRepository extends CrudRepository<Jeu, Long>{
 	
 	@Query(value="SELECT j FROM Jeu j WHERE j.marqueDuJeu = ?1")
 	public Optional<Iterable<Jeu>> getJeuByMarque(Marque marque);
+	
+	@Query(value="SELECT j FROM Jeu j WHERE j.marqueDuJeu.libelle = ?1")
+	public Optional<Iterable<Jeu>> getJeuByLibelleMarque(String libelle);
 
 	@Query(value="SELECT j FROM Jeu j WHERE j.NiveauDifficulte = ?1")
 	public Optional<Iterable<Jeu>> getByNiveauDifficulte(String difficulte);
