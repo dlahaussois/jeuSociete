@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 @Data @Entity @NoArgsConstructor @AllArgsConstructor
 public class User {
 	@Id @GeneratedValue
-	Long id;
-	String login;
-	String password;
-	String mail;
-	String tel;
-	Boolean activity = true; // variable activité du compte (1 - OK/ 0 - bloqué)
+	private Long id;
+	private String login;
+	private String password;
+	private String mail;
+	private String tel;
+	private Boolean activity = true; // variable activité du compte (1 - OK/ 0 - bloqué)
 }

@@ -13,10 +13,10 @@ import lombok.NoArgsConstructor;
 public class Salle {
 
 	@Id @GeneratedValue
-	Long id;
-	String nom;
-	double prix;
-	int nombreDePlaces;
-	boolean publique;
-	String urlImage;
+	private Long id;
+	private String nom;
+	private double prix;
+	private int nombreDePlaces;
+	private boolean publique;
+	private String urlImage;
 }
