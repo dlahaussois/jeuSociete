@@ -46,8 +46,6 @@ public class SalleRest {
 		return salleRepo.findByNom(login);
 	}
 	
-	
-	
 	@GetMapping("salle/place")
 	public int getNombreDePlacesById(@RequestBody Long id) {
 		Optional<Salle> s = getSalleById(id);
@@ -79,6 +77,5 @@ public class SalleRest {
 			return false;
 		}
 	}
-	
 	
 }

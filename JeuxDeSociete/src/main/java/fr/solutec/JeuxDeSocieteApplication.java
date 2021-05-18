@@ -2,31 +2,45 @@ package fr.solutec;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 import fr.solutec.entities.Admin;
 import fr.solutec.entities.Categorie;
+import fr.solutec.entities.Forum;
 import fr.solutec.entities.Jeu;
 import fr.solutec.entities.JeuAchat;
 import fr.solutec.entities.JeuLocation;
 import fr.solutec.entities.Joueur;
 import fr.solutec.entities.Marque;
+
 import fr.solutec.entities.Salle;
+
+import fr.solutec.entities.Message;
+
 import fr.solutec.entities.User;
 import fr.solutec.entities.Vendeur;
+
 import fr.solutec.repository.AdminRepository;
 import fr.solutec.repository.CategorieRepository;
+import fr.solutec.repository.ForumRepository;
 import fr.solutec.repository.JeuAchatRepository;
 import fr.solutec.repository.JeuLocationRepository;
 import fr.solutec.repository.JeuRepository;
 import fr.solutec.repository.JoueurRepository;
 import fr.solutec.repository.MarqueRepository;
+
 import fr.solutec.repository.SalleRepository;
+
+import fr.solutec.repository.MessageRepository;
+
 import fr.solutec.repository.UserRepository;
 import fr.solutec.repository.VendeurRepository;
 
@@ -64,6 +78,12 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 	
 	@Autowired
 	SalleRepository salleRepo;
+
+	@Autowired
+	MessageRepository messageRepo;
+	
+	@Autowired
+	ForumRepository forumRepo;
 	
 	
 	public static void main(String[] args) {
@@ -101,8 +121,10 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		Marque m7 = new Marque(null, "Ravensburger");
 		Stream.of(m1,m2,m3,m4,m5,m6,m7).forEach(m -> marqueRepo.save(m));
 		
-		Joueur jo1 = new Joueur(null,u1);
-		Joueur jo2 = new Joueur(null,u2);
+
+		Joueur jo1 = new Joueur(null,true, u1);
+		Joueur jo2 = new Joueur(null, false , u2);
+
 		Stream.of(jo1,jo2).forEach(jo -> joueurRepo.save(jo));
 		
 		System.out.println(jo1);
@@ -156,6 +178,7 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 
 		Stream.of(v1).forEach(a -> vendeurRepo.save(a));
 		
+
 		Salle s1 = new Salle(null, "Paris", 20.0, 8, true, "https://cdn.pixabay.com/photo/2015/05/15/14/27/eiffel-tower-768501_960_720.jpg");
 		Salle s2 = new Salle(null, "Lyon", 20.0, 8, true, "https://cdn.pixabay.com/photo/2017/06/08/08/28/lyon-2382879_960_720.jpg");
 		Salle s3 = new Salle(null, "Strasbourg", 10.0, 4, false, "https://cdn.pixabay.com/photo/2019/07/21/01/43/city-4351840_960_720.jpg");
@@ -164,6 +187,33 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 
 		Stream.of(s1, s2, s3, s4, s5).forEach(s -> salleRepo.save(s));
 		
+		Forum f1 = new Forum(null, "délais de livraison");
+		Forum f2 = new Forum(null, "retour/échange");
+		Forum f3 = new Forum(null, "disponibilité de jeux");
+		Forum f4 = new Forum(null, "réservations de salles");
+		
+		
+		Stream.of(f1, f2, f3, f4).forEach(a -> forumRepo.save(a));
+		
+		Message me1= new Message(null, null, "Quels sont les délais de livraison ?", u1, null, f1, false);
+		Message me2= new Message(null, null, "Est-il possible de se faire rembourser un jeu ?", u2, null, f3, false);
+		Message me3= new Message(null, null, "La dernière version du jeu Monopoly est-elle disponible en commande chez vous ?", u3, null, f2, false);
+		Message me4= new Message(null, null, "Serait-il possible de réserver une salle pour 15 dans 1 mois ?", u4, null, f3, false);
+		Message me5= new Message(null, null, "J'ai reçu mon jeu, il est imcomplet, comment se passe l'échange ?", u5, null, f2, false);
+		Message me6= new Message(null, null, "Salut Paul, viens-tu dimanche jouer dans une des salles ?", u5, u4, null, true);
+		Message me7= new Message(null, null, "Bonjour obélix, j'ai loué 7 wonders, ça te dirait de venir jouer une partie ?", u1, u2, null, true);
+		
+		Stream.of(me1, me2, me3, me4, me5, me6, me7).forEach(a -> messageRepo.save(a));
+	
+		
 	}
+
+
+		
+		
+		
+		
+		
+		
 
 }
