@@ -12,16 +12,31 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import fr.solutec.entities.Admin;
+import fr.solutec.entities.Joueur;
 import fr.solutec.entities.User;
 import fr.solutec.entities.Vendeur;
+import fr.solutec.repository.AdminRepository;
+import fr.solutec.repository.JoueurRepository;
 import fr.solutec.repository.UserRepository;
+import fr.solutec.repository.VendeurRepository;
+
+
 
 @RestController @CrossOrigin("*")
 public class UserRest {
 
 	@Autowired
 	UserRepository userRepo;
+	
+	@Autowired
+	AdminRepository adminRepo;
+	
+	@Autowired
+	VendeurRepository vendeurRepo;
+	
+	@Autowired
+	JoueurRepository joueurRepo;
 	
 	@GetMapping("user")
 	public Iterable<User> getAllUser(){
@@ -64,7 +79,18 @@ public class UserRest {
 	@DeleteMapping("user/supprimer")
 	public boolean suppPerson(@RequestBody Long id) {
 		if (userRepo.findById(id).isPresent()) {
+			
+			Optional< Admin  > a = adminRepo.findByUserId(id);
+			if (a.isPresent()) {
+			//adminRepo.delete(a);
+			}
+			
+			Optional< Joueur  > j = joueurRepo.findByUserId(id);
+			Optional< Vendeur  > v = vendeurRepo.findByUserId(id);
+			
+			
 			userRepo.deleteById(id);
+			
 			return true;
 		}
 		else {
