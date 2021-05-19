@@ -4,12 +4,14 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import fr.solutec.entities.User;
 import fr.solutec.entities.Vendeur;
@@ -55,9 +57,20 @@ public class UserRest {
 	}
 	
 	@PostMapping("user/recherche")
-	public  Optional<User> rechercheVendeurByLogin(@RequestBody User v){
-		return userRepo.findByLogin(v.getLogin() );
+	public  Optional<User> rechercheVendeurByLogin(@RequestBody User u){
+		return userRepo.findByLogin(u.getLogin() );
 	}
 	
-	
+	@DeleteMapping("user/supprimer")
+	public boolean suppPerson(@RequestBody Long id) {
+		if (userRepo.findById(id).isPresent()) {
+			userRepo.deleteById(id);
+			return true;
+		}
+		else {
+			return false;
+		}
+				
+			
+	}
 }

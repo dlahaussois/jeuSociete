@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -62,13 +63,14 @@ public class AdminRest {
 		return adminRepo.findByUserLogin(login);
 	}
 
-	@PutMapping("/admin/modifier")
-	public Admin modifierAdmin(@RequestBody Admin admin) {
-		return adminRepo.save(admin);
+	@PutMapping("admin/modifier")
+	public Admin modifierAdmin(@RequestBody Admin a) {
+		userRepo.save(a.getUser());
+		return adminRepo.save(a);
 	}
 	
 	@PutMapping("admin/bloquer")
-	public  Admin bloquerVendeur(@RequestBody Admin v){
+	public  Admin bloquerAdmin(@RequestBody Admin v){
 		
 		System.out.println(v);
 		boolean a = v.getUser().getActivity();
@@ -83,7 +85,27 @@ public class AdminRest {
 		System.out.println(v);
 		
 		userRepo.save(v.getUser());
+		
 		return adminRepo.save(v);
 	}
 	
+	@DeleteMapping("admin/supprimer}")
+	public boolean suppPerson(@RequestBody Admin u) {
+		System.out.println("in suppri");
+		if (adminRepo.findById(u.getId()).isPresent()) {
+			System.out.println("in boucle suppri");
+			userRepo.delete(u.getUser());
+			adminRepo.delete(u);
+			
+			return true;
+		}
+		else {
+			System.out.println("no suppri");
+			return false;
+		}
+			
+			
+
+			
+	}
 }

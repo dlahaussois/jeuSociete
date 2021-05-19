@@ -60,4 +60,15 @@ public class JeuDansPanierRest {
 			return false;
 		}
 	}
+	
+	@DeleteMapping("/panier/{id}")
+	public boolean deleteJeuDansPanierPathVar(@PathVariable Long id) {
+		if (jeupanierRepo.findById(id).isPresent()) {
+			jeupanierRepo.deleteById(id);
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }
