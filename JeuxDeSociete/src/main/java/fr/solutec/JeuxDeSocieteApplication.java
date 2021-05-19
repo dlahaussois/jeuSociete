@@ -21,7 +21,7 @@ import fr.solutec.entities.JeuLocation;
 import fr.solutec.entities.Joueur;
 import fr.solutec.entities.Marque;
 import fr.solutec.entities.Message;
-import fr.solutec.entities.Niveau;
+
 import fr.solutec.entities.Salle;
 import fr.solutec.entities.User;
 import fr.solutec.entities.Vendeur;
@@ -37,7 +37,7 @@ import fr.solutec.repository.JeuRepository;
 import fr.solutec.repository.JoueurRepository;
 import fr.solutec.repository.MarqueRepository;
 import fr.solutec.repository.MessageRepository;
-import fr.solutec.repository.NiveauRepository;
+
 import fr.solutec.repository.SalleRepository;
 import fr.solutec.repository.UserRepository;
 import fr.solutec.repository.VendeurRepository;
@@ -92,10 +92,6 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 
 	@Autowired
 	JeuDansPanierRepository jeudanspanierRepo;
-	
-	@Autowired
-	NiveauRepository niveauRepo;
-
 
 	public static void main(String[] args) {
 		SpringApplication.run(JeuxDeSocieteApplication.class, args);
@@ -169,10 +165,10 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		
 		
 		
-		Forum f1 = new Forum(null, "délais de livraison");
-		Forum f2 = new Forum(null, "retour/échange");
-		Forum f3 = new Forum(null, "disponibilité de jeux");
-		Forum f4 = new Forum(null, "réservations de salles");
+		Forum f1 = new Forum(null, "Délais de livraison");
+		Forum f2 = new Forum(null, "Retour/Echange");
+		Forum f3 = new Forum(null, "Disponibilité des jeux");
+		Forum f4 = new Forum(null, "Réservations de salles");
 		
 		
 		Stream.of(f1, f2, f3, f4).forEach(a -> forumRepo.save(a));
@@ -180,9 +176,9 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		Message me1= new Message(null, null, "Quels sont les délais de livraison ?", asterix, null, f1, false);
 		Message me2= new Message(null, null, "Est-il possible de se faire rembourser un jeu ?", obelix, null, f3, false);
 		Message me3= new Message(null, null, "La dernière version du jeu Monopoly est-elle disponible en commande chez vous ?", panoramix, null, f2, false);
-		Message me4= new Message(null, null, "Serait-il possible de réserver une salle pour 15 dans 1 mois ?", u4, null, f3, false);
+		Message me4= new Message(null, null, "Serait-il possible de réserver une salle pour 15 dans 1 mois ?", obelix, null, f3, false);
 		Message me5= new Message(null, null, "J'ai reçu mon jeu, il est imcomplet, comment se passe l'échange ?", u5, null, f2, false);
-		Message me6= new Message(null, null, "Salut Paul, viens-tu dimanche jouer dans une des salles ?", u5, u4, null, true);
+		Message me6= new Message(null, null, "Salut Paul, viens-tu dimanche jouer dans une des salles ?", u5, asterix, null, true);
 		Message me7= new Message(null, null, "Bonjour obélix, j'ai loué 7 wonders, ça te dirait de venir jouer une partie ?", asterix, obelix, null, true);
 		
 		Stream.of(me1, me2, me3, me4, me5, me6, me7).forEach(a -> messageRepo.save(a));
@@ -254,11 +250,7 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		JeuDansPanier jdp8 = new JeuDansPanier(null, u4, ja1, 3,true);
 		Stream.of(jdp1,jdp2,jdp3,jdp4,jdp5,jdp6,jdp7,jdp8).forEach(jdp -> jeudanspanierRepo.save(jdp));
 
-		Niveau n1 = new Niveau(null, "Facile");
-		Niveau n2 = new Niveau(null, "Moyen");
-		Niveau n3 = new Niveau(null, "Difficle");
-		Stream.of(n1, n2, n3).forEach(n -> niveauRepo.save(n));
-
+		
 	}
 
 }
