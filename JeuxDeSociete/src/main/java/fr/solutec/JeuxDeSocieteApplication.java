@@ -167,10 +167,10 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		Forum f3 = new Forum(null, "Disponibilité des jeux");
 		Forum f4 = new Forum(null, "Réservations de salles");
 		Forum f5 = new Forum(null, "Remboursement");
+		Forum f6 = new Forum(null, "Autres");
 		
 		
-		
-		Stream.of(f1, f2, f3, f4, f5).forEach(a -> forumRepo.save(a));
+		Stream.of(f1, f2, f3, f4, f5,f6).forEach(a -> forumRepo.save(a));
 		
 		Message me1= new Message(null, null, "Quels sont les délais de livraison ?", asterix, null, f1, false);
 		Message me2= new Message(null, null, "Est-il possible de se faire rembourser un jeu ?", obelix, null, f5, false);
