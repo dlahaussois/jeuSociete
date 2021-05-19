@@ -13,6 +13,7 @@ import fr.solutec.entities.Admin;
 import fr.solutec.entities.Avis;
 import fr.solutec.entities.Categorie;
 import fr.solutec.entities.Forum;
+import fr.solutec.entities.HistoriqueLocationSalle;
 import fr.solutec.entities.Jeu;
 import fr.solutec.entities.JeuAchat;
 import fr.solutec.entities.JeuDansPanier;
@@ -30,6 +31,7 @@ import fr.solutec.repository.AdminRepository;
 import fr.solutec.repository.AvisRepository;
 import fr.solutec.repository.CategorieRepository;
 import fr.solutec.repository.ForumRepository;
+import fr.solutec.repository.HistoriqueLocationSalleRepository;
 import fr.solutec.repository.JeuAchatRepository;
 import fr.solutec.repository.JeuDansPanierRepository;
 import fr.solutec.repository.JeuLocationRepository;
@@ -90,6 +92,9 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 
 	@Autowired
 	SalleRepository salleRepo;
+	
+	@Autowired
+	HistoriqueLocationSalleRepository histoRepo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(JeuxDeSocieteApplication.class, args);
@@ -118,7 +123,7 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		Stream.of(c1,c2,c3,c4).forEach(c -> categorieRepo.save(c));
 		
 		Marque m1 = new Marque(null, "REPOS Production");
-		Marque m2 = new Marque(null, "DUCALE");
+		Marque m2 = new Marque(null, "France Cartes");
 		Marque m3 = new Marque(null, "Devil Pig Games");
 		Marque m4 = new Marque(null, "Heye");
 		Marque m5 = new Marque(null, "Londji");
@@ -136,7 +141,7 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		System.out.println(jo1);
 		
 		Jeu j1 = new Jeu(null, "7 Wonders Nouvelle édition", 3, 7, 10, "Difficile", 30, "7 Wonders, un jeu mythique\r\nDans 7 Wonders, vous êtes à la tête de l'une des sept grandes cités du monde antique. Votre but est de faire prospérer votre ville pour la rendre plus influente que celles de vos adversaires. Le futur des cités légendaires comme Babylone, Éphèse ou encore Rhodes dépend de vos talents de gestionnaire. Pour inscrire votre cité dans l'Histoire, vous devrez agir dans différents secteurs de développement. Exploitez les ressources naturelles de vos terres, participez aux progrès scientifiques, développez vos relations commerciales et affirmez votre suprématie militaire. Laissez votre empreinte dans l'histoire des civilisations en bâtissant une merveille monumentale.\r\n\r\n7 Wonders, un jeu de draft à travers 3 âges\r\nUne partie se déroule à travers 3 âges successifs comportant chacun 6 tours de jeu. Chaque époque se joue de manière identique et repose sur un système de draft. Chaque joueur choisit une carte de sa main, la joue et passe les cartes restantes au joueur suivant. Ce principe de jeu permet aux différents paquets de cartes de tourner entre les joueurs qui ont donc 6 cartes pour développer au mieux leur stratégie. À chaque tour, les participants ont 3 actions possibles : construire leur cité, développer leur merveille ou gagner de l'argent.\r\n\r\n7 Wonders, un jeu stratégique\r\nPour régner en maître, les joueurs devront établir une stratégie et composer avec leurs cartes pour dérouler leur plan d'actions sans encombre. Le jeu leur offre aussi la possibilité d'interagir avec les autres joueurs en bénéficiant de certains avantages tirés des cartes jouées. À la fin du 3ème âge, les joueurs devront compter leurs points de victoire. Le score final dépendra des bâtiments construits (commerciaux, civils et scientifiques), du stade de développement de leur merveille, des victoires militaires et des fortunes engrangées. 7 Wonders est un jeu stratégique où les joueurs ne doivent oublier aucun aspect du jeu pour triompher. La cité doit prospérer sur le plan civil, scientifique, commercial et militaire. Autrement dit, leur cité devra être belle, riche et puissante. Le joueur avec le score le plus élevé est déclaré vainqueur.\r\n\r\nLes 7 valeurs ajoutées de la nouvelle édition de 7 Wonders\r\nune refonte graphique du jeu. Sorti en 2010 et accumulant plus de 30 prix internationaux, 7 Wonders méritait de se refaire une beauté ! La couverture, le design des cartes, les merveilles, le thermoformage: tout y est passé !\r\nLa rédaction des règles a entièrement été revue pour les rendre plus simples d’accès aux débutants. Fini les longues pages à lire, on passe maintenant à un livret de règles de 8 pages beaucoup plus facile à appréhender et à comprendre !\r\nL’aide de jeu aussi a été totalement repensée.\r\nGrâce à une meilleure ergonomie des cartes, le joueur gagne de la place à table. Le nouvel agencement des cartes permet une lecture facile des informations. Les cartes guildes, dispersées dans les différentes extensions de 7 Wonders, ont été rassemblées et ajoutées au nouveau jeu de base.\r\nLa taille des merveilles a augmenté permettant une meilleure immersion du jeu avec le thème principal de 7 Wonders, ses merveilles ! Le format de la boîte du jeu de base et de ses extensions sera aussi plus grand, adoptant une taille de boîte standard. Toujours pour respecter au mieux l’immersion dans le jeu, les faces A et B des merveilles ont été repensées et sont remplacées par une face jour et une face nuit. Découvrez les merveilles sous leur aspect diurne et nocturne!\r\n7 Wonders s’inspire aussi du chaînage de 7 Wonders Duel, plus ergonomique et plus intuitif.\r\nGrâce aux symboles intégrés discrètement dans le contenu du jeu, 7 Wonders et ses extensions sont maintenant adaptés aux joueurs daltoniens.", "Je sais plus du tout dsl","https://cdn2.philibertnet.com/478484-thickbox_default/7-wonders-nouvelle-edition.jpg",8.10,c1,m1);
-		Jeu j2 = new Jeu(null, "Tarot", 4, 5, 10, "Difficile", 15, "Jeu de Tarot Ducale 78 cartes. \r\nFabriqué en Lorraine. Boite en plastique. ", "C'est compliqué ...","https://cdn3.philibertnet.com/494314-thickbox_default/jeu-de-tarot-78-cartes-boite-plastique.jpg",2.00,c2,m2);
+		Jeu j2 = new Jeu(null, "Tarot de compétition", 4, 5, 10, "Difficile", 15, "Jeu de tarot traditionnel de 78 cartes, dos écossais, avec règles du jeu en français. Dimensions 6 x 11,5 cm. Convient pour les compétitions.", "C'est compliqué ...","https://www.lerepairedudragon.fr/78194-large_default/jeu-de-tarot-traditionnel.jpg",2.00,c2,m2);
 		Jeu j3 = new Jeu(null, "Heroes of Stalingrad", 2, 2, 14, "Moyen",45 , "Heroes of Stalingrad est le nouveau Wargame signé Devil Pig Games. Plongez grâce aux mécaniques dynamiques et stratégiques du Heroes System : Tactical Scale, dans l’une des batailles les plus décisives de la Seconde Guerre mondiale. A deux durant des parties de 30 minutes et plus, vous incarnerez les plus grands héros de ce conflit dans le pur style des films de guerre.\r\n\r\nQue vous connaissiez ou non nos autres jeux utilisant ces mécaniques, Heroes of Stalingrad est la boîte de base idéale pour découvrir le Heroes System : Tactical Scale au rythme des chants patriotiques des commissaires politiques bravant MG34 et DP28 !", "Je sais connais pas les règles dsl", "https://cdn2.philibertnet.com/466792-thickbox_default/heroes-of-stalingrad.jpg",10.80, c3, m3);
 		Jeu j4 = new Jeu(null, "Puzzle - Inner Mystic - 1000 Pièces", 1, 1, 10, "Difficile", 120, "Puzzle de 1000 pièces en carton de la marque HEYE.\r\nFormat : Paysage\r\nDimensions : 50x70 cm\r\nFabriqué avec du carton recyclé.\r\nSous le ciel grandiose rêve une petite créature mythique. Si vous regardez de plus près en faisant le puzzle, vous découvrirez l'attention incroyablement affectueuse qu'Andy Kehoe porte aux détails.", "Assemblez les pièces pour reproduire le motif.", "https://cdn1.philibertnet.com/503142-thickbox_default/puzzle-inner-mystic-1000-pieces.jpg",3.90, c4, m4);
 		Jeu j5 = new Jeu(null, "Puzzle - Vincent Van Gogh - Nuit Etoilée - 1000 Pièces", 1, 1, 10, "Difficile", 120, "Puzzle classique de 1000 pièces\r\nFormat:Paysage\r\nDimensions :\r\n46 cm x 65 cm\r\nArtiste maudit et incompris, esprit sensible et torturé, Vincent Van Gogh (1853–1890) est devenu une légende. Réputé inclassable, il appartient pourtant à la mouvance postimpressionniste, tout comme son ami Paul Gauguin. Avec sa palette vive et sa touche exaltée, il apparaît aussi comme un précurseur du fauvisme et de l’expressionnisme tout en se rapprochant du symbolisme par sa conception mystique de l’art. Peintre infatigable mort à 37 ans, il a produit plus de 800 toiles. Associant réflexions sur la forme et sur la couleur, la démarche de Vincent Van Gogh incarne parfaitement le génie de l’art moderne.\r\nLa Nuit étoilée, 1889\r\n\r\n« Souvent, il me semble que la nuit est encore plus richement colorée que le jour », écrivit le peintre. Ce paysage nocturne fut réalisé depuis la chambre que Vincent Van Gogh occupait à l’asile de Saint-Rémy-de-Provence. Il se singularise par le traitement du ciel, qui occupe la majeure partie de la toile. Le mouvement tourbillonnant de l’air forme des vagues, et les étoiles étincellent comme autant de soleils. La touche est fragmentée, les couleurs sont pures. L’agitation du ciel contraste avec la tranquillité du village endormi. Vincent Van Gogh exprime ici sa vision mystique du monde, à la recherche d’une vérité invisible.", "Assemblez les pièces pour reproduire le motif.", "https://cdn2.philibertnet.com/502566-thickbox_default/puzzle-vincent-van-gogh-nuit-etoilee-1000-pieces.jpg",4.18, c4, m5);
@@ -147,6 +152,8 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		Jeu j10 = new Jeu(null, "Risk", 2, 6, 10, "Moyen", 90, "Le jeu de conquête stratégique ! Le monde appartient aux audacieux, l'êtes-vous assez pour gagner ?\r\n\r\nDéplacez vos régiments, choisissez votre stratégie et que la conquête du monde commence !\r\n\r\nVotre mission :\r\n\r\nmettre vos ennemis en déroute,\r\nfaire avancer vos soldat pour conquérir de nouveaux territoires.\r\nQuand attaquer ? Quand s'arrêter ? Faut-il former des alliances avec l'ennemi ? La décision vous appartient !", "Je sais pas du tout dsl", "https://cdn2.philibertnet.com/339595-thickbox_default/risk-vf.jpg",15.00, c1, m6);
 		Jeu j11 = new Jeu(null, "Elefun", 1, 3, 3, "Facile", 15, "Description\r\nLe mignon éléphant Elefun de Hasbro souffle des papillons colorés de sa trompe ! Utilise ton filet pour attraper un maximum de papillons au gré des musiques. Celui qui a réussi à en avoir le plus dans son filet remporte la partie.", "Y a pas de règles, c'est juste un éléphant plein de fun", "https://media1.auchan.fr/images/hce/h5b/14724813029406.jpg",8.00, c1, m6);
 		Stream.of(j1,j2,j3,j4,j5,j6,j7,j8,j9,j10,j11).forEach(j -> jeuRepo.save(j));
+		
+		
 		
 		JeuAchat ja1 = new JeuAchat(null, 40.50, 100, j1);
 		JeuAchat ja2 = new JeuAchat(null, 9.99, 100, j2);
@@ -239,6 +246,21 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
         Salle s5 = new Salle(null, "Bordeaux", 20.0, 8, true, "https://cdn.pixabay.com/photo/2017/04/05/10/51/bordeaux-2204634_960_720.jpg"); 
 
         Stream.of(s1, s2, s3, s4, s5).forEach(s -> salleRepo.save(s));
+        
+        Date d1 =new SimpleDateFormat("yyyy-mm-dd HH:mm").parse("2021-06-23 8:00");
+		Date d2 =new SimpleDateFormat("yyyy-mm-dd HH:mm").parse("2021-06-23 16:00");
+		Date d3 =new SimpleDateFormat("yyyy-mm-dd HH:mm").parse("2021-06-23 8:00");
+		Date d4 =new SimpleDateFormat("yyyy-mm-dd HH:mm").parse("2021-06-23 16:00");
+		Date d5 =new SimpleDateFormat("yyyy-mm-dd HH:mm").parse("2021-06-29 8:00");
+		Date d6 =new SimpleDateFormat("yyyy-mm-dd HH:mm").parse("2021-06-29 16:00");
+		Date d7 =new SimpleDateFormat("yyyy-mm-dd HH:mm").parse("2021-06-20 8:00");
+		Date d8 =new SimpleDateFormat("yyyy-mm-dd HH:mm").parse("2021-06-21 16:00");
+		HistoriqueLocationSalle h1 = new HistoriqueLocationSalle(null, d1, d2, false, s1, jo1, v1, jo1);
+		HistoriqueLocationSalle h2 = new HistoriqueLocationSalle(null, d3, d4, false, s1, jo2, v1, jo1);
+		HistoriqueLocationSalle h3 = new HistoriqueLocationSalle(null, d5, d6, false, s2, jo1, v1, jo1);
+		HistoriqueLocationSalle h4 = new HistoriqueLocationSalle(null, d7, d8, false, s3, jo2, v1, jo2);
+
+		Stream.of(h1, h2, h3, h4).forEach(h -> histoRepo.save(h));
 
 
 	}
