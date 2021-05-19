@@ -93,7 +93,8 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 	@Autowired
 	NiveauRepository niveauRepo;
 
-
+	@Autowired
+	SalleRepository salleRepo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(JeuxDeSocieteApplication.class, args);
@@ -237,6 +238,13 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		Niveau n3 = new Niveau(null, "Difficle");
 		Stream.of(n1, n2, n3).forEach(n -> niveauRepo.save(n));
 
+		Salle s1 = new Salle(null, "Paris", 20.0, 8, true, "https://cdn.pixabay.com/photo/2015/05/15/14/27/eiffel-tower-768501_960_720.jpg");
+        Salle s2 = new Salle(null, "Lyon", 20.0, 8, true, "https://cdn.pixabay.com/photo/2017/06/08/08/28/lyon-2382879_960_720.jpg");
+        Salle s3 = new Salle(null, "Strasbourg", 10.0, 4, false, "https://cdn.pixabay.com/photo/2019/07/21/01/43/city-4351840_960_720.jpg");
+        Salle s4 = new Salle(null, "Toulouse", 10.0, 4, true, "https://cdn.pixabay.com/photo/2020/01/07/12/21/toulouse-4747440_960_720.jpg");
+        Salle s5 = new Salle(null, "Bordeaux", 20.0, 8, true, "https://cdn.pixabay.com/photo/2017/04/05/10/51/bordeaux-2204634_960_720.jpg"); 
+
+        Stream.of(s1, s2, s3, s4, s5).forEach(s -> salleRepo.save(s));
 
 	}
 
