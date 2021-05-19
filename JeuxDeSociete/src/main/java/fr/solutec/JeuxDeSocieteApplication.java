@@ -20,6 +20,10 @@ import fr.solutec.entities.JeuLocation;
 import fr.solutec.entities.Joueur;
 import fr.solutec.entities.Marque;
 import fr.solutec.entities.Message;
+
+import fr.solutec.entities.Niveau;
+import fr.solutec.entities.Salle;
+
 import fr.solutec.entities.User;
 import fr.solutec.entities.Vendeur;
 import fr.solutec.repository.AdminRepository;
@@ -33,6 +37,11 @@ import fr.solutec.repository.JeuRepository;
 import fr.solutec.repository.JoueurRepository;
 import fr.solutec.repository.MarqueRepository;
 import fr.solutec.repository.MessageRepository;
+
+
+import fr.solutec.repository.NiveauRepository;
+import fr.solutec.repository.SalleRepository;
+
 import fr.solutec.repository.UserRepository;
 import fr.solutec.repository.VendeurRepository;
 
@@ -80,6 +89,12 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 	@Autowired
 	JeuDansPanierRepository jeudanspanierRepo;
 	
+
+	@Autowired
+	NiveauRepository niveauRepo;
+
+
+
 	public static void main(String[] args) {
 		SpringApplication.run(JeuxDeSocieteApplication.class, args);
 		
@@ -209,10 +224,20 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		JeuDansPanier jdp6 = new JeuDansPanier(null, u5, ja9, 2,false);
 		JeuDansPanier jdp7 = new JeuDansPanier(null, u5, ja11, 3,true);
 		JeuDansPanier jdp8 = new JeuDansPanier(null, u4, ja1, 3,true);
+
 		JeuDansPanier jdp9 = new JeuDansPanier(null, u4, ja3, 2,true);
 		JeuDansPanier jdp10 = new JeuDansPanier(null, u4, ja4, 3,true);
 		Stream.of(jdp1,jdp2,jdp3,jdp4,jdp5,jdp6,jdp7,jdp8,jdp9,jdp10).forEach(jdp -> jeudanspanierRepo.save(jdp));
 		
+
+		Stream.of(jdp1,jdp2,jdp3,jdp4,jdp5,jdp6,jdp7,jdp8).forEach(jdp -> jeudanspanierRepo.save(jdp));
+
+		Niveau n1 = new Niveau(null, "Facile");
+		Niveau n2 = new Niveau(null, "Moyen");
+		Niveau n3 = new Niveau(null, "Difficle");
+		Stream.of(n1, n2, n3).forEach(n -> niveauRepo.save(n));
+
+
 	}
 
 }
