@@ -79,17 +79,26 @@ public class UserRest {
 	@DeleteMapping("user/supprimer")
 	public boolean suppPerson(@RequestBody Long id) {
 		if (userRepo.findById(id).isPresent()) {
-			
+			System.out.println("dans if ");
 			Optional< Admin  > a = adminRepo.findByUserId(id);
 			if (a.isPresent()) {
-			//adminRepo.delete(a);
+				adminRepo.deleteById( a.get().getId() ) ;
+				System.out.println("supp A ");
 			}
 			
 			Optional< Joueur  > j = joueurRepo.findByUserId(id);
+			if (j.isPresent()) {
+				joueurRepo.deleteById( j.get().getId() ) ;
+				System.out.println("supp J ");
+			}
 			Optional< Vendeur  > v = vendeurRepo.findByUserId(id);
-			
-			
+			if (v.isPresent()) {
+				vendeurRepo.deleteById( v.get().getId() ) ;
+				System.out.println("supp V ");
+			}
+			System.out.println("supp U ");
 			userRepo.deleteById(id);
+			
 			
 			return true;
 		}

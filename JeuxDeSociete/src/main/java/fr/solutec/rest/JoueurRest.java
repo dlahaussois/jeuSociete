@@ -55,12 +55,19 @@ public class JoueurRest {
 		return joueurRepo.findByUserLogin(j.getLogin());
 	}
 
+	@PutMapping("joueur/modifier")
+	public boolean modifierJoueur( @RequestBody User a) {
+		userRepo.save(a);
+
+		return true;
+	}
+	
 	@PutMapping("joueur/adherer")
 	public Joueur adhererJoueur(@RequestBody Joueur j){
 		
 		boolean a;
 		a = j.getCotisation();	
-		System.out.println(j);
+		
 		
 		if (a == true ) {
 			j.setCotisation(false);
