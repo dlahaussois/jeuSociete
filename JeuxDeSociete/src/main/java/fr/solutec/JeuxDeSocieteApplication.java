@@ -224,7 +224,6 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		JeuDansPanier jdp6 = new JeuDansPanier(null, u5, ja9, 2,false);
 		JeuDansPanier jdp7 = new JeuDansPanier(null, u5, ja11, 3,true);
 		JeuDansPanier jdp8 = new JeuDansPanier(null, u4, ja1, 3,true);
-
 		JeuDansPanier jdp9 = new JeuDansPanier(null, u4, ja3, 2,true);
 		JeuDansPanier jdp10 = new JeuDansPanier(null, u4, ja4, 3,true);
 		Stream.of(jdp1,jdp2,jdp3,jdp4,jdp5,jdp6,jdp7,jdp8,jdp9,jdp10).forEach(jdp -> jeudanspanierRepo.save(jdp));
