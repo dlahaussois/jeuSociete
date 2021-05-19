@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.solutec.entities.Categorie;
 import fr.solutec.entities.Jeu;
 import fr.solutec.entities.JeuAchat;
+import fr.solutec.entities.JeuDansPanier;
 import fr.solutec.entities.JeuLocation;
 import fr.solutec.repository.JeuAchatRepository;
+import fr.solutec.repository.JeuDansPanierRepository;
 import fr.solutec.repository.JeuLocationRepository;
 import fr.solutec.repository.JeuRepository;
 
@@ -35,6 +37,9 @@ public class JeuRest {
 	
 	@Autowired
 	JeuLocationRepository jlRepo;
+	
+	@Autowired
+	JeuDansPanierRepository jdpRepo;
 	
 	//---------------------------------------------------------------------------------------------------
 	//Jeux
@@ -280,6 +285,12 @@ public class JeuRest {
 	@DeleteMapping("/jeuAchat/delete")
 	public boolean deleteJeuAchat(@RequestBody Long id) {
 		if (jaRepo.findById(id).isPresent()) {
+			Optional<Iterable<JeuDansPanier>> listjdp = jdpRepo.getByJeuAchatId(id);
+			if(listjdp.isPresent()) {
+				for(JeuDansPanier jdp : listjdp.get()) {
+					jdpRepo.deleteById(jdp.getId());
+				}
+			}
 			jaRepo.deleteById(id);
 			return true;
 		}

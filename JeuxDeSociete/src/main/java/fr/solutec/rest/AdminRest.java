@@ -63,7 +63,7 @@ public class AdminRest {
 		return adminRepo.findByUserLogin(login);
 	}
 
-	@PutMapping("/admin/modifier")
+	@PutMapping("admin/modifier")
 	public Admin modifierAdmin(@RequestBody Admin a) {
 		userRepo.save(a.getUser());
 		return adminRepo.save(a);
@@ -90,14 +90,24 @@ public class AdminRest {
 	}
 	
 	@DeleteMapping("admin/supprimer}")
-	public boolean suppPerson(@RequestBody User u) {
+	public boolean suppPerson(@RequestBody Admin u) {
 		
-		if(u != null) {
-			userRepo.delete(u);
+		
+			
+		System.out.println("in suppri");
+		if (adminRepo.findById(u.getId()).isPresent()) {
+			System.out.println("in boucle suppri");
+			adminRepo.delete(u);
+			userRepo.delete(u.getUser());
+			
+			
 			return true;
-		} else {
+		}
+		else {
+			System.out.println("no suppri");
 			return false;
 		}
+
 			
 	}
 }
