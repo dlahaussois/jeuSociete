@@ -170,10 +170,10 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		
 		
 		
-		Forum f1 = new Forum(null, "Délais de livraison");
+		Forum f1 = new Forum(null, "Détails sur la livraison");
 		Forum f2 = new Forum(null, "Retour et Echange");
 		Forum f3 = new Forum(null, "Disponibilité des jeux");
-		Forum f4 = new Forum(null, "Réservations de salles");
+		Forum f4 = new Forum(null, "Réservation de salles");
 		Forum f5 = new Forum(null, "Remboursement");
 		Forum f6 = new Forum(null, "Autres");
 		
