@@ -91,11 +91,15 @@ public class AdminRest {
 	
 	@DeleteMapping("admin/supprimer}")
 	public boolean suppPerson(@RequestBody Admin u) {
+		
+		
+			
 		System.out.println("in suppri");
 		if (adminRepo.findById(u.getId()).isPresent()) {
 			System.out.println("in boucle suppri");
-			userRepo.delete(u.getUser());
 			adminRepo.delete(u);
+			userRepo.delete(u.getUser());
+			
 			
 			return true;
 		}
@@ -103,8 +107,6 @@ public class AdminRest {
 			System.out.println("no suppri");
 			return false;
 		}
-			
-			
 
 			
 	}
