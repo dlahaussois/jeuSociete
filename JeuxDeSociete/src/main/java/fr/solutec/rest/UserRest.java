@@ -82,7 +82,7 @@ public class UserRest {
 			
 			Optional< Admin  > a = adminRepo.findByUserId(id);
 			if (a.isPresent()) {
-			adminRepo.delete(a);
+			//adminRepo.delete(a);
 			}
 			
 			Optional< Joueur  > j = joueurRepo.findByUserId(id);
