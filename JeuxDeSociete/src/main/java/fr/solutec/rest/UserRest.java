@@ -61,15 +61,16 @@ public class UserRest {
 		return userRepo.findByLogin(u.getLogin() );
 	}
 	
-	@DeleteMapping("user/supprimer}")
-	public boolean suppPerson(@RequestBody User u) {
-		
-		if(u != null) {
-			userRepo.delete(u);
+	@DeleteMapping("user/supprimer")
+	public boolean suppPerson(@RequestBody Long id) {
+		if (userRepo.findById(id).isPresent()) {
+			userRepo.deleteById(id);
 			return true;
-		} else {
+		}
+		else {
 			return false;
 		}
+				
 			
 	}
 }
