@@ -201,7 +201,7 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		Message me10= new Message(null, null, "Bonjour, quelle est la plus grand salle que vous mettez à disposition pour une réservation ?", panoramix, null, f4, null, false);
 		Message me11= new Message(null, null, "Le jeu que j'ai acheté ne convient pas à la personne à qui je l'ai offert, puis-je me le faire rembourser?", panoramix, null, f5, null, false);
 		Message me12= new Message(null, null, "J'ai oublié mon casque Gaulois dans la salle de Lyon, l'avez-vous récupéré?", asterix, null, f6, null, false);
-		Stream.of(me1, me2, me3, me4, me5, me6, me7, me8, me9, me10, me11,me12, me13, me14,me15,me16, m17).forEach(a -> messageRepo.save(a));
+		Stream.of(me1, me2, me3, me4, me5, me6, me7, me8, me9, me10, me11,me12, me13, me14,me15,me16, me17).forEach(a -> messageRepo.save(a));
 
 		
 		
