@@ -16,6 +16,6 @@ public interface JeuDansPanierRepository extends CrudRepository<JeuDansPanier, L
 	public Optional<Iterable<JeuDansPanier>> getByJeuAchatId(Long id);
 	
 	@Query("SELECT jdp FROM JeuDansPanier jdp WHERE jdp.user.id=?1 AND jdp.jeuAchat.id=?2")
-	public Optional<Iterable<JeuDansPanier>> getByUserAndGame(Long userId, Long jaId);
+	public Optional<JeuDansPanier> getByUserAndGame(Long userId, Long jaId);
 	
 }
