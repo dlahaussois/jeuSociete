@@ -12,6 +12,6 @@ import fr.solutec.entities.HistoriqueJeuLocation;
 
 public interface HistoriqueJeuAchatRepository extends CrudRepository<HistoriqueJeuAchat, Long>{
 
-	@Query("SELECT hja FROM HistoriqueJeuAchat hja WHERE hja.joueur.id=?1")
+	@Query("SELECT hja FROM HistoriqueJeuAchat hja WHERE hja.joueur.user.id=?1")
 	public Optional<Iterable<HistoriqueJeuAchat>> getByUserId(Long id);
 }
