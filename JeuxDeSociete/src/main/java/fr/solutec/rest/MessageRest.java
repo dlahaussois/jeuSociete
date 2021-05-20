@@ -37,12 +37,19 @@ public class MessageRest {
 			return messageRepo.save(m);
 		}
 		
-		//écrire une réponse à une question en particulier
-				@PostMapping("/reponse/message/{id}")
-				public Message save(@RequestBody Message m, @PathVariable Long id) {
-					m.setContenu(m.getContenu());
-					return messageRepo.save(m);
-				}
+		/*@PostMapping("/reponse/message/{id}")
+		public Message save(@RequestBody Message m, @PathVariable Long id) {
+			Message m1 = new Message();
+			m1.setId(id);
+			m1.setReponse(m.getContenu());
+			return messageRepo.save(m);
+		}*/
+		
+		/*@PutMapping("/message")
+		public Message modifMessage(@RequestBody Message m, @PathVariable String reponse) {
+			m.setReponse(reponse);
+			return messageRepo.save(m);
+		}*/
 		
 		
 		//écrire un message privé destiné à un utilisateur en particulier
@@ -57,6 +64,13 @@ public class MessageRest {
 		public Iterable<Message> getAllPublic(){
 			return messageRepo.findByPriveeIsFalse();
 		}
+		
+		//obtenir message par id
+		@GetMapping("message/{id}")
+		public Optional<Message> getMessageById(@PathVariable Long id){
+			return messageRepo.findById(id);
+		}
+		
 		//obtenir tous les messages privés
 		@GetMapping("/messages/prives")
 		public Iterable<Message> getAllPrivee(){
