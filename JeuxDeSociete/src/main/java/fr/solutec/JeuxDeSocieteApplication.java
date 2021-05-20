@@ -170,12 +170,12 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		
 		
 		
-		Forum f1 = new Forum(null, "Détails sur la livraison");
-		Forum f2 = new Forum(null, "Retour et Echange");
-		Forum f3 = new Forum(null, "Disponibilité des jeux");
-		Forum f4 = new Forum(null, "Réservation de salles");
-		Forum f5 = new Forum(null, "Remboursement");
-		Forum f6 = new Forum(null, "Autres");
+		Forum f1 = new Forum(null, "Détails sur la livraison", "fa fa-truck fa-2x");
+		Forum f2 = new Forum(null, "Retour et Echange","fa fa-hand-point-left fa-2x");
+		Forum f3 = new Forum(null, "Disponibilité des jeux","fa fa-dice fa-2x");
+		Forum f4 = new Forum(null, "Réservation de salles","fa fa-house-user fa-2x");
+		Forum f5 = new Forum(null, "Remboursement","fa fa-hand-holding-usd fa-2x");
+		Forum f6 = new Forum(null, "Autres","fa fa-question-circle fa-2x");
 		
 		
 		Stream.of(f1, f2, f3, f4, f5,f6).forEach(a -> forumRepo.save(a));
@@ -244,8 +244,13 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
         Salle s3 = new Salle(null, "Strasbourg", 10.0, 4, false, "https://cdn.pixabay.com/photo/2019/07/21/01/43/city-4351840_960_720.jpg");
         Salle s4 = new Salle(null, "Toulouse", 10.0, 4, true, "https://cdn.pixabay.com/photo/2020/01/07/12/21/toulouse-4747440_960_720.jpg");
         Salle s5 = new Salle(null, "Bordeaux", 20.0, 8, true, "https://cdn.pixabay.com/photo/2017/04/05/10/51/bordeaux-2204634_960_720.jpg"); 
+        Salle s6 = new Salle(null, "Dijon", 20.0, 8, true, "https://cdn.pixabay.com/photo/2016/11/05/15/04/sculpture-1800411_960_720.jpg"); 
+        Salle s7 = new Salle(null, "Montpellier", 20.0, 8, true, "https://cdn.pixabay.com/photo/2017/06/30/00/01/montpellier-2456743_960_720.jpg"); 
+        Salle s8 = new Salle(null, "Chambéry", 20.0, 8, true, "https://cdn.pixabay.com/photo/2014/04/29/16/48/chambery-334493_960_720.jpg"); 
+        Salle s9 = new Salle(null, "Ajaccio", 30.0, 12, true, "https://cdn.pixabay.com/photo/2015/09/18/12/59/corsica-945633_960_720.jpg"); 
+        Salle s10 = new Salle(null, "Toulon", 10.0, 4, false, "https://cdn.pixabay.com/photo/2019/06/26/19/11/toulon-4301045_960_720.jpg"); 
 
-        Stream.of(s1, s2, s3, s4, s5).forEach(s -> salleRepo.save(s));
+        Stream.of(s1, s2, s3, s4, s5, s6, s7, s8).forEach(s -> salleRepo.save(s));
         
         Date d1 =new SimpleDateFormat("yyyy-mm-dd HH:mm").parse("2021-06-23 8:00");
 		Date d2 =new SimpleDateFormat("yyyy-mm-dd HH:mm").parse("2021-06-23 16:00");
