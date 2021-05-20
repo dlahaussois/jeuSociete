@@ -19,4 +19,10 @@ public class MarqueRest {
 	public Iterable<Marque> getAllMarque(){
 		return marqueRepo.findAll();
 	}
+	
+	@GetMapping("/marquesOrdered")
+	public Iterable<Marque> getAllMarqueByAlphabetical(){
+		return marqueRepo.getMarqueByAlphabetical();
+	}
+	
 }
