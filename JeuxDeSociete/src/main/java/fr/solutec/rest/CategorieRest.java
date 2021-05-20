@@ -18,4 +18,9 @@ public class CategorieRest {
 	public Iterable<Categorie> getAllCategorie(){
 		return categorieRepo.findAll();
 	}
+	
+	@GetMapping("/categoriesOrdered")
+	public Iterable<Categorie> getAllCategorieOrderByAlphabetical(){
+		return categorieRepo.getCategorieByAlphabetical();
+	}
 }
