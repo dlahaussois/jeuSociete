@@ -37,6 +37,10 @@ public class JeuDansPanierRest {
 		return jeupanierRepo.getByUserId(id);
 	}
 	
+	@GetMapping("/panier/userAndGame")
+	public Optional<Iterable<JeuDansPanier>> getPanierByUserAndGame(@RequestBody JeuDansPanier jdp){
+		return jeupanierRepo.getByUserAndGame(jdp.getUser().getId(),jdp.getJeuAchat().getId());
+	}
 	
 	//---------------------------------------------------------------------------------
 	//save/modify/delete
