@@ -38,8 +38,13 @@ public class JeuDansPanierRest {
 	}
 	
 	@GetMapping("/panier/userAndGame")
-	public Optional<Iterable<JeuDansPanier>> getPanierByUserAndGame(@RequestBody JeuDansPanier jdp){
+	public Optional<JeuDansPanier> getPanierByUserAndGame(@RequestBody JeuDansPanier jdp){
 		return jeupanierRepo.getByUserAndGame(jdp.getUser().getId(),jdp.getJeuAchat().getId());
+	}
+	
+	@GetMapping("/panier/userAndGame/{userId}/{jeuId}")
+	public Optional<JeuDansPanier> getPanierByUserAndGame(@PathVariable Long userId,@PathVariable Long jeuId){
+		return jeupanierRepo.getByUserAndGame(userId,jeuId);
 	}
 	
 	//---------------------------------------------------------------------------------
