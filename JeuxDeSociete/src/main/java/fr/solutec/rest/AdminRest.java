@@ -46,7 +46,7 @@ public class AdminRest {
 		return adminRepo.findAll();
 	}
 	
-	@PostMapping("admin/recherche")
+	@PostMapping("admin/recherche") 
 	public  Optional<Admin> rechercheadminByLogin(@RequestBody User u){
 		return adminRepo.findByUserLogin(u.getLogin() );
 	}
