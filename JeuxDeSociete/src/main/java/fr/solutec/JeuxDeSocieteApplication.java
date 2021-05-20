@@ -191,7 +191,14 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		Message me9= new Message(null, null, "Le jeu labyrinthe est-il disponible en location chez-vous ?", asterix, null, f3, false);
 		Message me10= new Message(null, null, "Bonjour, quelle est la plus grand salle que vous mettez à disposition pour une réservation ?", panoramix, null, f4, false);
 		Message me11= new Message(null, null, "Le jeu que j'ai acheté ne convient pas à la personne à qui je l'ai offert, puis-je me le faire rembourser?", panoramix, null, f5, false);
-		Stream.of(me1, me2, me3, me4, me5, me6, me7, me8, me9, me10, me11).forEach(a -> messageRepo.save(a));
+		
+		//avec destinataire
+		Message me12= new Message(null, null, "coucou Admin?", asterix, u4, f1, false);
+		Message me13= new Message(null, null, "coucou Asterix c'est panoramix?", panoramix, asterix, f1, false);
+		Message me14= new Message(null, null, "coucou Asterix2?", u4, asterix, f1, false);
+		Message me15= new Message(null, null, "coucou Asterix3?", u5, asterix, f1, false);
+		Message me16= new Message(null, null, "coucou Asterix4?", u4, asterix, f1, false);
+		Stream.of(me1, me2, me3, me4, me5, me6, me7, me8, me9, me10, me11,me12, me13, me14,me15,me16).forEach(a -> messageRepo.save(a));
 		
 		JeuLocation jl1 = new JeuLocation(null, j1);
 		JeuLocation jl2 = new JeuLocation(null, j2);

@@ -49,21 +49,25 @@ public class UserRest {
 	}
 	
 	
-	@GetMapping("user/id/{id}")
-	public Optional<User> getUserById(@PathVariable Long id){
-		return userRepo.findById(id);
-	}
+
 	
 	@PostMapping("user")
 	public User addUser(@RequestBody User u){
 		return userRepo.save(u);
 	}
 	
-	
+	/* trouver user par login*/	
 	@GetMapping("user/login/{login}")
 	public Optional<User> getUserByLogin(@PathVariable String login){
 		return userRepo.findByLogin(login);
 	}
+	
+	@GetMapping("user/id/{id}")
+	public Optional<User> getUserById(@PathVariable Long id){
+		return userRepo.findById(id);
+	}
+		
+	
 	
 	@PutMapping("user/bloquer")
 	public  User bloquerUser(@RequestBody User u){
