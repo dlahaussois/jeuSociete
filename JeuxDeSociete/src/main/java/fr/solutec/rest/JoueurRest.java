@@ -33,23 +33,21 @@ public class JoueurRest {
 	public Joueur addJoueur(@RequestBody User u) {
 		User u1 = userRepo.save(u);
 		Joueur j = new Joueur(null, false, u1);
-		return joueurRepo.save(j);
-		
+		return joueurRepo.save(j);	
 	}
-	
-	@PutMapping("/joueur/modifier")
-	public Joueur modifierJeu(@RequestBody Joueur joueur) {
-		return joueurRepo.save(joueur);
-	}
-	
-	
+
 	
 	@GetMapping("joueur/list")
 	public Iterable<Joueur> getAllJoueur(){
 		return joueurRepo.findAll();
 	}
 	
-
+	@PutMapping("user/modif/{id}")
+	public User modifUser(@RequestBody User u, @PathVariable Long id) {
+		u.setId(id);
+		return userRepo.save(u);
+	}
+	
 	
 	@GetMapping("joueur/{id}")
 	public Optional<User> getJoueurById(@PathVariable Long id){
