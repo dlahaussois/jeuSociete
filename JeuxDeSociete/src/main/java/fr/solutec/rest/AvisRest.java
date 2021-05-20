@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,17 +41,19 @@ public class AvisRest {
 	}
 	
 	@GetMapping("avis/moyenne/{id}")
-	public float getMoyennebyJeuId(@PathVariable Long id) {
+	public double getMoyennebyJeuId(@PathVariable Long id) {
 		List<Avis> avis = getAllAvisbyJeuId(id);
-		float compteur = 0;
-		float moyenne = 0;
+		double compteur = 0;
+		double moyenne = 0;
 		for (Avis a : avis) {
 			moyenne = moyenne + a.getNote();
 			compteur=compteur+1;
 		}
 		moyenne = moyenne/compteur;
-		return moyenne;
-		
+		//permet d'arrondir à 1 chiffre après la virgule
+        double scale = Math.pow(10, 1);
+        double moyenneR = Math.round(moyenne*scale)/scale;
+        return moyenneR;
 		}
 	
 	
@@ -75,6 +78,10 @@ public class AvisRest {
 		return avis= avisRepo.save(a);
 	}
 	
+	@DeleteMapping("avis/delete")
+	public void effacerAvis(@RequestBody Avis a) {
+		avisRepo.delete(a);
+	}
 	
 	
 }

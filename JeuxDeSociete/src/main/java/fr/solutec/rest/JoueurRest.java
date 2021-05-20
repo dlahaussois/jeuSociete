@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import fr.solutec.entities.Jeu;
 import fr.solutec.entities.Joueur;
 import fr.solutec.entities.User;
 import fr.solutec.entities.Vendeur;
@@ -36,6 +36,13 @@ public class JoueurRest {
 		return joueurRepo.save(j);
 		
 	}
+	
+	@PutMapping("/joueur/modifier")
+	public Joueur modifierJeu(@RequestBody Joueur joueur) {
+		return joueurRepo.save(joueur);
+	}
+	
+	
 	
 	@GetMapping("joueur/list")
 	public Iterable<Joueur> getAllJoueur(){
