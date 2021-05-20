@@ -27,7 +27,6 @@ public class Message {
 	private String contenu;
 	
 	
-	
 	@ManyToOne
 	private User expediteur;
 	
