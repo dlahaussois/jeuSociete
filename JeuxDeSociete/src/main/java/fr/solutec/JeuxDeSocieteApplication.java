@@ -107,13 +107,18 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("test");
-		User asterix = new User(null, "asterix", "azerty", "asterix.legaulois@gmail.com", "06.65.83.92.01",true);
-		User obelix = new User(null, "obelix", "sanglier","obelix.lebg@outlook.com", "07.23.54.74.36",true);
-		User panoramix = new User(null, "panoramix", "potion","pano.ledruide@orange.fr", "01.35.28.75.64",true );
+		User asterix = new User(null, "asterix", "azerty", "asterix.legaulois@village-gaulois.ga", "06.65.83.92.01",true);
+		User obelix = new User(null, "obelix", "sanglier","obelix.lebg@village-gaulois.ga", "07.23.54.74.36",true);
+		User panoramix = new User(null, "panoramix", "potion","pano.ledruide@village-gaulois.ga", "01.35.28.75.64",true );
 		User u4 = new User(null, "Admin", "Admin","admin@admin.fr", "01.35.28.75.64",true );
 		User u5 = new User(null, "Vendeur", "Vendeur","vendeur@vendeur.fr", "01.35.28.75.64",true );
+		User u6 = new User(null, "Abraracourcix", "chef","courtsurpatte.maisrapide@village-gaulois.ga", "01.52.36.69.27",true );
+		User u7 = new User(null, "Cétautomatix", "marteau","leplusfort@village-gaulois.ga", "01.35.28.75.64",true );
+		User u8 = new User(null, "Idéfix", "ouaf","toutou@village-gaulois.ga", "00.00.00.00.00",false );
+		User u9 = new User(null, "César", "laurier","empereur-romain@rome.ro", "01.35.28.75.64",true );
+		User u10 = new User(null, "Cléopatre", "lion","reine-toutepuissante@rome.ro", "03.84.15.76.34",true );
 		
-		Stream.of(asterix, obelix, panoramix, u4, u5).forEach(c -> userRepo.save(c));
+		Stream.of(asterix, obelix, panoramix, u4, u5, u6, u7, u8, u9, u10).forEach(c -> userRepo.save(c));
 
 		
 		Categorie c1= new Categorie(null, "Plateau");
@@ -135,8 +140,13 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 
 		Joueur jo1 = new Joueur(null,true,asterix);
 		Joueur jo2 = new Joueur(null,false,obelix);
+		Joueur jo3 = new Joueur(null,false,u6);
+		Joueur jo4 = new Joueur(null,false,u7);
+		Joueur jo5 = new Joueur(null,false,u8);
+		
+		
 
-		Stream.of(jo1,jo2).forEach(jo -> joueurRepo.save(jo));
+		Stream.of(jo1,jo2, jo3, jo4, jo5).forEach(jo -> joueurRepo.save(jo));
 		
 		System.out.println(jo1);
 		
@@ -211,12 +221,14 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		
 		Admin a1 = new Admin(null,panoramix);
 		Admin a2 = new Admin(null,u4);
-		Stream.of(a1,a2).forEach(a -> adminRepo.save(a));
+		Admin a3 = new Admin(null,u9);
+		
+		Stream.of(a1,a2, a3).forEach(a -> adminRepo.save(a));
 		
 		Vendeur v1 = new Vendeur(null,u5);
+		Vendeur v2 = new Vendeur(null,u10);
 
-		Stream.of(v1).forEach(a -> vendeurRepo.save(a));
-		
+		Stream.of(v1, v2).forEach(a -> vendeurRepo.save(a));
 		
 		
 		Avis av1 = new Avis(null, 5,"Pas terrible, je me suis ennuyé", asterix, j1);
