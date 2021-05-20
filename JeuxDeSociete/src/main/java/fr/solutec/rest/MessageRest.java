@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.solutec.entities.Forum;
 import fr.solutec.entities.Message;
+import fr.solutec.entities.User;
 import fr.solutec.repository.MessageRepository;
 
 @RestController 
@@ -35,6 +36,13 @@ public class MessageRest {
 			m.setForum(id);
 			return messageRepo.save(m);
 		}
+		
+		//écrire un message privé destiné à un utilisateur en particulier
+				@PostMapping("/message/user/{id}")
+				public Message save(@RequestBody Message m, @PathVariable User id) {
+					m.setDestinataire(id);
+					return messageRepo.save(m);
+				}
 		
 		//obtenir tous les messages publics
 		@GetMapping("/messages")

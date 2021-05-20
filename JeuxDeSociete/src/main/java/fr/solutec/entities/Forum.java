@@ -20,4 +20,6 @@ public class Forum {
 	private Long id;
 	
 	private String sujet;
+	
+	private String logo;
 }
