@@ -34,5 +34,7 @@ public class Message {
 	private User destinataire;
 	@ManyToOne
 	private Forum forum;
+	@ManyToOne
+	private Message message;
 	private boolean privee;//on défini les messages privés par défaut
 }

@@ -37,6 +37,15 @@ public class MessageRest {
 			return messageRepo.save(m);
 		}
 		
+		
+		//écrire un message destiné à être une réponse d'un message dans un forum
+		@PostMapping("/message/reponse/{id}")
+		public Message save(@RequestBody Message m, @PathVariable Message id) {
+			m.setMessage(id);
+			return messageRepo.save(m);
+		}
+		
+		
 		/*@PostMapping("/reponse/message/{id}")
 		public Message save(@RequestBody Message m, @PathVariable Long id) {
 			Message m1 = new Message();

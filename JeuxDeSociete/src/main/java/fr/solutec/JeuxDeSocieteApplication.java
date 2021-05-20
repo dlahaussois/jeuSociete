@@ -180,18 +180,19 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		
 		Stream.of(f1, f2, f3, f4, f5,f6).forEach(a -> forumRepo.save(a));
 		
-		Message me1= new Message(null, null, "Quels sont les délais de livraison ?", asterix, null, f1, false);
-		Message me2= new Message(null, null, "Est-il possible de se faire rembourser un jeu ?", obelix, null, f5, false);
-		Message me3= new Message(null, null, "La dernière version du jeu Monopoly est-elle disponible en commande chez vous ?", panoramix, null, f3, false);
-		Message me4= new Message(null, null, "Serait-il possible de réserver une salle pour 15 dans 1 mois ?", obelix, null, f4, false);
-		Message me5= new Message(null, null, "J'ai reçu mon jeu, il est imcomplet, comment se passe l'échange ?", u5, null, f2, false);
-		Message me6= new Message(null, null, "Salut Pano, viens-tu dimanche jouer dans une des salles ?", u5, panoramix, null, true);
-		Message me7= new Message(null, null, "Bonjour obélix, j'ai loué 7 wonders, ça te dirait de venir jouer une partie ?", asterix, obelix, null, true);
-		Message me8= new Message(null, null, "Livrez-vous au Canada ?", obelix, null, f1, false);
-		Message me9= new Message(null, null, "Le jeu labyrinthe est-il disponible en location chez-vous ?", asterix, null, f3, false);
-		Message me10= new Message(null, null, "Bonjour, quelle est la plus grand salle que vous mettez à disposition pour une réservation ?", panoramix, null, f4, false);
-		Message me11= new Message(null, null, "Le jeu que j'ai acheté ne convient pas à la personne à qui je l'ai offert, puis-je me le faire rembourser?", panoramix, null, f5, false);
-		Stream.of(me1, me2, me3, me4, me5, me6, me7, me8, me9, me10, me11).forEach(a -> messageRepo.save(a));
+		Message me1= new Message(null, null, "Quels sont les délais de livraison ?", asterix, null, f1, null, false);
+		Message me2= new Message(null, null, "Est-il possible de se faire rembourser un jeu ?", obelix, null, f5, null, false);
+		Message me3= new Message(null, null, "La dernière version du jeu Monopoly est-elle disponible en commande chez vous ?", panoramix, null, f3, null, false);
+		Message me4= new Message(null, null, "Serait-il possible de réserver une salle pour 15 dans 1 mois ?", obelix, null, f4, null, false);
+		Message me5= new Message(null, null, "J'ai reçu mon jeu, il est imcomplet, comment se passe l'échange ?", panoramix, null, f2, null, false);
+		Message me6= new Message(null, null, "Salut Pano, viens-tu dimanche jouer dans une des salles ?", obelix, panoramix, null, null, true);
+		Message me7= new Message(null, null, "Bonjour obélix, j'ai loué 7 wonders, ça te dirait de venir jouer une partie ?", asterix, obelix, null, null,  true);
+		Message me8= new Message(null, null, "Livrez-vous au Canada ?", obelix, null, f1, null, false);
+		Message me9= new Message(null, null, "Le jeu labyrinthe est-il disponible en location chez-vous ?", asterix, null, f3, null, false);
+		Message me10= new Message(null, null, "Bonjour, quelle est la plus grand salle que vous mettez à disposition pour une réservation ?", panoramix, null, f4, null, false);
+		Message me11= new Message(null, null, "Le jeu que j'ai acheté ne convient pas à la personne à qui je l'ai offert, puis-je me le faire rembourser?", panoramix, null, f5, null, false);
+		Message me12= new Message(null, null, "J'ai oublié mon casque Gaulois dans la salle de Lyon, l'avez-vous récupéré?", asterix, null, f6, null, false);
+		Stream.of(me1, me2, me3, me4, me5, me6, me7, me8, me9, me10, me11, me12).forEach(a -> messageRepo.save(a));
 		
 		JeuLocation jl1 = new JeuLocation(null, j1);
 		JeuLocation jl2 = new JeuLocation(null, j2);
