@@ -54,6 +54,7 @@ public interface JeuRepository extends CrudRepository<Jeu, Long>{
 	@Query(value="SELECT j FROM Jeu j WHERE j.NiveauDifficulte = ?1")
 	public Optional<Iterable<Jeu>> getByNiveauDifficulte(String difficulte);
 	
+	
 	//-------------------------------------------------------------------------
 	// Find by Temps de jeu
 	

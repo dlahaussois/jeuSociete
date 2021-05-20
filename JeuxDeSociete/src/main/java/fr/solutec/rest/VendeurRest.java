@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import fr.solutec.entities.Admin;
 import fr.solutec.entities.Joueur;
 
 import fr.solutec.entities.User;
@@ -46,7 +47,13 @@ public class VendeurRest {
 	}
 	
 
-	
+	@PutMapping("vendeur/modifier")
+	public boolean modifierVendeur( @RequestBody User a) {
+		userRepo.save(a);
+		System.out.println("sa");
+		System.out.println(a);
+		return true;
+	}
 
 	
 	@GetMapping("vendeur/id/{id}")
@@ -69,7 +76,7 @@ public class VendeurRest {
 	public  Vendeur bloquerVendeur(@RequestBody Vendeur v){
 		
 		Vendeur ve = new Vendeur();
-		System.out.println(v);
+		
 		boolean a = v.getUser().getActivity();
 		
 		if (a == true ) {
@@ -83,7 +90,7 @@ public class VendeurRest {
 		
 		userRepo.save(v.getUser());
 		ve =  vendeurRepo.save(v);
-		System.out.println("ve" + ve);
+		
 		return ve;
 	}
 	

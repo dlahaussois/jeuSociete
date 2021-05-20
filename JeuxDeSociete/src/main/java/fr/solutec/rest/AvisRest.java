@@ -1,5 +1,7 @@
 package fr.solutec.rest;
 
+import java.text.DecimalFormat;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,24 @@ public class AvisRest {
 		return avisRepo.findByJeuId(id);
 		
 	}
+	
+	@GetMapping("avis/moyenne/{id}")
+	public float getMoyennebyJeuId(@PathVariable Long id) {
+		List<Avis> avis = getAllAvisbyJeuId(id);
+		float compteur = 0;
+		float moyenne = 0;
+		for (Avis a : avis) {
+			moyenne = moyenne + a.getNote();
+			compteur=compteur+1;
+		}
+		moyenne = moyenne/compteur;
+		return moyenne;
+		
+		}
+	
+	
+	
+	
 	
 	@GetMapping("avis/user/{id}")
 	public List<Avis> getAllAvisbyUserId(@PathVariable Long id){
