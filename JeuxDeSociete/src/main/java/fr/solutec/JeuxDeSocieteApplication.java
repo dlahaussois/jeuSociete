@@ -170,12 +170,12 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		
 		
 		
-		Forum f1 = new Forum(null, "Détails sur la livraison");
-		Forum f2 = new Forum(null, "Retour et Echange");
-		Forum f3 = new Forum(null, "Disponibilité des jeux");
-		Forum f4 = new Forum(null, "Réservation de salles");
-		Forum f5 = new Forum(null, "Remboursement");
-		Forum f6 = new Forum(null, "Autres");
+		Forum f1 = new Forum(null, "Détails sur la livraison", "fa fa-truck fa-2x");
+		Forum f2 = new Forum(null, "Retour et Echange","fa fa-hand-point-left fa-2x");
+		Forum f3 = new Forum(null, "Disponibilité des jeux","fa fa-dice fa-2x");
+		Forum f4 = new Forum(null, "Réservation de salles","fa fa-house-user fa-2x");
+		Forum f5 = new Forum(null, "Remboursement","fa fa-hand-holding-usd fa-2x");
+		Forum f6 = new Forum(null, "Autres","fa fa-question-circle fa-2x");
 		
 		
 		Stream.of(f1, f2, f3, f4, f5,f6).forEach(a -> forumRepo.save(a));
