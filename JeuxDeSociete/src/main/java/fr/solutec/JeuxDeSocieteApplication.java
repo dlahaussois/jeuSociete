@@ -13,6 +13,8 @@ import fr.solutec.entities.Admin;
 import fr.solutec.entities.Avis;
 import fr.solutec.entities.Categorie;
 import fr.solutec.entities.Forum;
+import fr.solutec.entities.HistoriqueJeuAchat;
+import fr.solutec.entities.HistoriqueJeuLocation;
 import fr.solutec.entities.HistoriqueLocationSalle;
 import fr.solutec.entities.Jeu;
 import fr.solutec.entities.JeuAchat;
@@ -31,6 +33,8 @@ import fr.solutec.repository.AdminRepository;
 import fr.solutec.repository.AvisRepository;
 import fr.solutec.repository.CategorieRepository;
 import fr.solutec.repository.ForumRepository;
+import fr.solutec.repository.HistoriqueJeuAchatRepository;
+import fr.solutec.repository.HistoriqueJeuLocationRepository;
 import fr.solutec.repository.HistoriqueLocationSalleRepository;
 import fr.solutec.repository.JeuAchatRepository;
 import fr.solutec.repository.JeuDansPanierRepository;
@@ -95,6 +99,12 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 	
 	@Autowired
 	HistoriqueLocationSalleRepository histoRepo;
+	
+	@Autowired
+	HistoriqueJeuLocationRepository histojeulocationRepo;
+	
+	@Autowired
+	HistoriqueJeuAchatRepository histojeuachatRepo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(JeuxDeSocieteApplication.class, args);
@@ -267,7 +277,19 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 
 		Stream.of(h1, h2, h3, h4).forEach(h -> histoRepo.save(h));
 
-
+		
+		HistoriqueJeuLocation hjl1 = new HistoriqueJeuLocation(null, d5, d6, 2, null, jl1, jo1, null, false);
+		HistoriqueJeuLocation hjl2 = new HistoriqueJeuLocation(null, d1, d2, 1, null, jl3, jo1, v1, true);
+		HistoriqueJeuLocation hjl3 = new HistoriqueJeuLocation(null, d1, d2, 1, null, jl5, jo1, v1, true);
+		Stream.of(hjl1,hjl2,hjl3).forEach(hjl -> histojeulocationRepo.save(hjl));
+		
+		HistoriqueJeuAchat hja1 = new HistoriqueJeuAchat(null, 3, null, ja1, jo1, null, false);
+		HistoriqueJeuAchat hja2 = new HistoriqueJeuAchat(null, 2, null, ja3, jo1, null, false);
+		HistoriqueJeuAchat hja3 = new HistoriqueJeuAchat(null, 1, null, ja5, jo1, null, true);
+		HistoriqueJeuAchat hja4 = new HistoriqueJeuAchat(null, 3, null, ja7, jo1, null, true);
+		HistoriqueJeuAchat hja5 = new HistoriqueJeuAchat(null, 4, null, ja9, jo1, null, true);
+		HistoriqueJeuAchat hja6 = new HistoriqueJeuAchat(null, 4, null, ja11, jo1, null, false);
+		Stream.of(hja1,hja2,hja3,hja4,hja5,hja6).forEach(hja -> histojeuachatRepo.save(hja));
 	}
 
 }
