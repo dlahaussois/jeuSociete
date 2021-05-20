@@ -121,4 +121,9 @@ public class MessageRest {
 			
 			return messageRepo.findByForumSujet(sujet);
 			}
+		
+	@GetMapping("/messagerie/{id}")
+	public Optional<Iterable<Message>> getMessagerieByUserId(@PathVariable Long id){
+		return messageRepo.getMessagerieByUserId(id);
+	}
 }
