@@ -124,7 +124,7 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		User u5 = new User(null, "Vendeur", "Vendeur","vendeur@vendeur.fr", "01.35.28.75.64",true );
 		User u6 = new User(null, "Abraracourcix", "chef","courtsurpatte.maisrapide@village-gaulois.ga", "01.52.36.69.27",true );
 		User u7 = new User(null, "Cétautomatix", "marteau","leplusfort@village-gaulois.ga", "01.35.28.75.64",true );
-		User u8 = new User(null, "Idéfix", "ouaf","toutou@village-gaulois.ga", "00.00.00.00.00",false );
+		User u8 = new User(null, "Idéfix", "ouaf","toutou@village-gaulois.ga", "",false );
 		User u9 = new User(null, "César", "laurier","empereur-romain@rome.ro", "01.35.28.75.64",true );
 		User u10 = new User(null, "Cléopatre", "lion","reine-toutepuissante@rome.ro", "03.84.15.76.34",true );
 		
