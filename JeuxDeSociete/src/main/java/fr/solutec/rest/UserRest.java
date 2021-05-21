@@ -75,10 +75,15 @@ public class UserRest {
 		return userRepo.save(u);
 	}
 	
-	@PostMapping("user/recherche")
-	public  Optional<User> rechercheVendeurByLogin(@RequestBody User u){
-		return userRepo.findByLogin(u.getLogin() );
+
+	
+	@PutMapping("user/modifier")
+	public boolean modifierUser( @RequestBody User a) {
+		userRepo.save(a);
+
+		return true;
 	}
+
 	
 	@DeleteMapping("user/supprimer")
 	public boolean suppPerson(@RequestBody Long id) {
