@@ -214,9 +214,10 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		Message me10= new Message(null, null, "Bonjour, quelle est la plus grand salle que vous mettez à disposition pour une réservation ?", panoramix, null, f4, null, false);
 		Message me11= new Message(null, null, "Le jeu que j'ai acheté ne convient pas à la personne à qui je l'ai offert, puis-je me le faire rembourser?", u7, null, f3, null, false);
 		Message me12= new Message(null, null, "J'ai oublié mon casque Gaulois dans la salle de Lyon (Lugdunum), l'avez-vous récupéré?", asterix, null, f6, null, false);
-		Message me13= new Message(null, null, "Ouaf! j'ai crée un jeu d'échec géant avec des menhirs, je le vend au prix de 500 sesterces. Cela vous intéresse t-il ?", obelix, null, f6, null, false);
+		Message me13= new Message(null, null, "J'ai crée un jeu d'échec géant avec des menhirs, je le vend au prix de 500 sesterces. Cela vous intéresse t-il pour votre magasin ?", obelix, null, f6, null, false);
 		Message me14= new Message(null, null, "Je n'aime pas le jeu qu'on m'a offert, puis-je l'échanger contre un os ? ouaf!", u8, null, f2, null, false);
-		Stream.of(me1, me2, me3, me4, me5, me6, me7, me8, me9, me10, me11, me12, me13, me14).forEach(a -> messageRepo.save(a));
+		Message me15= new Message(null, null, "Vendez-vous de la cervoise en salle ?", u7, null, f6, null, false);
+		Stream.of(me1, me2, me3, me4, me5, me6, me7, me8, me9, me10, me11, me12, me13, me14, me15).forEach(a -> messageRepo.save(a));
 		
 		JeuLocation jl1 = new JeuLocation(null, j1);
 		JeuLocation jl2 = new JeuLocation(null, j2);
