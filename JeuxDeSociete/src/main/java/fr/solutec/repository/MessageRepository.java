@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import fr.solutec.entities.Jeu;
 import fr.solutec.entities.Message;
 import fr.solutec.entities.User;
 
@@ -25,8 +26,18 @@ public interface MessageRepository extends CrudRepository<Message, Long>{
 	@Query(value = "SELECT m FROM Message m inner join User u ON m.expediteur.id=u.id WHERE m.privee=true AND u.id=?1 ")
 	public Optional<Iterable<Message>> trouverPriveByExpediteurId(Long id);
 	
+
+	public Optional<Iterable<Message>> findByDestinataireId(Long id);
+	
+	public Optional<Iterable<Message>> findByExpediteurLogin(String login);
+	
+
+
+
+
 	@Query("SELECT m FROM Message m WHERE (m.expediteur.id=?1 OR m.destinataire.id=?1) and m.forum=null")
 	public Optional<Iterable<Message>> getMessagerieByUserId(Long id);
+
 	
 	}
 
