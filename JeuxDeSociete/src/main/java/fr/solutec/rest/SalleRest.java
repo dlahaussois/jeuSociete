@@ -60,8 +60,6 @@ public class SalleRest {
 	
 	@PutMapping("salle")
 	public Salle setNombreDePlaces(@RequestBody Salle s) {
-		int nb = s.getNombreDePlaces()-1;
-		s.setNombreDePlaces(nb);
 		return salleRepo.save(s);
 	}
 	

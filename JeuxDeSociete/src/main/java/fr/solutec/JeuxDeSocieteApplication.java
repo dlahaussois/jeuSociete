@@ -13,6 +13,8 @@ import fr.solutec.entities.Admin;
 import fr.solutec.entities.Avis;
 import fr.solutec.entities.Categorie;
 import fr.solutec.entities.Forum;
+import fr.solutec.entities.HistoriqueJeuAchat;
+import fr.solutec.entities.HistoriqueJeuLocation;
 import fr.solutec.entities.HistoriqueLocationSalle;
 import fr.solutec.entities.Jeu;
 import fr.solutec.entities.JeuAchat;
@@ -31,6 +33,8 @@ import fr.solutec.repository.AdminRepository;
 import fr.solutec.repository.AvisRepository;
 import fr.solutec.repository.CategorieRepository;
 import fr.solutec.repository.ForumRepository;
+import fr.solutec.repository.HistoriqueJeuAchatRepository;
+import fr.solutec.repository.HistoriqueJeuLocationRepository;
 import fr.solutec.repository.HistoriqueLocationSalleRepository;
 import fr.solutec.repository.JeuAchatRepository;
 import fr.solutec.repository.JeuDansPanierRepository;
@@ -95,6 +99,12 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 	
 	@Autowired
 	HistoriqueLocationSalleRepository histoRepo;
+	
+	@Autowired
+	HistoriqueJeuLocationRepository histojeulocationRepo;
+	
+	@Autowired
+	HistoriqueJeuAchatRepository histojeuachatRepo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(JeuxDeSocieteApplication.class, args);
@@ -107,13 +117,18 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("test");
-		User asterix = new User(null, "asterix", "azerty", "asterix.legaulois@gmail.com", "06.65.83.92.01",true);
-		User obelix = new User(null, "obelix", "sanglier","obelix.lebg@outlook.com", "07.23.54.74.36",true);
-		User panoramix = new User(null, "panoramix", "potion","pano.ledruide@orange.fr", "01.35.28.75.64",true );
+		User asterix = new User(null, "asterix", "azerty", "asterix.legaulois@village-gaulois.ga", "06.65.83.92.01",true);
+		User obelix = new User(null, "obelix", "sanglier","obelix.lebg@village-gaulois.ga", "07.23.54.74.36",true);
+		User panoramix = new User(null, "panoramix", "potion","pano.ledruide@village-gaulois.ga", "01.35.28.75.64",true );
 		User u4 = new User(null, "Admin", "Admin","admin@admin.fr", "01.35.28.75.64",true );
 		User u5 = new User(null, "Vendeur", "Vendeur","vendeur@vendeur.fr", "01.35.28.75.64",true );
+		User u6 = new User(null, "Abraracourcix", "chef","courtsurpatte.maisrapide@village-gaulois.ga", "01.52.36.69.27",true );
+		User u7 = new User(null, "Cétautomatix", "marteau","leplusfort@village-gaulois.ga", "01.35.28.75.64",true );
+		User u8 = new User(null, "Idéfix", "ouaf","toutou@village-gaulois.ga", "00.00.00.00.00",false );
+		User u9 = new User(null, "César", "laurier","empereur-romain@rome.ro", "01.35.28.75.64",true );
+		User u10 = new User(null, "Cléopatre", "lion","reine-toutepuissante@rome.ro", "03.84.15.76.34",true );
 		
-		Stream.of(asterix, obelix, panoramix, u4, u5).forEach(c -> userRepo.save(c));
+		Stream.of(asterix, obelix, panoramix, u4, u5, u6, u7, u8, u9, u10).forEach(c -> userRepo.save(c));
 
 		
 		Categorie c1= new Categorie(null, "Plateau");
@@ -135,12 +150,17 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 
 		Joueur jo1 = new Joueur(null,true,asterix);
 		Joueur jo2 = new Joueur(null,false,obelix);
+		Joueur jo3 = new Joueur(null,false,u6);
+		Joueur jo4 = new Joueur(null,false,u7);
+		Joueur jo5 = new Joueur(null,false,u8);
+		
+		
 
-		Stream.of(jo1,jo2).forEach(jo -> joueurRepo.save(jo));
+		Stream.of(jo1,jo2, jo3, jo4, jo5).forEach(jo -> joueurRepo.save(jo));
 		
 		System.out.println(jo1);
 		
-		Jeu j1 = new Jeu(null, "7 Wonders Nouvelle édition", 3, 7, 10, "Difficile", 30, "7 Wonders, un jeu mythique\r\nDans 7 Wonders, vous êtes à la tête de l'une des sept grandes cités du monde antique. Votre but est de faire prospérer votre ville pour la rendre plus influente que celles de vos adversaires. Le futur des cités légendaires comme Babylone, Éphèse ou encore Rhodes dépend de vos talents de gestionnaire. Pour inscrire votre cité dans l'Histoire, vous devrez agir dans différents secteurs de développement. Exploitez les ressources naturelles de vos terres, participez aux progrès scientifiques, développez vos relations commerciales et affirmez votre suprématie militaire. Laissez votre empreinte dans l'histoire des civilisations en bâtissant une merveille monumentale.\r\n\r\n7 Wonders, un jeu de draft à travers 3 âges\r\nUne partie se déroule à travers 3 âges successifs comportant chacun 6 tours de jeu. Chaque époque se joue de manière identique et repose sur un système de draft. Chaque joueur choisit une carte de sa main, la joue et passe les cartes restantes au joueur suivant. Ce principe de jeu permet aux différents paquets de cartes de tourner entre les joueurs qui ont donc 6 cartes pour développer au mieux leur stratégie. À chaque tour, les participants ont 3 actions possibles : construire leur cité, développer leur merveille ou gagner de l'argent.\r\n\r\n7 Wonders, un jeu stratégique\r\nPour régner en maître, les joueurs devront établir une stratégie et composer avec leurs cartes pour dérouler leur plan d'actions sans encombre. Le jeu leur offre aussi la possibilité d'interagir avec les autres joueurs en bénéficiant de certains avantages tirés des cartes jouées. À la fin du 3ème âge, les joueurs devront compter leurs points de victoire. Le score final dépendra des bâtiments construits (commerciaux, civils et scientifiques), du stade de développement de leur merveille, des victoires militaires et des fortunes engrangées. 7 Wonders est un jeu stratégique où les joueurs ne doivent oublier aucun aspect du jeu pour triompher. La cité doit prospérer sur le plan civil, scientifique, commercial et militaire. Autrement dit, leur cité devra être belle, riche et puissante. Le joueur avec le score le plus élevé est déclaré vainqueur.\r\n\r\nLes 7 valeurs ajoutées de la nouvelle édition de 7 Wonders\r\nune refonte graphique du jeu. Sorti en 2010 et accumulant plus de 30 prix internationaux, 7 Wonders méritait de se refaire une beauté ! La couverture, le design des cartes, les merveilles, le thermoformage: tout y est passé !\r\nLa rédaction des règles a entièrement été revue pour les rendre plus simples d’accès aux débutants. Fini les longues pages à lire, on passe maintenant à un livret de règles de 8 pages beaucoup plus facile à appréhender et à comprendre !\r\nL’aide de jeu aussi a été totalement repensée.\r\nGrâce à une meilleure ergonomie des cartes, le joueur gagne de la place à table. Le nouvel agencement des cartes permet une lecture facile des informations. Les cartes guildes, dispersées dans les différentes extensions de 7 Wonders, ont été rassemblées et ajoutées au nouveau jeu de base.\r\nLa taille des merveilles a augmenté permettant une meilleure immersion du jeu avec le thème principal de 7 Wonders, ses merveilles ! Le format de la boîte du jeu de base et de ses extensions sera aussi plus grand, adoptant une taille de boîte standard. Toujours pour respecter au mieux l’immersion dans le jeu, les faces A et B des merveilles ont été repensées et sont remplacées par une face jour et une face nuit. Découvrez les merveilles sous leur aspect diurne et nocturne!\r\n7 Wonders s’inspire aussi du chaînage de 7 Wonders Duel, plus ergonomique et plus intuitif.\r\nGrâce aux symboles intégrés discrètement dans le contenu du jeu, 7 Wonders et ses extensions sont maintenant adaptés aux joueurs daltoniens.", "Je sais plus du tout dsl","https://alloescape.fr/wp-content/uploads/2018/05/7-wonders-vf.jpg",8.10,c1,m1);
+		Jeu j1 = new Jeu(null, "7 Wonders Nouvelle Edition", 3, 7, 10, "Difficile", 30, "7 Wonders, un jeu mythique\r\nDans 7 Wonders, vous êtes à la tête de l'une des sept grandes cités du monde antique. Votre but est de faire prospérer votre ville pour la rendre plus influente que celles de vos adversaires. Le futur des cités légendaires comme Babylone, Éphèse ou encore Rhodes dépend de vos talents de gestionnaire. Pour inscrire votre cité dans l'Histoire, vous devrez agir dans différents secteurs de développement. Exploitez les ressources naturelles de vos terres, participez aux progrès scientifiques, développez vos relations commerciales et affirmez votre suprématie militaire. Laissez votre empreinte dans l'histoire des civilisations en bâtissant une merveille monumentale.\r\n\r\n7 Wonders, un jeu de draft à travers 3 âges\r\nUne partie se déroule à travers 3 âges successifs comportant chacun 6 tours de jeu. Chaque époque se joue de manière identique et repose sur un système de draft. Chaque joueur choisit une carte de sa main, la joue et passe les cartes restantes au joueur suivant. Ce principe de jeu permet aux différents paquets de cartes de tourner entre les joueurs qui ont donc 6 cartes pour développer au mieux leur stratégie. À chaque tour, les participants ont 3 actions possibles : construire leur cité, développer leur merveille ou gagner de l'argent.\r\n\r\n7 Wonders, un jeu stratégique\r\nPour régner en maître, les joueurs devront établir une stratégie et composer avec leurs cartes pour dérouler leur plan d'actions sans encombre. Le jeu leur offre aussi la possibilité d'interagir avec les autres joueurs en bénéficiant de certains avantages tirés des cartes jouées. À la fin du 3ème âge, les joueurs devront compter leurs points de victoire. Le score final dépendra des bâtiments construits (commerciaux, civils et scientifiques), du stade de développement de leur merveille, des victoires militaires et des fortunes engrangées. 7 Wonders est un jeu stratégique où les joueurs ne doivent oublier aucun aspect du jeu pour triompher. La cité doit prospérer sur le plan civil, scientifique, commercial et militaire. Autrement dit, leur cité devra être belle, riche et puissante. Le joueur avec le score le plus élevé est déclaré vainqueur.\r\n\r\nLes 7 valeurs ajoutées de la nouvelle édition de 7 Wonders\r\nune refonte graphique du jeu. Sorti en 2010 et accumulant plus de 30 prix internationaux, 7 Wonders méritait de se refaire une beauté ! La couverture, le design des cartes, les merveilles, le thermoformage: tout y est passé !\r\nLa rédaction des règles a entièrement été revue pour les rendre plus simples d’accès aux débutants. Fini les longues pages à lire, on passe maintenant à un livret de règles de 8 pages beaucoup plus facile à appréhender et à comprendre !\r\nL’aide de jeu aussi a été totalement repensée.\r\nGrâce à une meilleure ergonomie des cartes, le joueur gagne de la place à table. Le nouvel agencement des cartes permet une lecture facile des informations. Les cartes guildes, dispersées dans les différentes extensions de 7 Wonders, ont été rassemblées et ajoutées au nouveau jeu de base.\r\nLa taille des merveilles a augmenté permettant une meilleure immersion du jeu avec le thème principal de 7 Wonders, ses merveilles ! Le format de la boîte du jeu de base et de ses extensions sera aussi plus grand, adoptant une taille de boîte standard. Toujours pour respecter au mieux l’immersion dans le jeu, les faces A et B des merveilles ont été repensées et sont remplacées par une face jour et une face nuit. Découvrez les merveilles sous leur aspect diurne et nocturne!\r\n7 Wonders s’inspire aussi du chaînage de 7 Wonders Duel, plus ergonomique et plus intuitif.\r\nGrâce aux symboles intégrés discrètement dans le contenu du jeu, 7 Wonders et ses extensions sont maintenant adaptés aux joueurs daltoniens.", "Je sais plus du tout dsl","https://alloescape.fr/wp-content/uploads/2018/05/7-wonders-vf.jpg",8.10,c1,m1);
 		Jeu j2 = new Jeu(null, "Tarot de Compétition", 4, 5, 10, "Difficile", 15, "Jeu de tarot traditionnel de 78 cartes, dos écossais, avec règles du jeu en français. Dimensions 6 x 11,5 cm. Convient pour les compétitions.", "C'est compliqué ...","https://th.bing.com/th/id/R6128da36e385f1010d021a9fd940ac79?rik=EymV%2f9pJfmXJug&pid=ImgRaw",2.00,c2,m2);
 		Jeu j3 = new Jeu(null, "Heroes of Stalingrad", 2, 2, 14, "Moyen",45 , "Heroes of Stalingrad est le nouveau Wargame signé Devil Pig Games. Plongez grâce aux mécaniques dynamiques et stratégiques du Heroes System : Tactical Scale, dans l’une des batailles les plus décisives de la Seconde Guerre mondiale. A deux durant des parties de 30 minutes et plus, vous incarnerez les plus grands héros de ce conflit dans le pur style des films de guerre.\r\n\r\nQue vous connaissiez ou non nos autres jeux utilisant ces mécaniques, Heroes of Stalingrad est la boîte de base idéale pour découvrir le Heroes System : Tactical Scale au rythme des chants patriotiques des commissaires politiques bravant MG34 et DP28 !", "Je sais connais pas les règles dsl", "https://www.espritjeu.com/upload/image/heroes-of-stalingrad-p-image-70586-grande.jpg",10.80, c3, m3);
 		Jeu j4 = new Jeu(null, "Puzzle Inner Mystic 1000 Pièces", 1, 1, 10, "Difficile", 120, "Puzzle de 1000 pièces en carton de la marque HEYE.\r\nFormat : Paysage\r\nDimensions : 50x70 cm\r\nFabriqué avec du carton recyclé.\r\nSous le ciel grandiose rêve une petite créature mythique. Si vous regardez de plus près en faisant le puzzle, vous découvrirez l'attention incroyablement affectueuse qu'Andy Kehoe porte aux détails.", "Assemblez les pièces pour reproduire le motif.", "https://cdn1.philibertnet.com/503142-thickbox_default/puzzle-inner-mystic-1000-pieces.jpg",3.90, c4, m4);
@@ -150,8 +170,9 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		Jeu j8 = new Jeu(null, "Puissance 4, Le Jeu Original", 2, 2, 6, "Facile", 15, "Un jeu simple mais stratégique\r\nDans Puissance 4, deux joueurs s'affrontent en face-à-face dans le but de parvenir à aligner horizontalement, verticalement ou en diagonale 4 jetons d'une même couleur.", "Comment jouer à Puissance 4 ?\r\nPour jouer à Puissance 4, rien de plus simple ! \r\n\r\nUne partie débute par la désignation du premier joueur. \r\nUne fois déterminé, celui-­ci choisit sa couleur (jaune ou rouge) et commence la partie en mettant un jeton de sa couleur dans l’une des colonnes de son choix. Subissant la gravité, le jeton se place alors tout en bas de la colonne.\r\nLe deuxième joueur place à son tour un jeton de sa couleur dans la colonne de son choix. \r\nPuis c'est à nouveau au premier joueur de jouer. La partie se poursuit ainsi jusqu'à ce qu'un joueur obtienne une rangée de 4 jetons de sa couleur.\r\nEt le gagnant est... \r\nPour vaincre son adversaire, l'heureux gagnant doit être le premier à aligner 4 jetons de sa couleur horizontalement, verticalement et en diagonale. Si les joueurs ont joué tous leurs jetons sans réussir à aligner 4 jetons, la partie est déclarée nulle.", "https://virginmegastore.ma/storage/2020/04/Jeu-Puissance-4-Nouvelle-Edition.jpg",10.00, c1, m6);
 		Jeu j9 = new Jeu(null, "Croque Carotte, Version Française", 2, 4, 4, "Facile", 30, "Gravis la montagne mais attention aux pièges !\r\n\r\nCroque carotte plonge votre enfant au coeur d'une course de lapins totalement déjantée ! C'est la course à la carotte ! Chaque lapin se dépêche pour être le premier à croquer la carotte mais attention ! Des trous s'ouvrent sous leurs pattes, les ralentissant ainsi brutalement dans leur course folle !\r\n\r\nRapidité et prudence sont de pairs pour garantir la réussite !", "J'en sais rien j'y ai jamais joué.", "https://images-na.ssl-images-amazon.com/images/I/910AKbmcjjL._AC_SY450_.jpg",8.00, c1, m7);
 		Jeu j10 = new Jeu(null, "Risk, Jeu de Stratégie", 2, 6, 10, "Moyen", 90, "Le jeu de conquête stratégique ! Le monde appartient aux audacieux, l'êtes-vous assez pour gagner ?\r\n\r\nDéplacez vos régiments, choisissez votre stratégie et que la conquête du monde commence !\r\n\r\nVotre mission :\r\n\r\nmettre vos ennemis en déroute,\r\nfaire avancer vos soldat pour conquérir de nouveaux territoires.\r\nQuand attaquer ? Quand s'arrêter ? Faut-il former des alliances avec l'ennemi ? La décision vous appartient !", "Je sais pas du tout dsl", "https://www.cdiscount.com/pdt2/0/1/0/1/700x700/hasb74041010/rw/risk-jeu-de-societe-de-strategie-jeu-de-platea.jpg",15.00, c1, m6);
-		Jeu j11 = new Jeu(null, "Elefun Chasse aux Papillons", 1, 3, 3, "Facile", 15, "Description\r\nLe mignon éléphant Elefun de Hasbro souffle des papillons colorés de sa trompe ! Utilise ton filet pour attraper un maximum de papillons au gré des musiques. Celui qui a réussi à en avoir le plus dans son filet remporte la partie.", "Y a pas de règles, c'est juste un éléphant plein de fun", "https://images-na.ssl-images-amazon.com/images/I/910JQj7v76L._AC_SL1500_.jpg",8.00, c1, m6);
-		Stream.of(j1,j2,j3,j4,j5,j6,j7,j8,j9,j10,j11).forEach(j -> jeuRepo.save(j));
+		Jeu j11 = new Jeu(null, "Elefun Chasse aux Papillons", 1, 3, 3, "Facile", 15, "Le mignon éléphant Elefun de Hasbro souffle des papillons colorés de sa trompe ! Utilise ton filet pour attraper un maximum de papillons au gré des musiques. Celui qui a réussi à en avoir le plus dans son filet remporte la partie.", "Y a pas de règles, c'est juste un éléphant plein de fun", "https://images-na.ssl-images-amazon.com/images/I/910JQj7v76L._AC_SL1500_.jpg",8.00, c1, m6);
+		Jeu j12 = new Jeu(null, "Cluedo, The Classic Mystery Game", 2, 6, 8, "Difficile", 30, "Dans ce jeu Cluedo à suspense, les joueurs doivent découvrir qui est responsable du meurtre du Dr Black de Tudor Mansion dans sa propre maison. Obtenez le scoop sur les chambres, les armes et les invités du manoir et commencez à détecter. Était-ce Mme Pervenche avec la clé dans la bibliothèque? Ou bien M. Leblanc avec le chandelier dans le cabinet d'études? Éliminez les informations tout au long du jeu dans ce polar classique. Le joueur qui accuse correctement qui, quoi et où gagne!", "Eliminer les suspects et découvrir le meurtier, avec quel arme et dans quelle pièce.\r\n Présentation d un nouveau personnage, le Dr Violet comme l un des suspects\r\n Fouillez le manoir pour trouver des indices, posez des questions de détective astucieuses et ne laissez aucune carte non retournée.\r\n Résolvez d abord le meurtre pour gagner!\r\n Une version amusante du jeu mystère classique propose de nouveaux personnages et une version à deux joueurs!", "https://www.amazon.fr/images/I/81Xzy8KnKTL._AC_SL1500_.jpg",10.00, c1, m6);
+		Stream.of(j1,j2,j3,j4,j5,j6,j7,j8,j9,j10,j11, j12).forEach(j -> jeuRepo.save(j));
 		
 		
 		
@@ -166,7 +187,8 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		JeuAchat ja9 = new JeuAchat(null, 25.99, 100, j9);
 		JeuAchat ja10 = new JeuAchat(null, 38.99, 100, j10);
 		JeuAchat ja11 = new JeuAchat(null, 27.99, 100, j11);
-		Stream.of(ja1,ja2,ja3,ja4,ja5,ja6,ja7,ja8,ja9,ja10,ja11).forEach(ja -> jaRepo.save(ja));
+		JeuAchat ja12 = new JeuAchat(null, 44.99, 100, j12);
+		Stream.of(ja1,ja2,ja3,ja4,ja5,ja6,ja7,ja8,ja9,ja10,ja11, ja12).forEach(ja -> jaRepo.save(ja));
 		
 		
 		
@@ -180,18 +202,19 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		
 		Stream.of(f1, f2, f3, f4, f5,f6).forEach(a -> forumRepo.save(a));
 		
-		Message me1= new Message(null, null, "Quels sont les délais de livraison ?", asterix, null, f1, false);
-		Message me2= new Message(null, null, "Est-il possible de se faire rembourser un jeu ?", obelix, null, f5, false);
-		Message me3= new Message(null, null, "La dernière version du jeu Monopoly est-elle disponible en commande chez vous ?", panoramix, null, f3, false);
-		Message me4= new Message(null, null, "Serait-il possible de réserver une salle pour 15 dans 1 mois ?", obelix, null, f4, false);
-		Message me5= new Message(null, null, "J'ai reçu mon jeu, il est imcomplet, comment se passe l'échange ?", u5, null, f2, false);
-		Message me6= new Message(null, null, "Salut Pano, viens-tu dimanche jouer dans une des salles ?", u5, panoramix, null, true);
-		Message me7= new Message(null, null, "Bonjour obélix, j'ai loué 7 wonders, ça te dirait de venir jouer une partie ?", asterix, obelix, null, true);
-		Message me8= new Message(null, null, "Livrez-vous au Canada ?", obelix, null, f1, false);
-		Message me9= new Message(null, null, "Le jeu labyrinthe est-il disponible en location chez-vous ?", asterix, null, f3, false);
-		Message me10= new Message(null, null, "Bonjour, quelle est la plus grand salle que vous mettez à disposition pour une réservation ?", panoramix, null, f4, false);
-		Message me11= new Message(null, null, "Le jeu que j'ai acheté ne convient pas à la personne à qui je l'ai offert, puis-je me le faire rembourser?", panoramix, null, f5, false);
-		Stream.of(me1, me2, me3, me4, me5, me6, me7, me8, me9, me10, me11).forEach(a -> messageRepo.save(a));
+		Message me1= new Message(null, null, "Quels sont les délais de livraison ?", asterix, null, f1, null, false);
+		Message me2= new Message(null, null, "Est-il possible de se faire rembourser un jeu ?", obelix, null, f5, null, false);
+		Message me3= new Message(null, null, "La dernière version du jeu Monopoly est-elle disponible en commande chez vous ?", panoramix, null, f3, null, false);
+		Message me4= new Message(null, null, "Serait-il possible de réserver une salle pour 15 dans 1 mois ?", obelix, null, f4, null, false);
+		Message me5= new Message(null, null, "J'ai reçu mon jeu, il est imcomplet, comment se passe l'échange ?", panoramix, null, f2, null, false);
+		Message me6= new Message(null, null, "Salut Pano, viens-tu dimanche jouer dans une des salles ?", obelix, panoramix, null, null, true);
+		Message me7= new Message(null, null, "Bonjour obélix, j'ai loué 7 wonders, ça te dirait de venir jouer une partie ?", asterix, obelix, null, null,  true);
+		Message me8= new Message(null, null, "Livrez-vous au Canada ?", obelix, null, f1, null, false);
+		Message me9= new Message(null, null, "Le jeu labyrinthe est-il disponible en location chez-vous ?", asterix, null, f3, null, false);
+		Message me10= new Message(null, null, "Bonjour, quelle est la plus grand salle que vous mettez à disposition pour une réservation ?", panoramix, null, f4, null, false);
+		Message me11= new Message(null, null, "Le jeu que j'ai acheté ne convient pas à la personne à qui je l'ai offert, puis-je me le faire rembourser?", panoramix, null, f5, null, false);
+		Message me12= new Message(null, null, "J'ai oublié mon casque Gaulois dans la salle de Lyon, l'avez-vous récupéré?", asterix, null, f6, null, false);
+		Stream.of(me1, me2, me3, me4, me5, me6, me7, me8, me9, me10, me11, me12).forEach(a -> messageRepo.save(a));
 		
 		JeuLocation jl1 = new JeuLocation(null, j1);
 		JeuLocation jl2 = new JeuLocation(null, j2);
@@ -210,12 +233,14 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		
 		Admin a1 = new Admin(null,panoramix);
 		Admin a2 = new Admin(null,u4);
-		Stream.of(a1,a2).forEach(a -> adminRepo.save(a));
+		Admin a3 = new Admin(null,u9);
+		
+		Stream.of(a1,a2, a3).forEach(a -> adminRepo.save(a));
 		
 		Vendeur v1 = new Vendeur(null,u5);
+		Vendeur v2 = new Vendeur(null,u10);
 
-		Stream.of(v1).forEach(a -> vendeurRepo.save(a));
-		
+		Stream.of(v1, v2).forEach(a -> vendeurRepo.save(a));
 		
 		
 		Avis av1 = new Avis(null, 5,"Pas terrible, je me suis ennuyé", asterix, j1);
@@ -274,7 +299,19 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 
 		Stream.of(h1, h2, h3, h4).forEach(h -> histoRepo.save(h));
 
-
+		
+		HistoriqueJeuLocation hjl1 = new HistoriqueJeuLocation(null, d5, d6, 2, null, jl1, jo1, null, false);
+		HistoriqueJeuLocation hjl2 = new HistoriqueJeuLocation(null, d1, d2, 1, null, jl3, jo1, v1, true);
+		HistoriqueJeuLocation hjl3 = new HistoriqueJeuLocation(null, d1, d2, 1, null, jl5, jo1, v1, true);
+		Stream.of(hjl1,hjl2,hjl3).forEach(hjl -> histojeulocationRepo.save(hjl));
+		
+		HistoriqueJeuAchat hja1 = new HistoriqueJeuAchat(null, 3, null, ja1, jo1, null, false);
+		HistoriqueJeuAchat hja2 = new HistoriqueJeuAchat(null, 2, null, ja3, jo1, null, false);
+		HistoriqueJeuAchat hja3 = new HistoriqueJeuAchat(null, 1, null, ja5, jo1, null, true);
+		HistoriqueJeuAchat hja4 = new HistoriqueJeuAchat(null, 3, null, ja7, jo1, null, true);
+		HistoriqueJeuAchat hja5 = new HistoriqueJeuAchat(null, 4, null, ja9, jo1, null, true);
+		HistoriqueJeuAchat hja6 = new HistoriqueJeuAchat(null, 4, null, ja11, jo1, null, false);
+		Stream.of(hja1,hja2,hja3,hja4,hja5,hja6).forEach(hja -> histojeuachatRepo.save(hja));
 	}
 
 }

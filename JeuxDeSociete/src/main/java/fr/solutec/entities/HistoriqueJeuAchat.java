@@ -1,5 +1,7 @@
 package fr.solutec.entities;
 
+
+
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -13,28 +15,25 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Data @NoArgsConstructor @AllArgsConstructor
 @Entity
-
-public class Message {
+public class HistoriqueJeuAchat {
 	@Id @GeneratedValue
 	private Long id;
+	
+	private int quantite;
+	
 	@CreationTimestamp 
     private Date dateCreation;
 	
-	private String contenu;
-	
-	
 	@ManyToOne
-	private User expediteur;
+	private JeuAchat jeuAchat;
 	
 	@ManyToOne
-	private User destinataire;
+	private Joueur joueur;
+	
 	@ManyToOne
-	private Forum forum;
-	@ManyToOne
-	private Message message;
-	private boolean privee;//on défini les messages privés par défaut
+	private Vendeur vendeur;
+	
+	private boolean effectue;
 }
