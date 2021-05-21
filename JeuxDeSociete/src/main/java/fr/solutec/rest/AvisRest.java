@@ -78,8 +78,9 @@ public class AvisRest {
 		return avis= avisRepo.save(a);
 	}
 	
-	@DeleteMapping("avis/delete")
-	public void effacerAvis(@RequestBody Avis a) {
+	@DeleteMapping("avis/delete/{id}")
+	public void effacerAvis( Avis a, @PathVariable Long id) {
+		a.setId(id);
 		avisRepo.delete(a);
 	}
 	

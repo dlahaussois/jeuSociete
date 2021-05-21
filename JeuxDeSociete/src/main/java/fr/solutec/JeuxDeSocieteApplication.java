@@ -221,7 +221,14 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		Avis av1 = new Avis(null, 5,"Pas terrible, je me suis ennuyé", asterix, j1);
 		Avis av2 = new Avis(null, 9,"Game night de folie!!!! Super bon moment passé avec Panoramix et Idéfix", obelix, j1);
 		Avis av3 = new Avis(null, 7,"Je préfère boire quand même", obelix, j2);
-		Stream.of(av1, av2, av3).forEach(a -> avisRepo.save(a));
+		Avis av4 = new Avis(null, 3,"Ce n'est plus de mon âge de faire la guerre...", panoramix, j1);
+		Avis av5 = new Avis(null, 8,"Ah les soviets... c'était le bon temps", panoramix, j3);
+		Avis av6 = new Avis(null, 6,"Beaucoup trop stratégique pour moi", obelix, j3);
+		Avis av7 = new Avis(null, 3,"Un vrai casse-tête!", obelix, j3);
+		Avis av8 = new Avis(null, 9,"Ca me rappelle mon enfance", obelix, j9);
+		Avis av9 = new Avis(null, 8,"Même mon petit Idefix apprécie de jouer à ce jeu!", asterix, j9);
+		
+		Stream.of(av1, av2, av3, av4, av5, av6, av7, av7, av8, av9).forEach(a -> avisRepo.save(a));
 
 
 		JeuDansPanier jdp1 = new JeuDansPanier(null, u5, ja2, 3,true);
