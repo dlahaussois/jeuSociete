@@ -171,7 +171,7 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		Jeu j9 = new Jeu(null, "Croque Carotte, Version Française", 2, 4, 4, "Facile", 30, "Gravis la montagne mais attention aux pièges !\r\n\r\nCroque carotte plonge votre enfant au coeur d'une course de lapins totalement déjantée ! C'est la course à la carotte ! Chaque lapin se dépêche pour être le premier à croquer la carotte mais attention ! Des trous s'ouvrent sous leurs pattes, les ralentissant ainsi brutalement dans leur course folle !\r\n\r\nRapidité et prudence sont de pairs pour garantir la réussite !", "J'en sais rien j'y ai jamais joué.", "https://images-na.ssl-images-amazon.com/images/I/910AKbmcjjL._AC_SY450_.jpg",8.00, c1, m7);
 		Jeu j10 = new Jeu(null, "Risk, Jeu de Stratégie", 2, 6, 10, "Moyen", 90, "Le jeu de conquête stratégique ! Le monde appartient aux audacieux, l'êtes-vous assez pour gagner ?\r\n\r\nDéplacez vos régiments, choisissez votre stratégie et que la conquête du monde commence !\r\n\r\nVotre mission :\r\n\r\nmettre vos ennemis en déroute,\r\nfaire avancer vos soldat pour conquérir de nouveaux territoires.\r\nQuand attaquer ? Quand s'arrêter ? Faut-il former des alliances avec l'ennemi ? La décision vous appartient !", "Je sais pas du tout dsl", "https://www.cdiscount.com/pdt2/0/1/0/1/700x700/hasb74041010/rw/risk-jeu-de-societe-de-strategie-jeu-de-platea.jpg",15.00, c1, m6);
 		Jeu j11 = new Jeu(null, "Elefun Chasse aux Papillons", 1, 3, 3, "Facile", 15, "Le mignon éléphant Elefun de Hasbro souffle des papillons colorés de sa trompe ! Utilise ton filet pour attraper un maximum de papillons au gré des musiques. Celui qui a réussi à en avoir le plus dans son filet remporte la partie.", "Y a pas de règles, c'est juste un éléphant plein de fun", "https://images-na.ssl-images-amazon.com/images/I/910JQj7v76L._AC_SL1500_.jpg",8.00, c1, m6);
-		Jeu j12 = new Jeu(null, "Cluedo, The Classic Mystery Game", 2, 6, 8, "Difficile", 30, "Dans ce jeu Cluedo à suspense, les joueurs doivent découvrir qui est responsable du meurtre du Dr Black de Tudor Mansion dans sa propre maison. Obtenez le scoop sur les chambres, les armes et les invités du manoir et commencez à détecter. Était-ce Mme Pervenche avec la clé dans la bibliothèque? Ou bien M. Leblanc avec le chandelier dans le cabinet d'études? Éliminez les informations tout au long du jeu dans ce polar classique. Le joueur qui accuse correctement qui, quoi et où gagne!", "Eliminer les suspects et découvrir le meurtier, avec quel arme et dans quelle pièce.\r\n Présentation d un nouveau personnage, le Dr Violet comme l un des suspects\r\n Fouillez le manoir pour trouver des indices, posez des questions de détective astucieuses et ne laissez aucune carte non retournée.\r\n Résolvez d abord le meurtre pour gagner!\r\n Une version amusante du jeu mystère classique propose de nouveaux personnages et une version à deux joueurs!", "https://www.amazon.fr/images/I/81Xzy8KnKTL._AC_SL1500_.jpg",10.00, c1, m6);
+		Jeu j12 = new Jeu(null, "Cluedo, The Classic Mystery Game", 2, 6, 8, "Difficile", 30, "Dans ce jeu Cluedo à suspense, les joueurs doivent découvrir qui est responsable du meurtre du Dr Black de Tudor Mansion dans sa propre maison. Obtenez le scoop sur les chambres, les armes et les invités du manoir et commencez à détecter. Était-ce Mme Pervenche avec la clé dans la bibliothèque? Ou bien M. Leblanc avec le chandelier dans le cabinet d'études? Éliminez les informations tout au long du jeu dans ce polar classique. Le joueur qui accuse correctement qui, quoi et où gagne!", "Eliminer les suspects et découvrir le meurtier, avec quel arme et dans quelle pièce.\r\n Présentation d un nouveau personnage, le Dr Violet comme l un des suspects\r\n Fouillez le manoir pour trouver des indices, posez des questions de détective astucieuses et ne laissez aucune carte non retournée.\r\n Résolvez d abord le meurtre pour gagner!\r\n Une version amusante du jeu mystère classique propose de nouveaux personnages et une version à deux joueurs!", "https://static.alipson.fr/m381/p378381/p1.jpg",10.00, c1, m6);
 		Stream.of(j1,j2,j3,j4,j5,j6,j7,j8,j9,j10,j11, j12).forEach(j -> jeuRepo.save(j));
 		
 		
@@ -192,29 +192,31 @@ public class JeuxDeSocieteApplication implements CommandLineRunner{
 		
 		
 		
-		Forum f1 = new Forum(null, "Détails sur la livraison", "fa fa-truck fa-2x");
+		Forum f1 = new Forum(null, "Livraison", "fa fa-truck fa-2x");
 		Forum f2 = new Forum(null, "Retour et Echange","fa fa-hand-point-left fa-2x");
-		Forum f3 = new Forum(null, "Disponibilité des jeux","fa fa-dice fa-2x");
+		Forum f3 = new Forum(null, "Remboursement","fa fa-hand-holding-usd fa-2x");
 		Forum f4 = new Forum(null, "Réservation de salles","fa fa-house-user fa-2x");
-		Forum f5 = new Forum(null, "Remboursement","fa fa-hand-holding-usd fa-2x");
+		Forum f5 = new Forum(null, "Jeux","fa fa-dice fa-2x");
 		Forum f6 = new Forum(null, "Autres","fa fa-question-circle fa-2x");
 		
 		
 		Stream.of(f1, f2, f3, f4, f5,f6).forEach(a -> forumRepo.save(a));
 		
-		Message me1= new Message(null, null, "Quels sont les délais de livraison ?", asterix, null, f1, null, false);
-		Message me2= new Message(null, null, "Est-il possible de se faire rembourser un jeu ?", obelix, null, f5, null, false);
-		Message me3= new Message(null, null, "La dernière version du jeu Monopoly est-elle disponible en commande chez vous ?", panoramix, null, f3, null, false);
-		Message me4= new Message(null, null, "Serait-il possible de réserver une salle pour 15 dans 1 mois ?", obelix, null, f4, null, false);
-		Message me5= new Message(null, null, "J'ai reçu mon jeu, il est imcomplet, comment se passe l'échange ?", panoramix, null, f2, null, false);
+		Message me1= new Message(null, null, "Quels sont les délais de livraison en Gaule ?", asterix, null, f1, null, false);
+		Message me2= new Message(null, null, "Est-il possible de se faire rembourser un jeu ?", obelix, null, f3, null, false);
+		Message me3= new Message(null, null, "La dernière version du jeu Monopoly, où il est possible d'acheter le palais de César, est-elle disponible en commande chez vous ?", u10, null, f5, null, false);
+		Message me4= new Message(null, null, "Serait-il possible de réserver une salle pour l'ensemble du village dans 1 mois ?", obelix, null, f4, null, false);
+		Message me5= new Message(null, null, "J'ai reçu mon jeu, il est imcomplet, comment se passe l'échange ?", u6, null, f2, null, false);
 		Message me6= new Message(null, null, "Salut Pano, viens-tu dimanche jouer dans une des salles ?", obelix, panoramix, null, null, true);
 		Message me7= new Message(null, null, "Bonjour obélix, j'ai loué 7 wonders, ça te dirait de venir jouer une partie ?", asterix, obelix, null, null,  true);
-		Message me8= new Message(null, null, "Livrez-vous au Canada ?", obelix, null, f1, null, false);
-		Message me9= new Message(null, null, "Le jeu labyrinthe est-il disponible en location chez-vous ?", asterix, null, f3, null, false);
+		Message me8= new Message(null, null, "Livrez-vous en Germany ?", u9, null, f1, null, false);
+		Message me9= new Message(null, null, "Le jeu labyrinthe est-il disponible en location chez-vous ?", asterix, null, f5, null, false);
 		Message me10= new Message(null, null, "Bonjour, quelle est la plus grand salle que vous mettez à disposition pour une réservation ?", panoramix, null, f4, null, false);
-		Message me11= new Message(null, null, "Le jeu que j'ai acheté ne convient pas à la personne à qui je l'ai offert, puis-je me le faire rembourser?", panoramix, null, f5, null, false);
-		Message me12= new Message(null, null, "J'ai oublié mon casque Gaulois dans la salle de Lyon, l'avez-vous récupéré?", asterix, null, f6, null, false);
-		Stream.of(me1, me2, me3, me4, me5, me6, me7, me8, me9, me10, me11, me12).forEach(a -> messageRepo.save(a));
+		Message me11= new Message(null, null, "Le jeu que j'ai acheté ne convient pas à la personne à qui je l'ai offert, puis-je me le faire rembourser?", u7, null, f3, null, false);
+		Message me12= new Message(null, null, "J'ai oublié mon casque Gaulois dans la salle de Lyon (Lugdunum), l'avez-vous récupéré?", asterix, null, f6, null, false);
+		Message me13= new Message(null, null, "Ouaf! j'ai crée un jeu d'échec géant avec des menhirs, je le vend au prix de 500 sesterces. Cela vous intéresse t-il ?", obelix, null, f6, null, false);
+		Message me14= new Message(null, null, "Je n'aime pas le jeu qu'on m'a offert, puis-je l'échanger contre un os ? ouaf!", u8, null, f2, null, false);
+		Stream.of(me1, me2, me3, me4, me5, me6, me7, me8, me9, me10, me11, me12, me13, me14).forEach(a -> messageRepo.save(a));
 		
 		JeuLocation jl1 = new JeuLocation(null, j1);
 		JeuLocation jl2 = new JeuLocation(null, j2);
