@@ -13,8 +13,8 @@ public interface UserRepository extends CrudRepository<User, Long>{
 	@Query(value="SELECT u FROM User u WHERE login=?1 AND password= ?2")
 	public Optional<User> connect(String login, String password);
 	
-	public Optional<User> findByLogin(String login);
 	
-
+	
+	public Optional<User> findByLogin(String login);
 	
 }

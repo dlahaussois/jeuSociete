@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.solutec.entities.Admin;
 import fr.solutec.entities.Forum;
 import fr.solutec.entities.Message;
 import fr.solutec.entities.User;
@@ -25,7 +26,7 @@ public class MessageRest {
 	@Autowired 
 	private MessageRepository messageRepo;
 	
-	//écrire un message dans le forum/à un user
+		//écrire un message dans le forum/à un user
 		@PostMapping("/message")
 		public Message save(@RequestBody Message m) {
 			return messageRepo.save(m);
@@ -86,11 +87,19 @@ public class MessageRest {
 		return messageRepo.findByPriveeIsTrue();
 		}
 		
+		//obtenir tous les messages recu d'un user
+		@GetMapping("/messagerie/{id}")
+		public  Optional <Iterable<Message>> getMessagerie(@PathVariable Long id){
+			
+			return messageRepo.findByDestinataireId(id);
+		}
+		
 		//obtenir les messages publics d'un expéditeur en particulier
 		@GetMapping("messages/expediteur")
 		public Optional<Iterable<Message>> getByIdExpediteur(@RequestBody Long id){  
 		return messageRepo.trouverPublicByExpediteurId(id);
 		}
+		
 		//obtenir les messages privés d'un expéditeur en particulier
 		@GetMapping("messages/prives/expediteur")
 		public Optional<Iterable<Message>> getByIdExpediteurPrive(@RequestBody Long id){  
@@ -109,21 +118,24 @@ public class MessageRest {
 		    	return false;
 		    }
 		}
+		
 		//avoir tous les messages d'un forum by id
 		@GetMapping("messages/forum")
 		public List<Message> getMessageByIdForum(@RequestBody Long id){
 			
 			return messageRepo.findByForumId(id);
 			}
-	 //avoir tous les messages d'un forum par sujet
+		
+		//avoir tous les messages d'un forum par sujet
 		@GetMapping("messages/{sujet}")
 		public List<Message> getMessageByForumSujet(@PathVariable String sujet){
 			
 			return messageRepo.findByForumSujet(sujet);
 			}
 		
+
 	@GetMapping("/messagerie/{id}")
 	public Optional<Iterable<Message>> getMessagerieByUserId(@PathVariable Long id){
 		return messageRepo.getMessagerieByUserId(id);
-	}
-}
+	}}
+
