@@ -88,11 +88,11 @@ public class MessageRest {
 		}
 		
 		//obtenir tous les messages recu d'un user
-		@GetMapping("/messagerie/{id}")
+		/*@GetMapping("/messagerie/{id}")
 		public  Optional <Iterable<Message>> getMessagerie(@PathVariable Long id){
 			
 			return messageRepo.findByDestinataireId(id);
-		}
+		}*/
 		
 		//obtenir les messages publics d'un expéditeur en particulier
 		@GetMapping("messages/expediteur")
