@@ -26,13 +26,17 @@ public interface MessageRepository extends CrudRepository<Message, Long>{
 	@Query(value = "SELECT m FROM Message m inner join User u ON m.expediteur.id=u.id WHERE m.privee=true AND u.id=?1 ")
 	public Optional<Iterable<Message>> trouverPriveByExpediteurId(Long id);
 	
+
 	public Optional<Iterable<Message>> findByDestinataireId(Long id);
 	
 	public Optional<Iterable<Message>> findByExpediteurLogin(String login);
 	
-	@Query(value = "SELECT m FROM Message m WHERE m.destinataire.id=?1 AND m.expediteur.id=?2")
-	public Optional<Iterable<Message>> trouverMessagesDestinataireParExpediteur( Long id1,Long id2);
 
+
+
+
+	@Query("SELECT m FROM Message m WHERE (m.expediteur.id=?1 OR m.destinataire.id=?1) and m.forum=null")
+	public Optional<Iterable<Message>> getMessagerieByUserId(Long id);
 
 	
 	}

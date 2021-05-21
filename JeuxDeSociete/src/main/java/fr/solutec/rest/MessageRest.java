@@ -133,16 +133,9 @@ public class MessageRest {
 			return messageRepo.findByForumSujet(sujet);
 			}
 		
-		@GetMapping("messages/recherche/{id}") 
-		public  Optional<Message> rechercheMessageById(@PathVariable Long id){
-			return messageRepo.findById(id);
-		}
-		
-		@GetMapping("messages/recherche/{id1}/{id2}") 
-		public  Optional<Iterable<Message>> rechercheMessageByExpediteurLogin(@PathVariable Long id1, @PathVariable Long id2){
-			return messageRepo.trouverMessagesDestinataireParExpediteur(id1, id2);
-		}
-		
-		
-		
-}
+
+	@GetMapping("/messagerie/{id}")
+	public Optional<Iterable<Message>> getMessagerieByUserId(@PathVariable Long id){
+		return messageRepo.getMessagerieByUserId(id);
+	}}
+
