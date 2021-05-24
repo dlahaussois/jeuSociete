@@ -72,6 +72,11 @@ public class JeuRest {
 		return jeuRepo.getJeuByNom(jeu.getNom().toLowerCase());
 	}
 	
+	@GetMapping("/jeu/findByNomLike/{nom}")
+	public Optional<Iterable<Jeu>> getJeuByNomLikePath(@PathVariable String nom){
+		return jeuRepo.getJeuByNom(nom.toLowerCase());
+	}
+	
 	//---------------------------------------------------------------------------------------------------
 	//Jeux par agemin
 	
