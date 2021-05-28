@@ -94,6 +94,16 @@ public class VendeurRest {
 		return ve;
 	}
 	
-	
-	
+	@GetMapping("vendeur/type/{login}")
+	public int isVendeur(@PathVariable String login){
+		
+		Optional<Vendeur> v = vendeurRepo.isVendeur(login);
+		
+		if (v.isPresent() ) {
+			return 2;
+			} else {
+					return 0;
+			}
+	}
+
 }

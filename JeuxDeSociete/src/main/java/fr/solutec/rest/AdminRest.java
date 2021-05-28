@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.solutec.entities.Admin;
 import fr.solutec.entities.JeuAchat;
+import fr.solutec.entities.Joueur;
 import fr.solutec.entities.User;
 import fr.solutec.entities.Vendeur;
 import fr.solutec.repository.AdminRepository;
@@ -114,5 +115,17 @@ public class AdminRest {
 			}
 
 			
+
 	
+	@GetMapping("admin/type/{login}")
+	public int isAdmin(@PathVariable String login){
+		
+		Optional<Admin> v = adminRepo.isAdmin(login);
+		System.out.println(v);
+		if (v.isPresent()) {
+			return 3;
+			} else {
+				return 0;
+			}
+	}
 }

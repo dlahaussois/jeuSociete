@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.solutec.entities.Admin;
 import fr.solutec.entities.Jeu;
 import fr.solutec.entities.Joueur;
 import fr.solutec.entities.User;
@@ -102,6 +103,20 @@ public class JoueurRest {
 		
 		userRepo.save(v.getUser());
 		return joueurRepo.save(v);
+	}
+	
+	
+	
+	@GetMapping("joueur/type/{login}")
+	public int isJoueur(@PathVariable String login){
+		
+		Optional<Joueur> v = joueurRepo.isJoueur(login);
+		
+		if (v.isPresent() ) {
+			return 1;
+			} else {
+					return 0;
+			}
 	}
 	
 }
