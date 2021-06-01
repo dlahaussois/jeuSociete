@@ -44,7 +44,13 @@ public class HistoriqueLocationSalleRest {
 	}
 	
 	@GetMapping("salle/historiqueUser/{id}")
-	public Optional<Iterable<HistoriqueLocationSalle>> getHistoryByUserId(@PathVariable Long id){
+	public Optional<Iterable<HistoriqueLocationSalle>> getHistoriqueLocationSalleByUserId(@PathVariable Long id){
 		return historRepo.getHistoryByUserId(id);
+	}
+	
+	@PutMapping("salle/historique/modifier/{id}")
+	public HistoriqueLocationSalle modifierHistorique(@PathVariable Long id, @RequestBody HistoriqueLocationSalle h) {
+		h.setId(id);
+		return historRepo.save(h);
 	}
 }
