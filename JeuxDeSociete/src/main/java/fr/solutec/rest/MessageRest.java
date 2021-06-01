@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.solutec.entities.Admin;
+import fr.solutec.entities.Avis;
 import fr.solutec.entities.Forum;
 import fr.solutec.entities.Message;
 import fr.solutec.entities.User;
@@ -86,7 +87,7 @@ public class MessageRest {
 		public Iterable<Message> getAllPrivee(){
 		return messageRepo.findByPriveeIsTrue();
 		}
-		
+		/*
 		//obtenir tous les messages recu d'un user
 		/*@GetMapping("/messagerie/{id}")
 		public  Optional <Iterable<Message>> getMessagerie(@PathVariable Long id){
@@ -95,8 +96,8 @@ public class MessageRest {
 		}*/
 		
 		//obtenir les messages publics d'un expéditeur en particulier
-		@GetMapping("messages/expediteur")
-		public Optional<Iterable<Message>> getByIdExpediteur(@RequestBody Long id){  
+		@GetMapping("messages/expediteur/{id}")
+		public Optional<Iterable<Message>> getByIdExpediteur(@PathVariable Long id){  
 		return messageRepo.trouverPublicByExpediteurId(id);
 		}
 		
@@ -119,6 +120,8 @@ public class MessageRest {
 		    }
 		}
 		
+	
+		
 		//avoir tous les messages d'un forum by id
 		@GetMapping("messages/forum")
 		public List<Message> getMessageByIdForum(@RequestBody Long id){
@@ -133,7 +136,15 @@ public class MessageRest {
 			return messageRepo.findByForumSujet(sujet);
 			}
 		
-
+		//avoir toutes les réponses d'un message par id
+				@GetMapping("reponses/messages/{id}")
+				public List<Message> getMessageByMessageId(@PathVariable Long id){
+					
+					return messageRepo.findByMessageId(id);
+					}
+		
+				
+		
 	@GetMapping("/messagerie/{id}")
 	public Optional<Iterable<Message>> getMessagerieByUserId(@PathVariable Long id){
 		return messageRepo.getMessagerieByUserId(id);
